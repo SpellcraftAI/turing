@@ -1,0 +1,15 @@
+{
+  "name": "ab-challenge",
+  "version": "1.0.0",
+  "description": "### 1. The AI will be given a `<problem/>` to solve. Example:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.2",
+    "openai": "^4.33.0"
+  }
+}
