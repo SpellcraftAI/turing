@@ -9,8 +9,8 @@
 // ======
 
 const USER = process.argv[2] || "futuristfrog"; // <- replace by your user
-const RUNS = 12; // total runs
-const DIFF = run => run * 2; // difficulty by run (0 to 24)
+const RUNS = 50; // total runs
+const DIFF = run => Math.round(24 * (1 - run / RUNS));
 
 // Script
 // ======
@@ -39,8 +39,10 @@ async function getOpenAIKey() {
   return (await fs.readFile(keyPath, 'utf8')).trim();
 }
 
-async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-20240229', temperature = 1, debug = true }) {
-  const anthropic = new Anthropic({ apiKey: await getAnthropicKey() });
+async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-20240229', temperature = 0, debug = true }) {
+  const apiKey = await getAnthropicKey()  
+  const anthropic = new Anthropic({ apiKey });
+  
   if (debug) {
     const stream = anthropic.messages.stream({
       model,
@@ -60,6 +62,8 @@ async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-
       temperature,
       ...(system && { system }),
     });
+    const { content, ...metadata } = message;
+    console.table(metadata);
     return message.content[0].text;
   }
 }
@@ -1013,33 +1017,38 @@ const instances = {
 
 async function runChallenge(system, model, level) {
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
-
+  const params = { temperature: 0.05, model, debug: true };
   const [norm, rwts] = normal(term);
 
   LOG(`Term: ${show(term)}`);
+  LOG(`Params: ${JSON.stringify(params)}`);
   LOG(`Norm: ${show(norm)}`);
   LOG(`Rwts: ${rwts}`);
   LOG(``);
   LOG(`AI-RESPONSE:`);
 
-  const problem = `<problem>${show(term)}</problem>`;
+  const problem = `INPUT: ${show(term)}`;
 
   let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
-  let ai_ret = await ai_ask({ system, messages: [{ role: 'user', content: problem }], model, debug: true });
+  let ai_ret = await ai_ask({ 
+    system, 
+    messages: [{ role: 'user', content: problem }], 
+    ...params 
+  });
 
-  const solutionRegex = /<solution>(.*?)<\/solution>/s;
-  const solutionMatch = ai_ret.match(solutionRegex);
+  const lines = ai_ret.split("\n")
+  const solution = lines[lines.length - 1].trim()
 
-  if (solutionMatch) {
-    const aiSolution = solutionMatch[1].trim().split(' ').filter(Boolean);
+  if (solution) {
+    const aiSolution = solution.split(' ').filter(Boolean);
     LOG(`\nAI-Solution: ${show(aiSolution)}\n`);
     if (aiSolution.join('').trim() === norm.join('').trim()) {
       LOG('<<correct>>\n');
-      return true;
     } else {
       LOG('<<incorrect>>\n');
-      return false;
     }
+
+    return [norm.join('').trim(), aiSolution.join('').trim()]
   } else {
     LOG('<<not-found>>\n');
     return false;
@@ -1051,15 +1060,22 @@ async function runFullChallenge(systemPrompt, model) {
   const total = RUNS;
   
   for (let i = 0; i < total; i++) {
-    LOG(`## Instance ${i}:`);
-    LOG(``);
-    const result = await runChallenge(systemPrompt, model, DIFF(i));
-    if (result) {
-      correct++;
+    const Test = `${i + 1} / ${RUNS}`;
+    const Correct = `${correct} / ${i}`
+    const Accuracy = `${(correct/i).toFixed(2)}`
+
+    console.table({ Test, Correct, Accuracy })
+    
+    const [norm, solution] = await runChallenge(systemPrompt, model, 24);
+    console.table({ norm, solution })
+    if (solution === norm) {
+      correct++; 
     }
   }
 
-  LOG(`\nFinal score: ${correct} / ${total}`);
+  LOG('')
+  LOG("--- Final score ---");
+  LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`)
 }
 
 const prompt = await fs.readFile(`./users/${USER}/prompt.txt`, "utf-8");
