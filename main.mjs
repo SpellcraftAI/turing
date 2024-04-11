@@ -29,12 +29,22 @@ function LOG(txt) { if (txt) { OUTPUT += txt+"\n"; console.log(txt); } }
 // AI Utils
 // --------
 
+const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
+
 async function getAnthropicKey() {
+  if (ANTHROPIC_API_KEY) {
+    return ANTHROPIC_API_KEY
+  }
+
   const keyPath = path.join(process.env.HOME, '.config', 'anthropic.token');
   return (await fs.readFile(keyPath, 'utf8')).trim();
 }
 
 async function getOpenAIKey() {
+  if (OPENAI_API_KEY) {
+    return OPENAI_API_KEY
+  }
+  
   const keyPath = path.join(process.env.HOME, '.config', 'openai.token');
   return (await fs.readFile(keyPath, 'utf8')).trim();
 }
