@@ -30,4 +30,4 @@ jobs:
       - name: Start tests
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: bun main.mjs ctjlewis
+        run: bun src/main.mjs ctjlewis
