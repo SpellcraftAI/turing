@@ -1,8 +1,8 @@
 name: Test LLM Metaprogram
 
 on:
-  - push:
-    - branches:
+  push:
+    branches:    
       - main
   
 jobs:
@@ -30,4 +30,4 @@ jobs:
       - name: Start tests
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node main.js
+        run: bun main.mjs

@@ -70,13 +70,12 @@ NEXT INDEX:+1
 
 
 # EXACT SAME STRING PREV Guide
-1. This is Where Check if the String is the Same so you can just go to "# Tokens Without Numbers" then Submit your Solution inside of <solution></solution>
+1. This is Where Check if the String is the Same so you can just go to "# Tokens Without Numbers" then Submit your Solution on last line
 2. Compare the Two Previous # GATHER NEW TOKENS to Make COMPLETELY SURE They are EXACTLY the SAME
 
 
 
-<EXAMPLE 1>
-<problem>#A B# #B #B #B #A A# B# #B A# #A #B</problem>
+INPUT: #A B# #B #B #B #A A# B# #B A# #A #B
 
 # List Out
 1. #A
@@ -175,12 +174,10 @@ NEXT INDEX:7:OVERFLOW
 #A #B #B #A #B A#
 
 # Solution:
-<solution>#A #B #B #A #B A#</solution>
-</EXAMPLE 1>
+#A #B #B #A #B A#
+---
 
-
-<EXAMPLE 2>
-<problem>#B A# B# B# #A A# A# #B B# #A #B A#</problem>
+INPUT: #B A# B# B# #A A# A# #B B# #A #B A#
 
 # List Out
 1. #B
@@ -303,12 +300,11 @@ NEXT INDEX:5:OVERFLOW
 #B B# A# A#
 
 # Solution:
-<solution>#B B# A# A#</solution>
-</EXAMPLE 2>
+#B B# A# A#
 
+---
 
-<EXAMPLE 3>
-<problem>B# B# B# #A B# #A #A B# #A A# B# #B</problem>
+INPUT: B# B# B# #A B# #A #A B# #A A# B# #B
 
 # List Out
 1. B#
@@ -517,12 +513,11 @@ NEXT INDEX:11:OVERFLOW
 #A #A #A #A B# B# B# B# B# A#
 
 # Solution:
-<solution>#A #A #A #A B# B# B# B# B# A#</solution>
-</EXAMPLE 3>
+#A #A #A #A B# B# B# B# B# A#
 
+---
 
-<EXAMPLE 4>
-<problem>A# B# #A A# B# #B A# B# #A #A #A A#</problem>
+INPUT: A# B# #A A# B# #B A# B# #A #A #A A#
 
 # List Out
 1. A#
@@ -655,12 +650,11 @@ NEXT INDEX:5:OVERFLOW
 #A B# B# A#
 
 # Solution:
-<solution>#A B# B# A#</solution>
-</EXAMPLE 4>
+#A B# B# A#
 
+---
 
-<EXAMPLE 5>
-<problem>A# #A #A A# #B #A B# B# #B #A A# B#</problem>
+INPUT: A# #A #A A# #B #A B# B# #B #A A# B#
 
 # List Out
 1. A#
@@ -761,14 +755,16 @@ NEXT INDEX:7:OVERFLOW
 #A #B #A B# A# B#
 
 # Solution:
-<solution>#A #B #A B# A# B#</solution>
+#A #B #A B# A# B#
 
-</EXAMPLE 5>
-
+---
 
 # Guidelines:
 - Make SURE complete to every step PERFECTLY without ANY Mistakes
-- End with <solution>Solution</solution> Format
+- End with solution on final line
 - Follow the Rules I Gave you and Remember to Index the Values
 
 Take a Deep Breath and Carefully Follow the Rules, Guides and Examples I gave you. I will tip you $2000 if you do EVERYTHING Perfectly.
+
+ASSISTANT START PROGRAM BELOW.
+BEGIN RESPONSE WITH \`List out\`.
