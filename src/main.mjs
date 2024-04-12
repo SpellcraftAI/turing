@@ -1,21 +1,31 @@
+import OpenAI from "openai";
+import { join } from "path"
+import { readFile } from "fs/promises";
+import { resolve } from "path";
+import { Anthropic } from "@anthropic-ai/sdk";
+
 import { instances } from "./tokens.mjs"
 import { normal, show } from "./utils.mjs";
 
-// Config
-// ======
+const USER = process.argv[2] || "futuristfrog";
+const RUNS = 50;
 
-const USER = process.argv[2] || "futuristfrog"; // <- replace by your user
-const RUNS = 50; // total runs
-const DIFF = run => Math.round(24 * (1 - run / RUNS));
+const loadUserFile = async (file) => {
+  const path = resolve("users", USER, file);
+  const contents = (await readFile(path, "utf-8")).trim()
 
-// Script
-// ======
+  if (file.endsWith(".json")) {
+    return JSON.parse(contents);
+  }
 
-import OpenAI from "openai";
-import fs from 'fs/promises';
-import path from 'path';
-import process from "process";
-import { Anthropic } from '@anthropic-ai/sdk';
+  console.log({ contents })
+
+  return contents;
+}
+
+const prompt = await loadUserFile("prompt.txt");
+const model = await loadUserFile("model.txt");
+const config = await loadUserFile("config.json");
 
 let OUTPUT = "";
 function PUT(txt) { 
@@ -41,8 +51,8 @@ async function getAnthropicKey() {
     return ANTHROPIC_API_KEY
   }
 
-  const keyPath = path.join(process.env.HOME, '.config', 'anthropic.token');
-  return (await fs.readFile(keyPath, 'utf8')).trim();
+  const keyPath = join(process.env.HOME, '.config', 'anthropic.token');
+  return (await readFile(keyPath, 'utf8')).trim();
 }
 
 async function getOpenAIKey() {
@@ -50,8 +60,8 @@ async function getOpenAIKey() {
     return OPENAI_API_KEY
   }
 
-  const keyPath = path.join(process.env.HOME, '.config', 'openai.token');
-  return (await fs.readFile(keyPath, 'utf8')).trim();
+  const keyPath = join(process.env.HOME, '.config', 'openai.token');
+  return (await readFile(keyPath, 'utf8')).trim();
 }
 
 async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-20240229', temperature = 0, debug = true }) {
@@ -109,11 +119,12 @@ async function askGPT({system, messages, model, temperature}) {
 
 async function runChallenge(system, model, level) {
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
-  const params = { temperature: 0.5, model, debug: true };
+  const params = { model, debug: true, ...config };
   const [norm, rwts] = normal(term);
 
+  console.table(params);
+
   LOG(`Term: ${show(term)}`);
-  LOG(`Params: ${JSON.stringify(params)}`);
   LOG(`Norm: ${show(norm)}`);
   LOG(`Rwts: ${rwts}`);
   LOG(``);
@@ -160,8 +171,11 @@ async function runFullChallenge(systemPrompt, model) {
     
     const [norm, solution] = await runChallenge(systemPrompt, model, 24);
     console.table({ norm, solution })
+
     if (solution === norm) {
       correct++; 
+    } else {
+      throw new Error("The test failed.")
     }
   }
 
@@ -169,9 +183,6 @@ async function runFullChallenge(systemPrompt, model) {
   LOG("--- Final score ---");
   LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`)
 }
-
-const prompt = await fs.readFile(`./users/${USER}/prompt.txt`, "utf-8");
-const model = (await fs.readFile(`./users/${USER}/model.txt`, "utf-8")).trim();
 
 LOG("USER: " + USER);
 LOG("MODEL: " + model);
