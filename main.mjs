@@ -1037,12 +1037,7 @@ async function runChallenge(system, model, level) {
   LOG(``);
   LOG(`AI-RESPONSE:`);
 
-  const problem = 
-`
-ASSISTANT START PROGRAM BELOW.
-BEGIN RESPONSE WITH \`STACK\`.
-
-INPUT: ${show(term)}`;
+  const problem = `INPUT: ${show(term)}`;
 
   let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
   let ai_ret = await ai_ask({ 
