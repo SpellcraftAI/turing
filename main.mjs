@@ -44,7 +44,7 @@ async function getOpenAIKey() {
   if (OPENAI_API_KEY) {
     return OPENAI_API_KEY
   }
-  
+
   const keyPath = path.join(process.env.HOME, '.config', 'openai.token');
   return (await fs.readFile(keyPath, 'utf8')).trim();
 }
@@ -1027,7 +1027,7 @@ const instances = {
 
 async function runChallenge(system, model, level) {
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
-  const params = { temperature: 0.05, model, debug: true };
+  const params = { temperature: 0, model, debug: true };
   const [norm, rwts] = normal(term);
 
   LOG(`Term: ${show(term)}`);
@@ -1037,7 +1037,12 @@ async function runChallenge(system, model, level) {
   LOG(``);
   LOG(`AI-RESPONSE:`);
 
-  const problem = `INPUT: ${show(term)}`;
+  const problem = 
+`INPUT: ${show(term)}
+===
+
+ASSISTANT START PROGRAM BELOW AT STEP 1.
+BEGIN RESPONSE WITH \`TAPE\`.`;
 
   let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
   let ai_ret = await ai_ask({ 
