@@ -62,7 +62,15 @@ async function getOpenAIKey() {
   return (await readFile(keyPath, 'utf8')).trim();
 }
 
-async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-20240229', temperature = 0, debug = true }) {
+async function askClaude({ 
+  system, 
+  messages, 
+  max_tokens, 
+  model = 'claude-3-opus-20240229', 
+  temperature = 0, 
+  debug = true,
+  main = false,
+}) {
   const apiKey = await getAnthropicKey()  
   const anthropic = new Anthropic({ apiKey });
   
@@ -73,13 +81,18 @@ async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-
       max_tokens: max_tokens || 4096,
       temperature,
       ...(system && { system }),
-    }).on('text', (text) => PUT(text));
+    })
+
+    if (main) {
+      stream.on('text', (text) => PUT(text));
+    }
+
     const message = await stream.finalMessage();
     const { content, ...metadata } = message;
 
     console.log();
     console.table(metadata);
-    LOG(); // Add a newline at the end
+    // LOG(); // Add a newline at the end
     return content[0].text;
   } else {
     const message = await anthropic.messages.create({
@@ -93,7 +106,13 @@ async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-
   }
 }
 
-async function askGPT({system, messages, model, temperature}) {
+async function askGPT({
+  system, 
+  messages, 
+  model, 
+  temperature,
+  main = false,
+}) {
   const openai = new OpenAI({apiKey: await getOpenAIKey()});
   const stream = await openai.chat.completions.create({
     model: model || "gpt-4-0125-preview",
@@ -102,28 +121,25 @@ async function askGPT({system, messages, model, temperature}) {
       ...messages
     ],
     stream: true,
-    max_tokens: 2500,
+    max_tokens: 1600,
     temperature: temperature || 0,
   });
   var result = "";
   for await (const chunk of stream) {
     var text = chunk.choices[0]?.delta?.content || "";
-    PUT(text);
     result += text;
   }
-  PUT("\n");
   return result;
 }
 
 // Evaluator
 // ---------
 
-async function runChallenge(system, level) {
+async function runChallenge(system, level, main = false) {
   let output = ""
   const log = (string) => output += string;
 
   const model = config.models[MODEL];
-
 
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
   const [norm, rwts] = normal(term);
@@ -140,7 +156,8 @@ async function runChallenge(system, level) {
   let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
   let ai_ret = await ai_ask({ 
     system, 
-    messages: [{ role: 'user', content: problem }], 
+    messages: [{ role: 'user', content: problem }],
+    main,
     ...params 
   });
 
@@ -165,28 +182,32 @@ async function runChallenge(system, level) {
   }
 }
 
-async function runFullChallenge(systemPrompt) {
+async function runFullChallenge(systemPrompt, batchSize = 3) {
   let correct = 0;
   const total = RUNS;
-  
-  for (let i = 0; i < total; i++) {
-    const Test = `${i + 1} / ${RUNS}`;
-    const Correct = `${correct} / ${i}`
-    const Accuracy = `${(correct/i).toFixed(2)}`
+  const numBatches = Math.ceil(total / batchSize);
 
-    console.table({ Test, Correct, Accuracy })
-    
-    const isCorrect = await runChallenge(systemPrompt, 24);
-    if (isCorrect) {
-      correct++; 
-    } else {
-      throw new Error("The test failed.")
+  for (let batch = 0; batch < numBatches; batch++) {
+    const start = batch * batchSize;
+    const end = Math.min(start + batchSize, total);
+
+    const promises = [];
+    for (let i = start; i < end; i++) {
+      promises.push(runChallenge(systemPrompt, 24, i === start));
     }
+
+    const results = await Promise.all(promises);
+    correct += results.filter(Boolean).length;
+
+    const Test = `${end} / ${RUNS}`;
+    const Correct = `${correct} / ${end}`;
+    const Accuracy = `${(correct / end).toFixed(2)}`;
+    console.table({ Test, Correct, Accuracy });
   }
 
-  LOG('')
+  LOG('');
   LOG("--- Final score ---");
-  LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`)
+  LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`);
 }
 
 await runFullChallenge(prompt);
