@@ -1,1 +1,8 @@
-{ "temperature": 1 }
+{ 
+    "temperature": 1, 
+    "max_tokens": 4096,
+    "models": {
+        "gpt": "gpt-4",
+        "anthropic": "claude-3-opus-20240229"
+    }
+}

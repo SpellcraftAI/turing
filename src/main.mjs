@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { join } from "path"
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { resolve } from "path";
 import { Anthropic } from "@anthropic-ai/sdk";
 
@@ -8,6 +8,7 @@ import { instances } from "./tokens.mjs"
 import { normal, show } from "./utils.mjs";
 
 const USER = process.argv[2] || "futuristfrog";
+const MODEL = process.argv[3] || "anthropic";
 const RUNS = 50;
 
 const loadUserFile = async (file) => {
@@ -18,13 +19,10 @@ const loadUserFile = async (file) => {
     return JSON.parse(contents);
   }
 
-  console.log({ contents })
-
   return contents;
 }
 
 const prompt = await loadUserFile("prompt.txt");
-const model = await loadUserFile("model.txt");
 const config = await loadUserFile("config.json");
 
 let OUTPUT = "";
@@ -77,8 +75,12 @@ async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-
       ...(system && { system }),
     }).on('text', (text) => PUT(text));
     const message = await stream.finalMessage();
+    const { content, ...metadata } = message;
+
+    console.log();
+    console.table(metadata);
     LOG(); // Add a newline at the end
-    return message.content[0].text;
+    return content[0].text;
   } else {
     const message = await anthropic.messages.create({
       model,
@@ -87,8 +89,6 @@ async function askClaude({ system, messages, max_tokens, model = 'claude-3-opus-
       temperature,
       ...(system && { system }),
     });
-    const { content, ...metadata } = message;
-    console.table(metadata);
     return message.content[0].text;
   }
 }
@@ -102,6 +102,7 @@ async function askGPT({system, messages, model, temperature}) {
       ...messages
     ],
     stream: true,
+    max_tokens: 2500,
     temperature: temperature || 0,
   });
   var result = "";
@@ -117,20 +118,24 @@ async function askGPT({system, messages, model, temperature}) {
 // Evaluator
 // ---------
 
-async function runChallenge(system, model, level) {
-  const term = instances[level][Math.floor(Math.random() * instances[level].length)];
-  const params = { model, debug: true, ...config };
-  const [norm, rwts] = normal(term);
+async function runChallenge(system, level) {
+  let output = ""
+  const log = (string) => output += string;
 
+  const model = config.models[MODEL];
+
+
+  const term = instances[level][Math.floor(Math.random() * instances[level].length)];
+  const [norm, rwts] = normal(term);
+  const problem = `INPUT: ${show(term)}`;
+  const params = { model, debug: true, ...config };
   console.table(params);
 
-  LOG(`Term: ${show(term)}`);
-  LOG(`Norm: ${show(norm)}`);
-  LOG(`Rwts: ${rwts}`);
-  LOG(``);
-  LOG(`AI-RESPONSE:`);
-
-  const problem = `INPUT: ${show(term)}`;
+  log(`Term: ${show(term)}`);
+  log(`Norm: ${show(norm)}`);
+  log(`Rwts: ${rwts}`);
+  log(``);
+  log(`Response:`);
 
   let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
   let ai_ret = await ai_ask({ 
@@ -144,21 +149,23 @@ async function runChallenge(system, model, level) {
 
   if (solution) {
     const aiSolution = solution.split(' ').filter(Boolean);
-    LOG(`\nAI-Solution: ${show(aiSolution)}\n`);
+    log(`\nAI-Solution: ${show(aiSolution)}\n`);
     if (aiSolution.join('').trim() === norm.join('').trim()) {
-      LOG('<<correct>>\n');
+      log('<<correct>>\n');
     } else {
-      LOG('<<incorrect>>\n');
+      log('<<incorrect>>\n');
+      console.log(output);
+      await writeFile("error.txt", output)
     }
 
-    return [norm.join('').trim(), aiSolution.join('').trim()]
+    return norm.join('').trim() === aiSolution.join('').trim()
   } else {
-    LOG('<<not-found>>\n');
+    log('<<not-found>>\n');
     return false;
   }
 }
 
-async function runFullChallenge(systemPrompt, model) {
+async function runFullChallenge(systemPrompt) {
   let correct = 0;
   const total = RUNS;
   
@@ -169,10 +176,8 @@ async function runFullChallenge(systemPrompt, model) {
 
     console.table({ Test, Correct, Accuracy })
     
-    const [norm, solution] = await runChallenge(systemPrompt, model, 24);
-    console.table({ norm, solution })
-
-    if (solution === norm) {
+    const isCorrect = await runChallenge(systemPrompt, 24);
+    if (isCorrect) {
       correct++; 
     } else {
       throw new Error("The test failed.")
@@ -184,11 +189,5 @@ async function runFullChallenge(systemPrompt, model) {
   LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`)
 }
 
-LOG("USER: " + USER);
-LOG("MODEL: " + model);
-LOG("PROMPT:");
-LOG(prompt);
-LOG("");
-
-await runFullChallenge(prompt, model);
+await runFullChallenge(prompt);
 await fs.writeFile(`./users/${USER}/log.txt`, OUTPUT);
