@@ -26,11 +26,6 @@ const prompt = await loadUserFile("prompt.txt");
 const config = await loadUserFile("config.json");
 
 let OUTPUT = "";
-function PUT(txt) { 
-  if (txt) { 
-    OUTPUT += txt; process.stdout.write(txt); 
-  } 
-}
 
 function LOG(txt) { 
   if (txt) { 
@@ -83,17 +78,20 @@ async function askClaude({
       ...(system && { system }),
     })
 
-    if (main) {
-      stream.on('text', (text) => PUT(text));
-    }
+    stream.on('text', (text) => {
+      OUTPUT += text;
+      if (main) {
+        process.stdout.write(text)
+      }
+    })
 
     const message = await stream.finalMessage();
     const { content, ...metadata } = message;
 
-    console.log();
-    console.table(metadata);
-    // LOG(); // Add a newline at the end
-    return content[0].text;
+    return {
+      text: content[0].text,
+      metadata,
+    };
   } else {
     const message = await anthropic.messages.create({
       model,
@@ -102,7 +100,12 @@ async function askClaude({
       temperature,
       ...(system && { system }),
     });
-    return message.content[0].text;
+
+    const { content, ...metadata } = message;
+    return {
+      text: content[0].text,
+      metadata,
+    };
   }
 }
 
@@ -129,7 +132,11 @@ async function askGPT({
     var text = chunk.choices[0]?.delta?.content || "";
     result += text;
   }
-  return result;
+
+  return {
+    text: result,
+    metadata: null
+  };
 }
 
 // Evaluator
@@ -144,7 +151,7 @@ async function runChallenge(system, level, main = false) {
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
   const [norm, rwts] = normal(term);
   const problem = `INPUT: ${show(term)}`;
-  const params = { model, debug: true, ...config };
+  const params = { model, debug: true, main, ...config };
   console.table(params);
 
   log(`Term: ${show(term)}`);
@@ -153,32 +160,32 @@ async function runChallenge(system, level, main = false) {
   log(``);
   log(`Response:`);
 
-  let ai_ask = model.startsWith("gpt") ? askGPT : askClaude;
-  let ai_ret = await ai_ask({ 
+  let endpoint = model.startsWith("gpt") ? askGPT : askClaude;
+  let { text, metadata } = await endpoint({ 
     system, 
     messages: [{ role: 'user', content: problem }],
     main,
     ...params 
   });
 
-  const lines = ai_ret.split("\n")
+  const lines = text.split("\n")
   const solution = lines[lines.length - 1].trim()
+  const received = solution.split(' ').filter(Boolean);
 
-  if (solution) {
-    const aiSolution = solution.split(' ').filter(Boolean);
-    log(`\nAI-Solution: ${show(aiSolution)}\n`);
-    if (aiSolution.join('').trim() === norm.join('').trim()) {
-      log('<<correct>>\n');
-    } else {
-      log('<<incorrect>>\n');
-      console.log(output);
-      await writeFile("error.txt", output)
-    }
-
-    return norm.join('').trim() === aiSolution.join('').trim()
+  log(`\nRECEIVED: ${show(received)}\n`);
+  if (received.join('').trim() === norm.join('').trim()) {
+    log('--CORRECT--\n');
   } else {
-    log('<<not-found>>\n');
-    return false;
+    log('--INCORRECT--\n');
+    console.log(output);
+    await writeFile("error.txt", output)
+  }
+
+  const pass = norm.join('').trim() === received.join('').trim()
+
+  return {
+    pass,
+    metadata
   }
 }
 
@@ -197,11 +204,18 @@ async function runFullChallenge(systemPrompt, batchSize = 3) {
     }
 
     const results = await Promise.all(promises);
-    correct += results.filter(Boolean).length;
+    for (const result of results) {
+      const { pass, metadata } = result;
+      if (pass) correct++;
+      if (metadata) {
+        console.table(metadata);
+      }
+    }
 
     const Test = `${end} / ${RUNS}`;
     const Correct = `${correct} / ${end}`;
     const Accuracy = `${(correct / end).toFixed(2)}`;
+
     console.table({ Test, Correct, Accuracy });
   }
 
