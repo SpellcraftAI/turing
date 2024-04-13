@@ -189,7 +189,7 @@ async function runChallenge(system, level, main = false) {
   }
 }
 
-async function runFullChallenge(systemPrompt, batchSize = 3) {
+async function runFullChallenge(systemPrompt, batchSize = 4) {
   let correct = 0;
   const total = RUNS;
   const numBatches = Math.ceil(total / batchSize);
