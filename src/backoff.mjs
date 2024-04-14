@@ -1,5 +1,5 @@
 
-export async function backoff(runBatch, maxRetries, initialDelay) {
+export async function backoff(runBatch, maxRetries, initialDelay = 1) {
   let retries = 0;
   let delay = initialDelay;
 
@@ -9,8 +9,8 @@ export async function backoff(runBatch, maxRetries, initialDelay) {
       return results;
     } catch (e) {
       retries++;
-      console.log(`Batch failed. Retrying in ${delay}ms. Retry attempt: ${retries}`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+      console.error(`Batch failed. Retrying in ${delay}s. [Attempt ${retries}/${maxRetries}]`);
+      await new Promise(resolve => setTimeout(resolve, 1000 * delay));
       delay *= 2;
     }
   }

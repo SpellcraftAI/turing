@@ -91,7 +91,12 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
-    const results = await backoff(() => runBatch(systemPrompt, start, end), 10, 30_000);
+    const results = await backoff(
+      () => runBatch(systemPrompt, start, end), 
+      10, 
+      10
+    );
+
     for (const result of results) {
       const { pass, metadata } = result;
       if (pass) correct++;
@@ -109,7 +114,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     console.table({ Test, Correct, Accuracy });
     console.log();
 
-    const waitTime = 30;
+    const waitTime = 35;
     console.log(`Waiting ${waitTime} seconds...`);
     await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
   }
@@ -120,5 +125,5 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 500, 4);
+await runFullChallenge(prompt, 400, 4);
 // await writeFile(`./users/${USER}/log.txt`, OUTPUT);
