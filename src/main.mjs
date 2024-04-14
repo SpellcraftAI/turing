@@ -114,7 +114,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     console.table({ Test, Correct, Accuracy });
     console.log();
 
-    const waitTime = 35;
+    const waitTime = 50;
     console.log(`Waiting ${waitTime} seconds...`);
     await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
   }
@@ -125,5 +125,5 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 400, 4);
+await runFullChallenge(prompt, 400, 5);
 // await writeFile(`./users/${USER}/log.txt`, OUTPUT);
