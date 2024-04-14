@@ -1,5 +1,17 @@
-
+import { resolve } from "path";
+import { readFile } from "fs/promises";
 import { tokens, AH, HA, BH, HB } from "./tokens.mjs";
+
+export const loadUserFile = async (user, file) => {
+  const path = resolve("users", user, file);
+  const contents = (await readFile(path, "utf-8")).trim()
+
+  if (file.endsWith(".json")) {
+    return JSON.parse(contents);
+  }
+
+  return contents;
+}
 
 export function reduce(xs) {
   let ys   = [];

@@ -1,29 +1,16 @@
-import OpenAI from "openai";
-import { join } from "path"
-import { readFile, writeFile } from "fs/promises";
-import { resolve } from "path";
-import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
+import { writeFile } from "fs/promises";
+
+import { askClaude, askGPT } from "./models.mjs";
 import { instances } from "./tokens.mjs"
-import { normal, show } from "./utils.mjs";
+import { loadUserFile, normal, show } from "./utils.mjs";
 import { tqdm } from "./progress.mjs";
 
 const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
 
-const loadUserFile = async (file) => {
-  const path = resolve("users", USER, file);
-  const contents = (await readFile(path, "utf-8")).trim()
-
-  if (file.endsWith(".json")) {
-    return JSON.parse(contents);
-  }
-
-  return contents;
-}
-
-const prompt = await loadUserFile("prompt.txt");
-const config = await loadUserFile("config.json");
+const prompt = await loadUserFile(USER, "prompt.txt");
+const config = await loadUserFile(USER, "config.json");
 
 let OUTPUT = "";
 
@@ -32,124 +19,6 @@ function LOG(txt) {
     OUTPUT += txt+"\n"; 
     console.log(txt); 
   } 
-}
-
-// AI Utils
-// --------
-
-const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
-
-async function getAnthropicKey() {
-  if (ANTHROPIC_API_KEY) {
-    return ANTHROPIC_API_KEY
-  }
-
-  const keyPath = join(process.env.HOME, '.config', 'anthropic.token');
-  return (await readFile(keyPath, 'utf8')).trim();
-}
-
-async function getOpenAIKey() {
-  if (OPENAI_API_KEY) {
-    return OPENAI_API_KEY
-  }
-
-  const keyPath = join(process.env.HOME, '.config', 'openai.token');
-  return (await readFile(keyPath, 'utf8')).trim();
-}
-
-async function askClaude({ 
-  system, 
-  messages, 
-  max_tokens, 
-  model = 'claude-3-opus-20240229', 
-  temperature = 0, 
-  debug = true,
-  main = false,
-}) {
-  // const apiKey = await getAnthropicKey()  
-  // const anthropic = new Anthropic({ apiKey });
-  const anthropic = new AnthropicVertex({
-    region: "us-east5",
-    projectId: "research-420207"
-  });
-  
-  try {
-    if (debug) {
-      const stream = anthropic.messages.stream({
-        model,
-        messages,
-        max_tokens: max_tokens || 4096,
-        temperature,
-        ...(system && { system }),
-      })
-  
-      stream.on('text', (text) => {
-        OUTPUT += text;
-        if (main) {
-          process.stdout.write(text)
-        }
-      })
-  
-      const message = await stream.finalMessage();
-      const { content, ...metadata } = message;
-  
-      return {
-        text: content[0].text,
-        metadata,
-      };
-    }
-  
-    const message = await anthropic.messages.create({
-      model,
-      messages,
-      max_tokens: max_tokens || 4096,
-      temperature,
-      ...(system && { system }),
-    });
-  
-    const { content, ...metadata } = message;
-    return {
-      text: content[0].text,
-      metadata,
-    };
-  } catch (e) {
-    console.log();
-    console.error("GOT ANTHROPIC ERROR.")
-    console.table(e)
-    
-    throw e;
-  }
-}
-
-async function askGPT({
-  system, 
-  messages, 
-  model, 
-  temperature,
-  main = false,
-}) {
-  const openai = new OpenAI({apiKey: await getOpenAIKey()});
-  const stream = await openai.chat.completions.create({
-    model: model || "gpt-4-0125-preview",
-    messages: [
-      {role: "system", content: system || "You're a helpful assistant." },
-      ...messages
-    ],
-    stream: true,
-    max_tokens: 1600,
-    temperature: temperature || 0,
-  });
-
-  var result = "";
-  for await (const chunk of stream) {
-    var text = chunk.choices[0]?.delta?.content || "";
-    result += text;
-  }
-
-  return {
-    text: result,
-    metadata: null
-  };
 }
 
 // Evaluator
@@ -204,6 +73,15 @@ async function runChallenge(system, level, main = false) {
   }
 }
 
+async function runBatch(systemPrompt, start, end) {
+  let promises = [];
+  for (let i = start; i < end; i++) {
+    promises.push(runChallenge(systemPrompt, 24, i === start));
+  }
+
+  return Promise.all(promises);
+}
+
 async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   let correct = 0;
   const numBatches = Math.ceil(runs / batchSize);
@@ -212,12 +90,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
-    const promises = [];
-    for (let i = start; i < end; i++) {
-      promises.push(runChallenge(systemPrompt, 24, i === start));
-    }
-
-    const results = await Promise.all(promises);
+    const results = await runBatch(systemPrompt, start, end);
     for (const result of results) {
       const { pass, metadata } = result;
       if (pass) correct++;
@@ -226,16 +99,18 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
         console.table(metadata);
       }
     }
-
+      
     const Test = `${end} / ${runs}`;
     const Correct = `${correct} / ${end}`;
     const Accuracy = `${(correct / end).toFixed(2)}`;
 
     console.log();
     console.table({ Test, Correct, Accuracy });
+    console.log();
 
-    console.log("Waiting one minute.")
-    await new Promise((resolve) => setTimeout(resolve, 60_000))
+    const waitTime = 30;
+    console.log(`Waiting ${waitTime} seconds...`);
+    await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
   }
 
   LOG('');
@@ -244,5 +119,5 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 500, 1);
-await writeFile(`./users/${USER}/log.txt`, OUTPUT);
+await runFullChallenge(prompt, 500, 4);
+// await writeFile(`./users/${USER}/log.txt`, OUTPUT);
