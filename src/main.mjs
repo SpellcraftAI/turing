@@ -9,7 +9,6 @@ import { normal, show } from "./utils.mjs";
 
 const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
-const RUNS = 50;
 
 const loadUserFile = async (file) => {
   const path = resolve("users", USER, file);
@@ -69,30 +68,32 @@ async function askClaude({
   const apiKey = await getAnthropicKey()  
   const anthropic = new Anthropic({ apiKey });
   
-  if (debug) {
-    const stream = anthropic.messages.stream({
-      model,
-      messages,
-      max_tokens: max_tokens || 4096,
-      temperature,
-      ...(system && { system }),
-    })
-
-    stream.on('text', (text) => {
-      OUTPUT += text;
-      if (main) {
-        process.stdout.write(text)
-      }
-    })
-
-    const message = await stream.finalMessage();
-    const { content, ...metadata } = message;
-
-    return {
-      text: content[0].text,
-      metadata,
-    };
-  } else {
+  try {
+    if (debug) {
+      const stream = anthropic.messages.stream({
+        model,
+        messages,
+        max_tokens: max_tokens || 4096,
+        temperature,
+        ...(system && { system }),
+      })
+  
+      stream.on('text', (text) => {
+        OUTPUT += text;
+        if (main) {
+          process.stdout.write(text)
+        }
+      })
+  
+      const message = await stream.finalMessage();
+      const { content, ...metadata } = message;
+  
+      return {
+        text: content[0].text,
+        metadata,
+      };
+    }
+  
     const message = await anthropic.messages.create({
       model,
       messages,
@@ -100,12 +101,17 @@ async function askClaude({
       temperature,
       ...(system && { system }),
     });
-
+  
     const { content, ...metadata } = message;
     return {
       text: content[0].text,
       metadata,
     };
+  } catch (e) {
+    console.error("GOT ANTHROPIC ERROR.")
+    console.table(e)
+    
+    throw e;
   }
 }
 
@@ -150,7 +156,7 @@ async function runChallenge(system, level, main = false) {
 
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
   const [norm, rwts] = normal(term);
-  const problem = `INPUT: ${show(term)}`;
+  const problem = show(term);
   const params = { model, debug: true, main, ...config };
   console.table(params);
 
@@ -189,14 +195,13 @@ async function runChallenge(system, level, main = false) {
   }
 }
 
-async function runFullChallenge(systemPrompt, batchSize = 4) {
+async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
   let correct = 0;
-  const total = RUNS;
-  const numBatches = Math.ceil(total / batchSize);
+  const numBatches = Math.ceil(runs / batchSize);
 
   for (let batch = 0; batch < numBatches; batch++) {
     const start = batch * batchSize;
-    const end = Math.min(start + batchSize, total);
+    const end = Math.min(start + batchSize, runs);
 
     const promises = [];
     for (let i = start; i < end; i++) {
@@ -212,7 +217,7 @@ async function runFullChallenge(systemPrompt, batchSize = 4) {
       }
     }
 
-    const Test = `${end} / ${RUNS}`;
+    const Test = `${end} / ${runs}`;
     const Correct = `${correct} / ${end}`;
     const Accuracy = `${(correct / end).toFixed(2)}`;
 
@@ -221,8 +226,8 @@ async function runFullChallenge(systemPrompt, batchSize = 4) {
 
   LOG('');
   LOG("--- Final score ---");
-  LOG(`${correct} / ${RUNS} (${(100 * correct / RUNS).toFixed(2)}%)`);
+  LOG(`${correct} / ${runs} (${(100 * correct / runs).toFixed(2)}%)`);
 }
 
-await runFullChallenge(prompt);
-await fs.writeFile(`./users/${USER}/log.txt`, OUTPUT);
+await runFullChallenge(prompt, 100);
+await writeFile(`./users/${USER}/log.txt`, OUTPUT);

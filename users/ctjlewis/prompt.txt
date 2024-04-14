@@ -1,8 +1,6 @@
-
-[USER]
-INPUT B# B# B# B# #A #A #A #A A# #A #B #A
-
-[ASSISTANT]
+USER:
+B# B# B# B# #A #A #A #A A# #A #B #A
+ASSISTANT:
 TAPE 1B# 2B# 3B# 4B# 5#A 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST B# B# B# B# #A #A #A #A A# #A #B #A
 1 2 B# B# 
@@ -179,10 +177,9 @@ LIST #A #A #A #A #A B# B# B#
 RETURN
 #A #A #A #A #A B# B# B#
 
-[USER]
-INPUT A# A# A# #B A# #B A# #B #A #B #B #B
-
-[ASSISTANT]
+USER:
+A# A# A# #B A# #B A# #B #A #B #B #B
+ASSISTANT:
 TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 LIST A# A# A# #B A# #B A# #B #A #B #B #B
 1 2 A# A# 
@@ -404,10 +401,9 @@ LIST #B #B #B #B #B #B A# A# A# A#
 RETURN
 #B #B #B #B #B #B A# A# A# A#
 
-[USER]
-INPUT #A #B #A #B #A #B #B B# B# A# B# A#
-
-[ASSISTANT]
+USER:
+#A #B #A #B #A #B #B B# B# A# B# A#
+ASSISTANT:
 TAPE 1#A 2#B 3#A 4#B 5#A 6#B 7#B 8B# 9B# 10A# 11B# 12A#
 LIST #A #B #A #B #A #B #B B# B# A# B# A#
 1 2 #A #B 
@@ -424,10 +420,9 @@ LIST #A #B #A #B #A #B #B B# B# A# B# A#
 RETURN
 #A #B #A #B #A #B #B B# B# A# B# A#
 
-[USER]
-INPUT A# A# A# #B #B #B #B #B #B #B A# #A
-
-[ASSISTANT]
+USER:
+A# A# A# #B #B #B #B #B #B #B A# #A
+ASSISTANT:
 TAPE 1A# 2A# 3A# 4#B 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST A# A# A# #B #B #B #B #B #B #B A# #A
 1 2 A# A# 
@@ -625,10 +620,9 @@ LIST #B #B #B #B #B #B #B A# A# A#
 RETURN
 #B #B #B #B #B #B #B A# A# A#
 
-[USER]
-INPUT B# B# B# #A #A #A B# #A #B B# #A #A
-
-[ASSISTANT]
+USER:
+B# B# B# #A #A #A B# #A #B B# #A #A
+ASSISTANT:
 TAPE 1B# 2B# 3B# 4#A 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST B# B# B# #A #A #A B# #A #B B# #A #A
 1 2 B# B# 
@@ -823,10 +817,9 @@ LIST #A #A #A #A #A #A B# B# B# B#
 RETURN
 #A #A #A #A #A #A B# B# B# B#
 
-[USER]
-INPUT B# A# A# A# #B #B #B A# #B #B A# #B
-
-[ASSISTANT]
+USER:
+B# A# A# A# #B #B #B A# #B #B A# #B
+ASSISTANT:
 TAPE 1B# 2A# 3A# 4A# 5#B 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 LIST B# A# A# A# #B #B #B A# #B #B A# #B
 1 2 B# A# 
@@ -1011,10 +1004,9 @@ LIST #B #B #B #B #B A# A# A# A# A#
 RETURN
 #B #B #B #B #B A# A# A# A# A#
 
-[USER]
-INPUT A# A# #B A# #B B# A# #B #B #B #B #B
-
-[ASSISTANT]
+USER:
+A# A# #B A# #B B# A# #B #B #B #B #B
+ASSISTANT:
 TAPE 1A# 2A# 3#B 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST A# A# #B A# #B B# A# #B #B #B #B #B
 1 2 A# A# 
@@ -1220,10 +1212,9 @@ LIST #B #B #B #B #B #B A# A# A# A#
 RETURN
 #B #B #B #B #B #B A# A# A# A#
 
-[USER]
-INPUT A# B# B# B# A# A# B# B# #B A# A# A#
-
-[ASSISTANT]
+USER:
+A# B# B# B# A# A# B# B# #B A# A# A#
+ASSISTANT:
 TAPE 1A# 2B# 3B# 4B# 5A# 6A# 7B# 8B# 9#B 10A# 11A# 12A#
 LIST A# B# B# B# A# A# B# B# #B A# A# A#
 1 2 A# B# 
@@ -1250,10 +1241,9 @@ LIST A# B# B# B# A# A# B# A# A# A#
 RETURN
 A# B# B# B# A# A# B# A# A# A#
 
-[USER]
-INPUT #B B# A# B# A# A# A# A# A# A# B# B#
-
-[ASSISTANT]
+USER:
+#B B# A# B# A# A# A# A# A# A# B# B#
+ASSISTANT:
 TAPE 1#B 2B# 3A# 4B# 5A# 6A# 7A# 8A# 9A# 10A# 11B# 12B#
 LIST #B B# A# B# A# A# A# A# A# A# B# B#
 1 2 #B B# 
@@ -1270,10 +1260,9 @@ LIST #B B# A# B# A# A# A# A# A# A# B# B#
 RETURN
 #B B# A# B# A# A# A# A# A# A# B# B#
 
-[USER]
-INPUT #A B# B# B# A# A# A# B# #B B# A# B#
-
-[ASSISTANT]
+USER:
+#A B# B# B# A# A# A# B# #B B# A# B#
+ASSISTANT:
 TAPE 1#A 2B# 3B# 4B# 5A# 6A# 7A# 8B# 9#B 10B# 11A# 12B#
 LIST #A B# B# B# A# A# A# B# #B B# A# B#
 1 2 #A B# 
@@ -1300,30 +1289,9 @@ LIST #A B# B# B# A# A# A# B# A# B#
 RETURN
 #A B# B# B# A# A# A# B# A# B#
 
-[USER]
-INPUT B# A# A# A# B# B# B# B# B# A# A# B#
-
-[ASSISTANT]
-TAPE 1B# 2A# 3A# 4A# 5B# 6B# 7B# 8B# 9B# 10A# 11A# 12B#
-LIST B# A# A# A# B# B# B# B# B# A# A# B#
-1 2 B# A# 
-2 3 A# A# 
-3 4 A# A# 
-4 5 A# B# 
-5 6 B# B# 
-6 7 B# B# 
-7 8 B# B# 
-8 9 B# B# 
-9 10 B# A# 
-10 11 A# A# 
-11 12 A# B# 
-RETURN
-B# A# A# A# B# B# B# B# B# A# A# B#
-
-[USER]
-INPUT B# B# B# B# #A B# B# #A #A #A #A #A
-
-[ASSISTANT]
+USER:
+B# B# B# B# #A B# B# #A #A #A #A #A
+ASSISTANT:
 TAPE 1B# 2B# 3B# 4B# 5#A 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST B# B# B# B# #A B# B# #A #A #A #A #A
 1 2 B# B# 
@@ -1647,10 +1615,9 @@ LIST #A #A #A #A #A #A B# B# B# B# B# B#
 RETURN
 #A #A #A #A #A #A B# B# B# B# B# B#
 
-[USER]
-INPUT A# A# A# A# #B A# A# #B A# #B #B #B
-
-[ASSISTANT]
+USER:
+A# A# A# A# #B A# A# #B A# #B #B #B
+ASSISTANT:
 TAPE 1A# 2A# 3A# 4A# 5#B 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST A# A# A# A# #B A# A# #B A# #B #B #B
 1 2 A# A# 
@@ -1944,10 +1911,9 @@ LIST #B #B #B #B #B A# A# A# A# A# A# A#
 RETURN
 #B #B #B #B #B A# A# A# A# A# A# A#
 
-[USER]
-INPUT A# A# A# #B A# #B A# A# #B #B #B #B
-
-[ASSISTANT]
+USER:
+A# A# A# #B A# #B A# A# #B #B #B #B
+ASSISTANT:
 TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 LIST A# A# A# #B A# #B A# A# #B #B #B #B
 1 2 A# A# 

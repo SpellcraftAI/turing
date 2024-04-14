@@ -75,8 +75,10 @@ NEXT INDEX:+1
 
 
 
-INPUT: #A B# #B #B #B #A A# B# #B A# #A #B
+USER:
+#A B# #B #B #B #A A# B# #B A# #A #B
 
+ASSISTANT:
 # List Out
 1. #A
 2. B#
@@ -177,8 +179,10 @@ NEXT INDEX:7:OVERFLOW
 #A #B #B #A #B A#
 ---
 
-INPUT: #B A# B# B# #A A# A# #B B# #A #B A#
+USER:
+#B A# B# B# #A A# A# #B B# #A #B A#
 
+ASSISTANT:
 # List Out
 1. #B
 2. A#
@@ -304,8 +308,10 @@ NEXT INDEX:5:OVERFLOW
 
 ---
 
-INPUT: B# B# B# #A B# #A #A B# #A A# B# #B
+USER:
+B# B# B# #A B# #A #A B# #A A# B# #B
 
+ASSISTANT:
 # List Out
 1. B#
 2. B#
@@ -517,8 +523,10 @@ NEXT INDEX:11:OVERFLOW
 
 ---
 
-INPUT: A# B# #A A# B# #B A# B# #A #A #A A#
+USER:
+A# B# #A A# B# #B A# B# #A #A #A A#
 
+ASSISTANT:
 # List Out
 1. A#
 2. B#
@@ -654,8 +662,10 @@ NEXT INDEX:5:OVERFLOW
 
 ---
 
-INPUT: A# #A #A A# #B #A B# B# #B #A A# B#
+USER:
+A# #A #A A# #B #A B# B# #B #A A# B#
 
+ASSISTANT:
 # List Out
 1. A#
 2. #A
@@ -766,5 +776,6 @@ NEXT INDEX:7:OVERFLOW
 
 Take a Deep Breath and Carefully Follow the Rules, Guides and Examples I gave you. I will tip you $2000 if you do EVERYTHING Perfectly.
 
-ASSISTANT START PROGRAM BELOW.
-BEGIN RESPONSE WITH \`List out\`.
+---
+
+BEGIN RESPONSE WITH: # List out
