@@ -1,5 +1,5 @@
 
-export async function backoff(action, maxRetries = 5, initialDelay = 15) {
+export async function backoff(action, maxRetries = 6, initialDelay = 15) {
   let retries = 0;
   let delay = initialDelay;
 

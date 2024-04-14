@@ -8,7 +8,7 @@ on:
 jobs:
   Run:
     name: Run
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-supercharged
 
     permissions:
       contents: read
