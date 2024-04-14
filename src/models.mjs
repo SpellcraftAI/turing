@@ -38,51 +38,43 @@ export async function askClaude({
     projectId: "research-420207"
   });
   
-  try {
-    if (debug) {
-      const stream = anthropic.messages.stream({
-        model,
-        messages,
-        max_tokens: max_tokens || 4096,
-        temperature,
-        ...(system && { system }),
-      })
-  
-      stream.on('text', (text) => {
-        if (main) {
-          process.stdout.write(text)
-        }
-      })
-  
-      const message = await stream.finalMessage();
-      const { content, ...metadata } = message;
-  
-      return {
-        text: content[0].text,
-        metadata,
-      };
-    }
-  
-    const message = await anthropic.messages.create({
+  if (debug) {
+    const stream = anthropic.messages.stream({
       model,
       messages,
       max_tokens: max_tokens || 4096,
       temperature,
       ...(system && { system }),
-    });
-  
+    })
+
+    stream.on('text', (text) => {
+      if (main) {
+        process.stdout.write(text)
+      }
+    })
+
+    const message = await stream.finalMessage();
     const { content, ...metadata } = message;
+
     return {
       text: content[0].text,
       metadata,
     };
-  } catch (e) {
-    console.log();
-    console.error("GOT ANTHROPIC ERROR.")
-    console.table(e)
-    
-    throw e;
   }
+
+  const message = await anthropic.messages.create({
+    model,
+    messages,
+    max_tokens: max_tokens || 4096,
+    temperature,
+    ...(system && { system }),
+  });
+
+  const { content, ...metadata } = message;
+  return {
+    text: content[0].text,
+    metadata,
+  };
 }
 
 export async function askGPT({

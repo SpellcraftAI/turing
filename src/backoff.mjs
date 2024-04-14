@@ -1,5 +1,5 @@
 
-async function runWithExponentialBackoff(runBatch, maxRetries, initialDelay) {
+export async function backoff(runBatch, maxRetries, initialDelay) {
   let retries = 0;
   let delay = initialDelay;
 

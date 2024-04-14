@@ -5,6 +5,7 @@ import { askClaude, askGPT } from "./models.mjs";
 import { instances } from "./tokens.mjs"
 import { loadUserFile, normal, show } from "./utils.mjs";
 import { tqdm } from "./progress.mjs";
+import { backoff } from "./backoff.mjs";
 
 const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
@@ -90,7 +91,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
-    const results = await runBatch(systemPrompt, start, end);
+    const results = await backoff(() => runBatch(systemPrompt, start, end), 10, 30_000);
     for (const result of results) {
       const { pass, metadata } = result;
       if (pass) correct++;
