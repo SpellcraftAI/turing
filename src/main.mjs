@@ -108,6 +108,7 @@ async function askClaude({
       metadata,
     };
   } catch (e) {
+    console.log();
     console.error("GOT ANTHROPIC ERROR.")
     console.table(e)
     
@@ -158,6 +159,8 @@ async function runChallenge(system, level, main = false) {
   const [norm, rwts] = normal(term);
   const problem = show(term);
   const params = { model, debug: true, main, ...config };
+
+  console.log();
   console.table(params);
 
   log(`Term: ${show(term)}`);
@@ -213,6 +216,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
       const { pass, metadata } = result;
       if (pass) correct++;
       if (metadata) {
+        console.log();
         console.table(metadata);
       }
     }
@@ -221,6 +225,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
     const Correct = `${correct} / ${end}`;
     const Accuracy = `${(correct / end).toFixed(2)}`;
 
+    console.log();
     console.table({ Test, Correct, Accuracy });
   }
 
