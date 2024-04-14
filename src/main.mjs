@@ -92,6 +92,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   const numBatches = Math.ceil(runs / batchSize);
 
   for (const batch of tqdm((new Array(numBatches)).keys())) {
+    let startTime = Date.now();
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
@@ -114,7 +115,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     console.table({ Test, Correct, Accuracy });
     console.log();
 
-    const waitTime = 62;
+    const waitTime = Math.max(0, 60 - (Date.now() - startTime) / 1000);
     console.log(`${waitTime} second cooldown...`);
     await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
   }
@@ -125,5 +126,5 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 400, 10);
+await runFullChallenge(prompt, 400, 8);
 // await writeFile(`./users/${USER}/log.txt`, OUTPUT);
