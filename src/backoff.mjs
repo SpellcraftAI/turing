@@ -9,7 +9,7 @@ export async function backoff(action, maxRetries = 10, initialDelay = 10) {
       return results;
     } catch (e) {
       retries++;
-      console.error(e);
+      console.error(e.message);
       console.error(`Batch failed. Retrying in ${delay}s. [Attempt ${retries}/${maxRetries}]`);
       await new Promise(resolve => setTimeout(resolve, 1000 * delay));
       delay *= 2;

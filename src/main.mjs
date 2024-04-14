@@ -25,16 +25,17 @@ function LOG(txt) {
 // Evaluator
 // ---------
 
-async function runChallenge(system, level, main = false) {
+async function runChallenge(system, level, worker = 0) {
   let output = ""
   const log = (string) => output += string;
 
   const model = config.models[MODEL];
+  const main = worker === 0;
 
   const term = instances[level][Math.floor(Math.random() * instances[level].length)];
   const [norm, rwts] = normal(term);
   const problem = show(term);
-  const params = { model, debug: true, main, ...config };
+  const params = { model, debug: true, worker, main, ...config };
 
   console.log();
   console.table(params);
@@ -46,6 +47,7 @@ async function runChallenge(system, level, main = false) {
   log(`Response:`);
 
   let endpoint = model.startsWith("gpt") ? askGPT : askClaude;
+  console.log(`Starting worker ${worker}...`)
   let { text, metadata } = await endpoint({ 
     system, 
     messages: [{ role: 'user', content: problem }],
@@ -74,11 +76,11 @@ async function runChallenge(system, level, main = false) {
   }
 }
 
-async function runBatch(systemPrompt, start, end) {
+async function runBatch(systemPrompt, n = 1) {
   let promises = [];
-  for (let i = start; i < end; i++) {
+  for (let i = 0; i < n; i++) {
     promises.push(
-      backoff(() => runChallenge(systemPrompt, 24, i === start))
+      backoff(() => runChallenge(systemPrompt, 24, i))
     );
   }
 
@@ -93,7 +95,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
-    const results = await runBatch(systemPrompt, start, end);
+    const results = await runBatch(systemPrompt, batchSize);
 
     for (const result of results) {
       const { pass, metadata } = result;
