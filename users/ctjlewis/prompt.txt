@@ -1,56 +1,57 @@
 USER:
 B# B# B# B# #A #A #A #A A# #A #B #A
+
 ASSISTANT:
-TAPE 1B# 2B# 3B# 4B# 5#A 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST B# B# B# B# #A #A #A #A A# #A #B #A
+TAPE 1B# 2B# 3B# 4B# 5#A 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 B# B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1B# 2B# 3B# 4#A 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST B# B# B# #A B# #A #A #A A# #A #B #A
+TAPE 1B# 2B# 3B# 4#A 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 B# B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1B# 2B# 3#A 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST B# B# #A B# B# #A #A #A A# #A #B #A
+TAPE 1B# 2B# 3#A 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 B# B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1B# 2#A 3B# 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST B# #A B# B# B# #A #A #A A# #A #B #A
+TAPE 1B# 2#A 3B# 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 B# #A B##A
 WRITE 1#A 2B#
-TAPE 1#A 2B# 3B# 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 LIST #A B# B# B# B# #A #A #A A# #A #B #A
+TAPE 1#A 2B# 3B# 4B# 5B# 6#A 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2B# 3B# 4B# 5#A 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 LIST #A B# B# B# #A B# #A #A A# #A #B #A
+TAPE 1#A 2B# 3B# 4B# 5#A 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2B# 3B# 4#A 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 LIST #A B# B# #A B# B# #A #A A# #A #B #A
+TAPE 1#A 2B# 3B# 4#A 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2B# 3#A 4B# 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 LIST #A B# #A B# B# B# #A #A A# #A #B #A
+TAPE 1#A 2B# 3#A 4B# 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 #A B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 LIST #A #A B# B# B# B# #A #A A# #A #B #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7#A 8#A 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
@@ -58,29 +59,29 @@ LIST #A #A B# B# B# B# #A #A A# #A #B #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8#A 9A# 10#A 11#B 12#A
 LIST #A #A B# B# B# #A B# #A A# #A #B #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8#A 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 LIST #A #A B# B# #A B# B# #A A# #A #B #A
+TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 LIST #A #A B# #A B# B# B# #A A# #A #B #A
+TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 LIST #A #A #A B# B# B# B# #A A# #A #B #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -89,8 +90,8 @@ LIST #A #A #A B# B# B# B# #A A# #A #B #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9A# 10#A 11#B 12#A
 LIST #A #A #A B# B# B# #A B# A# #A #B #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -98,23 +99,23 @@ LIST #A #A #A B# B# B# #A B# A# #A #B #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9A# 10#A 11#B 12#A
 LIST #A #A #A B# B# #A B# B# A# #A #B #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9A# 10#A 11#B 12#A
 LIST #A #A #A B# #A B# B# B# A# #A #B #A
+TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9A# 10#A 11#B 12#A
 LIST #A #A #A #A B# B# B# B# A# #A #B #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9A# 10#A 11#B 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -126,8 +127,8 @@ LIST #A #A #A #A B# B# B# B# A# #A #B #A
 9 10 A# #A A##A
 DELETE 9A# 10#A
 SLICE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# [9A# 10#A] 11#B 12#A
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#B 10#A
 LIST #A #A #A #A B# B# B# B# #B #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#B 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -138,8 +139,8 @@ LIST #A #A #A #A B# B# B# B# #B #A
 8 9 B# #B B##B
 DELETE 8B# 9#B
 SLICE 1#A 2#A 3#A 4#A 5B# 6B# 7B# [8B# 9#B] 10#A
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A
 LIST #A #A #A #A B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -148,8 +149,8 @@ LIST #A #A #A #A B# B# B# #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B#
 LIST #A #A #A #A B# B# #A B#
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -157,16 +158,16 @@ LIST #A #A #A #A B# B# #A B#
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B#
 LIST #A #A #A #A B# #A B# B#
+TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
 4 5 #A B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B#
 LIST #A #A #A #A #A B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -179,50 +180,51 @@ RETURN
 
 USER:
 A# A# A# #B A# #B A# #B #A #B #B #B
+
 ASSISTANT:
-TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 LIST A# A# A# #B A# #B A# #B #A #B #B #B
+TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1A# 2A# 3#B 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 LIST A# A# #B A# A# #B A# #B #A #B #B #B
+TAPE 1A# 2A# 3#B 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 LIST A# #B A# A# A# #B A# #B #A #B #B #B
+TAPE 1A# 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 LIST #B A# A# A# A# #B A# #B #A #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 LIST #B A# A# A# #B A# A# #B #A #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 LIST #B A# A# #B A# A# A# #B #A #B #B #B
+TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 LIST #B A# #B A# A# A# A# #B #A #B #B #B
+TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 LIST #B #B A# A# A# A# A# #B #A #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -231,8 +233,8 @@ LIST #B #B A# A# A# A# A# #B #A #B #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9#A 10#B 11#B 12#B
 LIST #B #B A# A# A# A# #B A# #A #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -240,29 +242,29 @@ LIST #B #B A# A# A# A# #B A# #A #B #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9#A 10#B 11#B 12#B
 LIST #B #B A# A# A# #B A# A# #A #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 LIST #B #B A# A# #B A# A# A# #A #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 LIST #B #B A# #B A# A# A# A# #A #B #B #B
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 LIST #B #B #B A# A# A# A# A# #A #B #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#A 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -273,8 +275,8 @@ LIST #B #B #B A# A# A# A# A# #A #B #B #B
 8 9 A# #A A##A
 DELETE 8A# 9#A
 SLICE 1#B 2#B 3#B 4A# 5A# 6A# 7A# [8A# 9#A] 10#B 11#B 12#B
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9#B 10#B
 LIST #B #B #B A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -283,8 +285,8 @@ LIST #B #B #B A# A# A# A# #B #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9#B 10#B
 LIST #B #B #B A# A# A# #B A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -292,23 +294,23 @@ LIST #B #B #B A# A# A# #B A# #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B
 LIST #B #B #B A# A# #B A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9#B 10#B
 LIST #B #B #B A# #B A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10#B
 LIST #B #B #B #B A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -318,8 +320,8 @@ LIST #B #B #B #B A# A# A# A# #B #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 LIST #B #B #B #B A# A# A# #B A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -328,8 +330,8 @@ LIST #B #B #B #B A# A# A# #B A# #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10#B
 LIST #B #B #B #B A# A# #B A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -337,16 +339,16 @@ LIST #B #B #B #B A# A# #B A# A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10#B
 LIST #B #B #B #B A# #B A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B
 LIST #B #B #B #B #B A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -357,8 +359,8 @@ LIST #B #B #B #B #B A# A# A# A# #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A#
 LIST #B #B #B #B #B A# A# A# #B A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -368,8 +370,8 @@ LIST #B #B #B #B #B A# A# A# #B A#
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A#
 LIST #B #B #B #B #B A# A# #B A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -378,8 +380,8 @@ LIST #B #B #B #B #B A# A# #B A# A#
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A#
 LIST #B #B #B #B #B A# #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -387,8 +389,8 @@ LIST #B #B #B #B #B A# #B A# A# A#
 5 6 #B A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A#
 LIST #B #B #B #B #B #B A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -403,9 +405,10 @@ RETURN
 
 USER:
 #A #B #A #B #A #B #B B# B# A# B# A#
+
 ASSISTANT:
-TAPE 1#A 2#B 3#A 4#B 5#A 6#B 7#B 8B# 9B# 10A# 11B# 12A#
 LIST #A #B #A #B #A #B #B B# B# A# B# A#
+TAPE 1#A 2#B 3#A 4#B 5#A 6#B 7#B 8B# 9B# 10A# 11B# 12A#
 1 2 #A #B 
 2 3 #B #A 
 3 4 #A #B 
@@ -422,63 +425,64 @@ RETURN
 
 USER:
 A# A# A# #B #B #B #B #B #B #B A# #A
+
 ASSISTANT:
-TAPE 1A# 2A# 3A# 4#B 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST A# A# A# #B #B #B #B #B #B #B A# #A
+TAPE 1A# 2A# 3A# 4#B 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1A# 2A# 3#B 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST A# A# #B A# #B #B #B #B #B #B A# #A
+TAPE 1A# 2A# 3#B 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST A# #B A# A# #B #B #B #B #B #B A# #A
+TAPE 1A# 2#B 3A# 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B A# A# A# #B #B #B #B #B #B A# #A
+TAPE 1#B 2A# 3A# 4A# 5#B 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B A# A# #B A# #B #B #B #B #B A# #A
+TAPE 1#B 2A# 3A# 4#B 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B A# #B A# A# #B #B #B #B #B A# #A
+TAPE 1#B 2A# 3#B 4A# 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B #B A# A# A# #B #B #B #B #B A# #A
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B #B A# A# #B A# #B #B #B #B A# #A
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B #B A# #B A# A# #B #B #B #B A# #A
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 LIST #B #B #B A# A# A# #B #B #B #B A# #A
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -486,23 +490,23 @@ LIST #B #B #B A# A# A# #B #B #B #B A# #A
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8#B 9#B 10#B 11A# 12#A
 LIST #B #B #B A# A# #B A# #B #B #B A# #A
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8#B 9#B 10#B 11A# 12#A
 LIST #B #B #B A# #B A# A# #B #B #B A# #A
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9#B 10#B 11A# 12#A
 LIST #B #B #B #B A# A# A# #B #B #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -511,8 +515,8 @@ LIST #B #B #B #B A# A# A# #B #B #B A# #A
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9#B 10#B 11A# 12#A
 LIST #B #B #B #B A# A# #B A# #B #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -520,16 +524,16 @@ LIST #B #B #B #B A# A# #B A# #B #B A# #A
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9#B 10#B 11A# 12#A
 LIST #B #B #B #B A# #B A# A# #B #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10#B 11A# 12#A
 LIST #B #B #B #B #B A# A# A# #B #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -539,8 +543,8 @@ LIST #B #B #B #B #B A# A# A# #B #B A# #A
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10#B 11A# 12#A
 LIST #B #B #B #B #B A# A# #B A# #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -549,8 +553,8 @@ LIST #B #B #B #B #B A# A# #B A# #B A# #A
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10#B 11A# 12#A
 LIST #B #B #B #B #B A# #B A# A# #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -558,8 +562,8 @@ LIST #B #B #B #B #B A# #B A# A# #B A# #A
 5 6 #B A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10#B 11A# 12#A
 LIST #B #B #B #B #B #B A# A# A# #B A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10#B 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -570,8 +574,8 @@ LIST #B #B #B #B #B #B A# A# A# #B A# #A
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9#B 10A# 11A# 12#A
 LIST #B #B #B #B #B #B A# A# #B A# A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9#B 10A# 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -581,8 +585,8 @@ LIST #B #B #B #B #B #B A# A# #B A# A# #A
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8#B 9A# 10A# 11A# 12#A
 LIST #B #B #B #B #B #B A# #B A# A# A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8#B 9A# 10A# 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -591,8 +595,8 @@ LIST #B #B #B #B #B #B A# #B A# A# A# #A
 6 7 #B A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7#B 8A# 9A# 10A# 11A# 12#A
 LIST #B #B #B #B #B #B #B A# A# A# A# #A
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7#B 8A# 9A# 10A# 11A# 12#A
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -606,8 +610,8 @@ LIST #B #B #B #B #B #B #B A# A# A# A# #A
 11 12 A# #A A##A
 DELETE 11A# 12#A
 SLICE 1#B 2#B 3#B 4#B 5#B 6#B 7#B 8A# 9A# 10A# [11A# 12#A]
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7#B 8A# 9A# 10A#
 LIST #B #B #B #B #B #B #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7#B 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -622,63 +626,64 @@ RETURN
 
 USER:
 B# B# B# #A #A #A B# #A #B B# #A #A
+
 ASSISTANT:
-TAPE 1B# 2B# 3B# 4#A 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST B# B# B# #A #A #A B# #A #B B# #A #A
+TAPE 1B# 2B# 3B# 4#A 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 B# B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1B# 2B# 3#A 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST B# B# #A B# #A #A B# #A #B B# #A #A
+TAPE 1B# 2B# 3#A 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 B# B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1B# 2#A 3B# 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST B# #A B# B# #A #A B# #A #B B# #A #A
+TAPE 1B# 2#A 3B# 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 B# #A B##A
 WRITE 1#A 2B#
-TAPE 1#A 2B# 3B# 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A B# B# B# #A #A B# #A #B B# #A #A
+TAPE 1#A 2B# 3B# 4B# 5#A 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2B# 3B# 4#A 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A B# B# #A B# #A B# #A #B B# #A #A
+TAPE 1#A 2B# 3B# 4#A 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2B# 3#A 4B# 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A B# #A B# B# #A B# #A #B B# #A #A
+TAPE 1#A 2B# 3#A 4B# 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A #A B# B# B# #A B# #A #B B# #A #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A #A B# B# #A B# B# #A #B B# #A #A
+TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A #A B# #A B# B# B# #A #B B# #A #A
+TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 LIST #A #A #A B# B# B# B# #A #B B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -687,8 +692,8 @@ LIST #A #A #A B# B# B# B# #A #B B# #A #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9#B 10B# 11#A 12#A
 LIST #A #A #A B# B# B# #A B# #B B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -696,23 +701,23 @@ LIST #A #A #A B# B# B# #A B# #B B# #A #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9#B 10B# 11#A 12#A
 LIST #A #A #A B# B# #A B# B# #B B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9#B 10B# 11#A 12#A
 LIST #A #A #A B# #A B# B# B# #B B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#B 10B# 11#A 12#A
 LIST #A #A #A #A B# B# B# B# #B B# #A #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#B 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -723,8 +728,8 @@ LIST #A #A #A #A B# B# B# B# #B B# #A #A
 8 9 B# #B B##B
 DELETE 8B# 9#B
 SLICE 1#A 2#A 3#A 4#A 5B# 6B# 7B# [8B# 9#B] 10B# 11#A 12#A
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#A 10#A
 LIST #A #A #A #A B# B# B# B# #A #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#A 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -734,8 +739,8 @@ LIST #A #A #A #A B# B# B# B# #A #A
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A 9B# 10#A
 LIST #A #A #A #A B# B# B# #A B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A 9B# 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -744,8 +749,8 @@ LIST #A #A #A #A B# B# B# #A B# #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B# 9B# 10#A
 LIST #A #A #A #A B# B# #A B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B# 9B# 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -753,16 +758,16 @@ LIST #A #A #A #A B# B# #A B# B# #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B# 9B# 10#A
 LIST #A #A #A #A B# #A B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B# 9B# 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
 4 5 #A B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10#A
 LIST #A #A #A #A #A B# B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -773,8 +778,8 @@ LIST #A #A #A #A #A B# B# B# B# #A
 8 9 B# B# 
 9 10 B# #A B##A
 WRITE 9#A 10B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9#A 10B#
 LIST #A #A #A #A #A B# B# B# #A B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9#A 10B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -784,8 +789,8 @@ LIST #A #A #A #A #A B# B# B# #A B#
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8#A 9B# 10B#
 LIST #A #A #A #A #A B# B# #A B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8#A 9B# 10B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -794,8 +799,8 @@ LIST #A #A #A #A #A B# B# #A B# B#
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7#A 8B# 9B# 10B#
 LIST #A #A #A #A #A B# #A B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7#A 8B# 9B# 10B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -803,8 +808,8 @@ LIST #A #A #A #A #A B# #A B# B# B#
 5 6 #A B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6#A 7B# 8B# 9B# 10B#
 LIST #A #A #A #A #A #A B# B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6#A 7B# 8B# 9B# 10B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -819,65 +824,66 @@ RETURN
 
 USER:
 B# A# A# A# #B #B #B A# #B #B A# #B
+
 ASSISTANT:
-TAPE 1B# 2A# 3A# 4A# 5#B 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 LIST B# A# A# A# #B #B #B A# #B #B A# #B
+TAPE 1B# 2A# 3A# 4A# 5#B 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 1 2 B# A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1B# 2A# 3A# 4#B 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 LIST B# A# A# #B A# #B #B A# #B #B A# #B
+TAPE 1B# 2A# 3A# 4#B 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 1 2 B# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1B# 2A# 3#B 4A# 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 LIST B# A# #B A# A# #B #B A# #B #B A# #B
+TAPE 1B# 2A# 3#B 4A# 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 1 2 B# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1B# 2#B 3A# 4A# 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 LIST B# #B A# A# A# #B #B A# #B #B A# #B
+TAPE 1B# 2#B 3A# 4A# 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
 1 2 B# #B B##B
 DELETE 1B# 2#B
 SLICE [1B# 2#B] 3A# 4A# 5A# 6#B 7#B 8A# 9#B 10#B 11A# 12#B
-TAPE 1A# 2A# 3A# 4#B 5#B 6A# 7#B 8#B 9A# 10#B
 LIST A# A# A# #B #B A# #B #B A# #B
+TAPE 1A# 2A# 3A# 4#B 5#B 6A# 7#B 8#B 9A# 10#B
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1A# 2A# 3#B 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 LIST A# A# #B A# #B A# #B #B A# #B
+TAPE 1A# 2A# 3#B 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 LIST A# #B A# A# #B A# #B #B A# #B
+TAPE 1A# 2#B 3A# 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 LIST #B A# A# A# #B A# #B #B A# #B
+TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7#B 8#B 9A# 10#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7#B 8#B 9A# 10#B
 LIST #B A# A# #B A# A# #B #B A# #B
+TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7#B 8#B 9A# 10#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7#B 8#B 9A# 10#B
 LIST #B A# #B A# A# A# #B #B A# #B
+TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7#B 8#B 9A# 10#B
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8#B 9A# 10#B
 LIST #B #B A# A# A# A# #B #B A# #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -885,29 +891,29 @@ LIST #B #B A# A# A# A# #B #B A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9A# 10#B
 LIST #B #B A# A# A# #B A# #B A# #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8#B 9A# 10#B
 LIST #B #B A# A# #B A# A# #B A# #B
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 LIST #B #B A# #B A# A# A# #B A# #B
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10#B
 LIST #B #B #B A# A# A# A# #B A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -916,8 +922,8 @@ LIST #B #B #B A# A# A# A# #B A# #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10#B
 LIST #B #B #B A# A# A# #B A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -925,23 +931,23 @@ LIST #B #B #B A# A# A# #B A# A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10#B
 LIST #B #B #B A# A# #B A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10#B
 LIST #B #B #B A# #B A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B
 LIST #B #B #B #B A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -952,8 +958,8 @@ LIST #B #B #B #B A# A# A# A# A# #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A#
 LIST #B #B #B #B A# A# A# A# #B A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -963,8 +969,8 @@ LIST #B #B #B #B A# A# A# A# #B A#
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A#
 LIST #B #B #B #B A# A# A# #B A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -973,8 +979,8 @@ LIST #B #B #B #B A# A# A# #B A# A#
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A#
 LIST #B #B #B #B A# A# #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -982,16 +988,16 @@ LIST #B #B #B #B A# A# #B A# A# A#
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A#
 LIST #B #B #B #B A# #B A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A#
 LIST #B #B #B #B #B A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1006,36 +1012,37 @@ RETURN
 
 USER:
 A# A# #B A# #B B# A# #B #B #B #B #B
+
 ASSISTANT:
-TAPE 1A# 2A# 3#B 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST A# A# #B A# #B B# A# #B #B #B #B #B
+TAPE 1A# 2A# 3#B 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST A# #B A# A# #B B# A# #B #B #B #B #B
+TAPE 1A# 2#B 3A# 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST #B A# A# A# #B B# A# #B #B #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5#B 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST #B A# A# #B A# B# A# #B #B #B #B #B
+TAPE 1#B 2A# 3A# 4#B 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST #B A# #B A# A# B# A# #B #B #B #B #B
+TAPE 1#B 2A# 3#B 4A# 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 LIST #B #B A# A# A# B# A# #B #B #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6B# 7A# 8#B 9#B 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1044,8 +1051,8 @@ LIST #B #B A# A# A# B# A# #B #B #B #B #B
 6 7 B# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6B# 7#B 8A# 9#B 10#B 11#B 12#B
 LIST #B #B A# A# A# B# #B A# #B #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6B# 7#B 8A# 9#B 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1054,8 +1061,8 @@ LIST #B #B A# A# A# B# #B A# #B #B #B #B
 6 7 B# #B B##B
 DELETE 6B# 7#B
 SLICE 1#B 2#B 3A# 4A# 5A# [6B# 7#B] 8A# 9#B 10#B 11#B 12#B
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8#B 9#B 10#B
 LIST #B #B A# A# A# A# #B #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1063,29 +1070,29 @@ LIST #B #B A# A# A# A# #B #B #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9#B 10#B
 LIST #B #B A# A# A# #B A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8#B 9#B 10#B
 LIST #B #B A# A# #B A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8#B 9#B 10#B
 LIST #B #B A# #B A# A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9#B 10#B
 LIST #B #B #B A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1094,8 +1101,8 @@ LIST #B #B #B A# A# A# A# #B #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9#B 10#B
 LIST #B #B #B A# A# A# #B A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1103,23 +1110,23 @@ LIST #B #B #B A# A# A# #B A# #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B
 LIST #B #B #B A# A# #B A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9#B 10#B
 LIST #B #B #B A# #B A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10#B
 LIST #B #B #B #B A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1129,8 +1136,8 @@ LIST #B #B #B #B A# A# A# A# #B #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 LIST #B #B #B #B A# A# A# #B A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1139,8 +1146,8 @@ LIST #B #B #B #B A# A# A# #B A# #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10#B
 LIST #B #B #B #B A# A# #B A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1148,16 +1155,16 @@ LIST #B #B #B #B A# A# #B A# A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10#B
 LIST #B #B #B #B A# #B A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B
 LIST #B #B #B #B #B A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1168,8 +1175,8 @@ LIST #B #B #B #B #B A# A# A# A# #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A#
 LIST #B #B #B #B #B A# A# A# #B A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1179,8 +1186,8 @@ LIST #B #B #B #B #B A# A# A# #B A#
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A#
 LIST #B #B #B #B #B A# A# #B A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1189,8 +1196,8 @@ LIST #B #B #B #B #B A# A# #B A# A#
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A#
 LIST #B #B #B #B #B A# #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1198,8 +1205,8 @@ LIST #B #B #B #B #B A# #B A# A# A#
 5 6 #B A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A#
 LIST #B #B #B #B #B #B A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1214,9 +1221,10 @@ RETURN
 
 USER:
 A# B# B# B# A# A# B# B# #B A# A# A#
+
 ASSISTANT:
-TAPE 1A# 2B# 3B# 4B# 5A# 6A# 7B# 8B# 9#B 10A# 11A# 12A#
 LIST A# B# B# B# A# A# B# B# #B A# A# A#
+TAPE 1A# 2B# 3B# 4B# 5A# 6A# 7B# 8B# 9#B 10A# 11A# 12A#
 1 2 A# B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1227,8 +1235,8 @@ LIST A# B# B# B# A# A# B# B# #B A# A# A#
 8 9 B# #B B##B
 DELETE 8B# 9#B
 SLICE 1A# 2B# 3B# 4B# 5A# 6A# 7B# [8B# 9#B] 10A# 11A# 12A#
-TAPE 1A# 2B# 3B# 4B# 5A# 6A# 7B# 8A# 9A# 10A#
 LIST A# B# B# B# A# A# B# A# A# A#
+TAPE 1A# 2B# 3B# 4B# 5A# 6A# 7B# 8A# 9A# 10A#
 1 2 A# B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1243,9 +1251,10 @@ A# B# B# B# A# A# B# A# A# A#
 
 USER:
 #B B# A# B# A# A# A# A# A# A# B# B#
+
 ASSISTANT:
-TAPE 1#B 2B# 3A# 4B# 5A# 6A# 7A# 8A# 9A# 10A# 11B# 12B#
 LIST #B B# A# B# A# A# A# A# A# A# B# B#
+TAPE 1#B 2B# 3A# 4B# 5A# 6A# 7A# 8A# 9A# 10A# 11B# 12B#
 1 2 #B B# 
 2 3 B# A# 
 3 4 A# B# 
@@ -1262,9 +1271,10 @@ RETURN
 
 USER:
 #A B# B# B# A# A# A# B# #B B# A# B#
+
 ASSISTANT:
-TAPE 1#A 2B# 3B# 4B# 5A# 6A# 7A# 8B# 9#B 10B# 11A# 12B#
 LIST #A B# B# B# A# A# A# B# #B B# A# B#
+TAPE 1#A 2B# 3B# 4B# 5A# 6A# 7A# 8B# 9#B 10B# 11A# 12B#
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1275,8 +1285,8 @@ LIST #A B# B# B# A# A# A# B# #B B# A# B#
 8 9 B# #B B##B
 DELETE 8B# 9#B
 SLICE 1#A 2B# 3B# 4B# 5A# 6A# 7A# [8B# 9#B] 10B# 11A# 12B#
-TAPE 1#A 2B# 3B# 4B# 5A# 6A# 7A# 8B# 9A# 10B#
 LIST #A B# B# B# A# A# A# B# A# B#
+TAPE 1#A 2B# 3B# 4B# 5A# 6A# 7A# 8B# 9A# 10B#
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1291,31 +1301,32 @@ RETURN
 
 USER:
 B# B# B# B# #A B# B# #A #A #A #A #A
+
 ASSISTANT:
-TAPE 1B# 2B# 3B# 4B# 5#A 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST B# B# B# B# #A B# B# #A #A #A #A #A
+TAPE 1B# 2B# 3B# 4B# 5#A 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 1 2 B# B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1B# 2B# 3B# 4#A 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST B# B# B# #A B# B# B# #A #A #A #A #A
+TAPE 1B# 2B# 3B# 4#A 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 1 2 B# B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1B# 2B# 3#A 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST B# B# #A B# B# B# B# #A #A #A #A #A
+TAPE 1B# 2B# 3#A 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 1 2 B# B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1B# 2#A 3B# 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST B# #A B# B# B# B# B# #A #A #A #A #A
+TAPE 1B# 2#A 3B# 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 1 2 B# #A B##A
 WRITE 1#A 2B#
-TAPE 1#A 2B# 3B# 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 LIST #A B# B# B# B# B# B# #A #A #A #A #A
+TAPE 1#A 2B# 3B# 4B# 5B# 6B# 7B# 8#A 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1324,8 +1335,8 @@ LIST #A B# B# B# B# B# B# #A #A #A #A #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2B# 3B# 4B# 5B# 6B# 7#A 8B# 9#A 10#A 11#A 12#A
 LIST #A B# B# B# B# B# #A B# #A #A #A #A
+TAPE 1#A 2B# 3B# 4B# 5B# 6B# 7#A 8B# 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
@@ -1333,34 +1344,34 @@ LIST #A B# B# B# B# B# #A B# #A #A #A #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2B# 3B# 4B# 5B# 6#A 7B# 8B# 9#A 10#A 11#A 12#A
 LIST #A B# B# B# B# #A B# B# #A #A #A #A
+TAPE 1#A 2B# 3B# 4B# 5B# 6#A 7B# 8B# 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2B# 3B# 4B# 5#A 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 LIST #A B# B# B# #A B# B# B# #A #A #A #A
+TAPE 1#A 2B# 3B# 4B# 5#A 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2B# 3B# 4#A 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 LIST #A B# B# #A B# B# B# B# #A #A #A #A
+TAPE 1#A 2B# 3B# 4#A 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2B# 3#A 4B# 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 LIST #A B# #A B# B# B# B# B# #A #A #A #A
+TAPE 1#A 2B# 3#A 4B# 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 1 2 #A B# 
 2 3 B# #A B##A
 WRITE 2#A 3B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 LIST #A #A B# B# B# B# B# B# #A #A #A #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7B# 8B# 9#A 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
@@ -1370,8 +1381,8 @@ LIST #A #A B# B# B# B# B# B# #A #A #A #A
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7B# 8#A 9B# 10#A 11#A 12#A
 LIST #A #A B# B# B# B# B# #A B# #A #A #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7B# 8#A 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
@@ -1380,8 +1391,8 @@ LIST #A #A B# B# B# B# B# #A B# #A #A #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7#A 8B# 9B# 10#A 11#A 12#A
 LIST #A #A B# B# B# B# #A B# B# #A #A #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6B# 7#A 8B# 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
@@ -1389,29 +1400,29 @@ LIST #A #A B# B# B# B# #A B# B# #A #A #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8B# 9B# 10#A 11#A 12#A
 LIST #A #A B# B# B# #A B# B# B# #A #A #A
+TAPE 1#A 2#A 3B# 4B# 5B# 6#A 7B# 8B# 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 LIST #A #A B# B# #A B# B# B# B# #A #A #A
+TAPE 1#A 2#A 3B# 4B# 5#A 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 LIST #A #A B# #A B# B# B# B# B# #A #A #A
+TAPE 1#A 2#A 3B# 4#A 5B# 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A B# 
 3 4 B# #A B##A
 WRITE 3#A 4B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 LIST #A #A #A B# B# B# B# B# B# #A #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8B# 9B# 10#A 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -1422,8 +1433,8 @@ LIST #A #A #A B# B# B# B# B# B# #A #A #A
 8 9 B# B# 
 9 10 B# #A B##A
 WRITE 9#A 10B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8B# 9#A 10B# 11#A 12#A
 LIST #A #A #A B# B# B# B# B# #A B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8B# 9#A 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -1433,8 +1444,8 @@ LIST #A #A #A B# B# B# B# B# #A B# #A #A
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9B# 10B# 11#A 12#A
 LIST #A #A #A B# B# B# B# #A B# B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7B# 8#A 9B# 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -1443,8 +1454,8 @@ LIST #A #A #A B# B# B# B# #A B# B# #A #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9B# 10B# 11#A 12#A
 LIST #A #A #A B# B# B# #A B# B# B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6B# 7#A 8B# 9B# 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
@@ -1452,23 +1463,23 @@ LIST #A #A #A B# B# B# #A B# B# B# #A #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9B# 10B# 11#A 12#A
 LIST #A #A #A B# B# #A B# B# B# B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5B# 6#A 7B# 8B# 9B# 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9B# 10B# 11#A 12#A
 LIST #A #A #A B# #A B# B# B# B# B# #A #A
+TAPE 1#A 2#A 3#A 4B# 5#A 6B# 7B# 8B# 9B# 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A B# 
 4 5 B# #A B##A
 WRITE 4#A 5B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9B# 10B# 11#A 12#A
 LIST #A #A #A #A B# B# B# B# B# B# #A #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9B# 10B# 11#A 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1480,8 +1491,8 @@ LIST #A #A #A #A B# B# B# B# B# B# #A #A
 9 10 B# B# 
 10 11 B# #A B##A
 WRITE 10#A 11B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9B# 10#A 11B# 12#A
 LIST #A #A #A #A B# B# B# B# B# #A B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9B# 10#A 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1492,8 +1503,8 @@ LIST #A #A #A #A B# B# B# B# B# #A B# #A
 8 9 B# B# 
 9 10 B# #A B##A
 WRITE 9#A 10B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#A 10B# 11B# 12#A
 LIST #A #A #A #A B# B# B# B# #A B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8B# 9#A 10B# 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1503,8 +1514,8 @@ LIST #A #A #A #A B# B# B# B# #A B# B# #A
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A 9B# 10B# 11B# 12#A
 LIST #A #A #A #A B# B# B# #A B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7B# 8#A 9B# 10B# 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1513,8 +1524,8 @@ LIST #A #A #A #A B# B# B# #A B# B# B# #A
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B# 9B# 10B# 11B# 12#A
 LIST #A #A #A #A B# B# #A B# B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6B# 7#A 8B# 9B# 10B# 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1522,16 +1533,16 @@ LIST #A #A #A #A B# B# #A B# B# B# B# #A
 5 6 B# B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B# 9B# 10B# 11B# 12#A
 LIST #A #A #A #A B# #A B# B# B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5B# 6#A 7B# 8B# 9B# 10B# 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
 4 5 #A B# 
 5 6 B# #A B##A
 WRITE 5#A 6B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10B# 11B# 12#A
 LIST #A #A #A #A #A B# B# B# B# B# B# #A
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10B# 11B# 12#A
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1544,8 +1555,8 @@ LIST #A #A #A #A #A B# B# B# B# B# B# #A
 10 11 B# B# 
 11 12 B# #A B##A
 WRITE 11#A 12B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10B# 11#A 12B#
 LIST #A #A #A #A #A B# B# B# B# B# #A B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10B# 11#A 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1557,8 +1568,8 @@ LIST #A #A #A #A #A B# B# B# B# B# #A B#
 9 10 B# B# 
 10 11 B# #A B##A
 WRITE 10#A 11B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10#A 11B# 12B#
 LIST #A #A #A #A #A B# B# B# B# #A B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9B# 10#A 11B# 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1569,8 +1580,8 @@ LIST #A #A #A #A #A B# B# B# B# #A B# B#
 8 9 B# B# 
 9 10 B# #A B##A
 WRITE 9#A 10B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9#A 10B# 11B# 12B#
 LIST #A #A #A #A #A B# B# B# #A B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8B# 9#A 10B# 11B# 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1580,8 +1591,8 @@ LIST #A #A #A #A #A B# B# B# #A B# B# B#
 7 8 B# B# 
 8 9 B# #A B##A
 WRITE 8#A 9B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8#A 9B# 10B# 11B# 12B#
 LIST #A #A #A #A #A B# B# #A B# B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7B# 8#A 9B# 10B# 11B# 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1590,8 +1601,8 @@ LIST #A #A #A #A #A B# B# #A B# B# B# B#
 6 7 B# B# 
 7 8 B# #A B##A
 WRITE 7#A 8B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7#A 8B# 9B# 10B# 11B# 12B#
 LIST #A #A #A #A #A B# #A B# B# B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6B# 7#A 8B# 9B# 10B# 11B# 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1599,8 +1610,8 @@ LIST #A #A #A #A #A B# #A B# B# B# B# B#
 5 6 #A B# 
 6 7 B# #A B##A
 WRITE 6#A 7B#
-TAPE 1#A 2#A 3#A 4#A 5#A 6#A 7B# 8B# 9B# 10B# 11B# 12B#
 LIST #A #A #A #A #A #A B# B# B# B# B# B#
+TAPE 1#A 2#A 3#A 4#A 5#A 6#A 7B# 8B# 9B# 10B# 11B# 12B#
 1 2 #A #A 
 2 3 #A #A 
 3 4 #A #A 
@@ -1617,31 +1628,32 @@ RETURN
 
 USER:
 A# A# A# A# #B A# A# #B A# #B #B #B
+
 ASSISTANT:
-TAPE 1A# 2A# 3A# 4A# 5#B 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST A# A# A# A# #B A# A# #B A# #B #B #B
+TAPE 1A# 2A# 3A# 4A# 5#B 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1A# 2A# 3A# 4#B 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST A# A# A# #B A# A# A# #B A# #B #B #B
+TAPE 1A# 2A# 3A# 4#B 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1A# 2A# 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST A# A# #B A# A# A# A# #B A# #B #B #B
+TAPE 1A# 2A# 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST A# #B A# A# A# A# A# #B A# #B #B #B
+TAPE 1A# 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST #B A# A# A# A# A# A# #B A# #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
@@ -1650,8 +1662,8 @@ LIST #B A# A# A# A# A# A# #B A# #B #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2A# 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10#B 11#B 12#B
 LIST #B A# A# A# A# A# #B A# A# #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
@@ -1659,34 +1671,34 @@ LIST #B A# A# A# A# A# #B A# A# #B #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B A# A# A# A# #B A# A# A# #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B A# A# A# #B A# A# A# A# #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B A# A# #B A# A# A# A# A# #B #B #B
+TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B A# #B A# A# A# A# A# A# #B #B #B
+TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B #B A# A# A# A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1697,8 +1709,8 @@ LIST #B #B A# A# A# A# A# A# A# #B #B #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11#B 12#B
 LIST #B #B A# A# A# A# A# A# #B A# #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1708,8 +1720,8 @@ LIST #B #B A# A# A# A# A# A# #B A# #B #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11#B 12#B
 LIST #B #B A# A# A# A# A# #B A# A# #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1718,8 +1730,8 @@ LIST #B #B A# A# A# A# A# #B A# A# #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11#B 12#B
 LIST #B #B A# A# A# A# #B A# A# A# #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1727,29 +1739,29 @@ LIST #B #B A# A# A# A# #B A# A# A# #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B A# A# A# #B A# A# A# A# #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B A# A# #B A# A# A# A# A# #B #B
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B A# #B A# A# A# A# A# A# #B #B
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B #B A# A# A# A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1761,8 +1773,8 @@ LIST #B #B #B A# A# A# A# A# A# A# #B #B
 9 10 A# A# 
 10 11 A# #B A##B
 WRITE 10#B 11A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12#B
 LIST #B #B #B A# A# A# A# A# A# #B A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1773,8 +1785,8 @@ LIST #B #B #B A# A# A# A# A# A# #B A# #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12#B
 LIST #B #B #B A# A# A# A# A# #B A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1784,8 +1796,8 @@ LIST #B #B #B A# A# A# A# A# #B A# A# #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12#B
 LIST #B #B #B A# A# A# A# #B A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1794,8 +1806,8 @@ LIST #B #B #B A# A# A# A# #B A# A# A# #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B A# A# A# #B A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -1803,23 +1815,23 @@ LIST #B #B #B A# A# A# #B A# A# A# A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B A# A# #B A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B A# #B A# A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B #B A# A# A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1832,8 +1844,8 @@ LIST #B #B #B #B A# A# A# A# A# A# A# #B
 10 11 A# A# 
 11 12 A# #B A##B
 WRITE 11#B 12A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12A#
 LIST #B #B #B #B A# A# A# A# A# A# #B A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1845,8 +1857,8 @@ LIST #B #B #B #B A# A# A# A# A# A# #B A#
 9 10 A# A# 
 10 11 A# #B A##B
 WRITE 10#B 11A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12A#
 LIST #B #B #B #B A# A# A# A# A# #B A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1857,8 +1869,8 @@ LIST #B #B #B #B A# A# A# A# A# #B A# A#
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12A#
 LIST #B #B #B #B A# A# A# A# #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1868,8 +1880,8 @@ LIST #B #B #B #B A# A# A# A# #B A# A# A#
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12A#
 LIST #B #B #B #B A# A# A# #B A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1878,8 +1890,8 @@ LIST #B #B #B #B A# A# A# #B A# A# A# A#
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12A#
 LIST #B #B #B #B A# A# #B A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1887,16 +1899,16 @@ LIST #B #B #B #B A# A# #B A# A# A# A# A#
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12A#
 LIST #B #B #B #B A# #B A# A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12A#
 LIST #B #B #B #B #B A# A# A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -1913,50 +1925,51 @@ RETURN
 
 USER:
 A# A# A# #B A# #B A# A# #B #B #B #B
+
 ASSISTANT:
-TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 LIST A# A# A# #B A# #B A# A# #B #B #B #B
+TAPE 1A# 2A# 3A# 4#B 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1A# 2A# 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 LIST A# A# #B A# A# #B A# A# #B #B #B #B
+TAPE 1A# 2A# 3#B 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 A# A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1A# 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 LIST A# #B A# A# A# #B A# A# #B #B #B #B
+TAPE 1A# 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 A# #B A##B
 WRITE 1#B 2A#
-TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 LIST #B A# A# A# A# #B A# A# #B #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5A# 6#B 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 LIST #B A# A# A# #B A# A# A# #B #B #B #B
+TAPE 1#B 2A# 3A# 4A# 5#B 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 LIST #B A# A# #B A# A# A# A# #B #B #B #B
+TAPE 1#B 2A# 3A# 4#B 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 LIST #B A# #B A# A# A# A# A# #B #B #B #B
+TAPE 1#B 2A# 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 #B A# 
 2 3 A# #B A##B
 WRITE 2#B 3A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 LIST #B #B A# A# A# A# A# A# #B #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8A# 9#B 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1966,8 +1979,8 @@ LIST #B #B A# A# A# A# A# A# #B #B #B #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 LIST #B #B A# A# A# A# A# #B A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7A# 8#B 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1976,8 +1989,8 @@ LIST #B #B A# A# A# A# A# #B A# #B #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10#B 11#B 12#B
 LIST #B #B A# A# A# A# #B A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6A# 7#B 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
@@ -1985,29 +1998,29 @@ LIST #B #B A# A# A# A# #B A# A# #B #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B #B A# A# A# #B A# A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5A# 6#B 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B #B A# A# #B A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4A# 5#B 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B #B A# #B A# A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3A# 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B A# 
 3 4 A# #B A##B
 WRITE 3#B 4A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 LIST #B #B #B A# A# A# A# A# A# #B #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9A# 10#B 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -2018,8 +2031,8 @@ LIST #B #B #B A# A# A# A# A# A# #B #B #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11#B 12#B
 LIST #B #B #B A# A# A# A# A# #B A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8A# 9#B 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -2029,8 +2042,8 @@ LIST #B #B #B A# A# A# A# A# #B A# #B #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11#B 12#B
 LIST #B #B #B A# A# A# A# #B A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7A# 8#B 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -2039,8 +2052,8 @@ LIST #B #B #B A# A# A# A# #B A# A# #B #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11#B 12#B
 LIST #B #B #B A# A# A# #B A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6A# 7#B 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
@@ -2048,23 +2061,23 @@ LIST #B #B #B A# A# A# #B A# A# A# #B #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B #B A# A# #B A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5A# 6#B 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B #B A# #B A# A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4A# 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B A# 
 4 5 A# #B A##B
 WRITE 4#B 5A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 LIST #B #B #B #B A# A# A# A# A# A# #B #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10A# 11#B 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2076,8 +2089,8 @@ LIST #B #B #B #B A# A# A# A# A# A# #B #B
 9 10 A# A# 
 10 11 A# #B A##B
 WRITE 10#B 11A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12#B
 LIST #B #B #B #B A# A# A# A# A# #B A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9A# 10#B 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2088,8 +2101,8 @@ LIST #B #B #B #B A# A# A# A# A# #B A# #B
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12#B
 LIST #B #B #B #B A# A# A# A# #B A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8A# 9#B 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2099,8 +2112,8 @@ LIST #B #B #B #B A# A# A# A# #B A# A# #B
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12#B
 LIST #B #B #B #B A# A# A# #B A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7A# 8#B 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2109,8 +2122,8 @@ LIST #B #B #B #B A# A# A# #B A# A# A# #B
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B #B A# A# #B A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6A# 7#B 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2118,16 +2131,16 @@ LIST #B #B #B #B A# A# #B A# A# A# A# #B
 5 6 A# A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B #B A# #B A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5A# 6#B 7A# 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
 4 5 #B A# 
 5 6 A# #B A##B
 WRITE 5#B 6A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 LIST #B #B #B #B #B A# A# A# A# A# A# #B
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11A# 12#B
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2140,8 +2153,8 @@ LIST #B #B #B #B #B A# A# A# A# A# A# #B
 10 11 A# A# 
 11 12 A# #B A##B
 WRITE 11#B 12A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12A#
 LIST #B #B #B #B #B A# A# A# A# A# #B A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10A# 11#B 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2153,8 +2166,8 @@ LIST #B #B #B #B #B A# A# A# A# A# #B A#
 9 10 A# A# 
 10 11 A# #B A##B
 WRITE 10#B 11A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B 11A# 12A#
 LIST #B #B #B #B #B A# A# A# A# #B A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9A# 10#B 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2165,8 +2178,8 @@ LIST #B #B #B #B #B A# A# A# A# #B A# A#
 8 9 A# A# 
 9 10 A# #B A##B
 WRITE 9#B 10A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A# 11A# 12A#
 LIST #B #B #B #B #B A# A# A# #B A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8A# 9#B 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2176,8 +2189,8 @@ LIST #B #B #B #B #B A# A# A# #B A# A# A#
 7 8 A# A# 
 8 9 A# #B A##B
 WRITE 8#B 9A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A# 11A# 12A#
 LIST #B #B #B #B #B A# A# #B A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7A# 8#B 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2186,8 +2199,8 @@ LIST #B #B #B #B #B A# A# #B A# A# A# A#
 6 7 A# A# 
 7 8 A# #B A##B
 WRITE 7#B 8A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A# 11A# 12A#
 LIST #B #B #B #B #B A# #B A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6A# 7#B 8A# 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2195,8 +2208,8 @@ LIST #B #B #B #B #B A# #B A# A# A# A# A#
 5 6 #B A# 
 6 7 A# #B A##B
 WRITE 6#B 7A#
-TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A# 11A# 12A#
 LIST #B #B #B #B #B #B A# A# A# A# A# A#
+TAPE 1#B 2#B 3#B 4#B 5#B 6#B 7A# 8A# 9A# 10A# 11A# 12A#
 1 2 #B #B 
 2 3 #B #B 
 3 4 #B #B 
@@ -2213,4 +2226,4 @@ RETURN
 
 ---
 
-BEGIN RESPONSE WITH: TAPE
+BEGIN RESPONSE WITH: LIST
