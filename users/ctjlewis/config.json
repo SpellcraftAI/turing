@@ -3,6 +3,6 @@
     "max_tokens": 4096,
     "models": {
         "gpt": "gpt-4",
-        "anthropic": "claude-3-opus-20240229"
+        "anthropic": "claude-3-opus@20240229"
     }
 }

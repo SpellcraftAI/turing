@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { join } from "path"
 import { readFile, writeFile } from "fs/promises";
 import { resolve } from "path";
-import { Anthropic } from "@anthropic-ai/sdk";
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 import { instances } from "./tokens.mjs"
 import { normal, show } from "./utils.mjs";
@@ -65,8 +65,12 @@ async function askClaude({
   debug = true,
   main = false,
 }) {
-  const apiKey = await getAnthropicKey()  
-  const anthropic = new Anthropic({ apiKey });
+  // const apiKey = await getAnthropicKey()  
+  // const anthropic = new Anthropic({ apiKey });
+  const anthropic = new AnthropicVertex({
+    region: "us-east5",
+    projectId: "research-420207"
+  });
   
   try {
     if (debug) {
@@ -134,6 +138,7 @@ async function askGPT({
     max_tokens: 1600,
     temperature: temperature || 0,
   });
+
   var result = "";
   for await (const chunk of stream) {
     var text = chunk.choices[0]?.delta?.content || "";
@@ -198,7 +203,7 @@ async function runChallenge(system, level, main = false) {
   }
 }
 
-async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
+async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   let correct = 0;
   const numBatches = Math.ceil(runs / batchSize);
 
@@ -227,6 +232,20 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
 
     console.log();
     console.table({ Test, Correct, Accuracy });
+
+    const waitTime = 60;
+    const startTime = Date.now();
+    await new Promise((resolve) => setInterval(
+      () => {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        if (elapsed < waitTime) {
+          console.log(`Waiting ${waitTime - elapsed}s...`)
+        } else {
+          resolve();
+        }
+      }, 
+      1000
+    ))
   }
 
   LOG('');
@@ -234,5 +253,5 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 4) {
   LOG(`${correct} / ${runs} (${(100 * correct / runs).toFixed(2)}%)`);
 }
 
-await runFullChallenge(prompt, 100);
+await runFullChallenge(prompt, 100, 1);
 await writeFile(`./users/${USER}/log.txt`, OUTPUT);
