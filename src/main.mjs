@@ -77,7 +77,9 @@ async function runChallenge(system, level, main = false) {
 async function runBatch(systemPrompt, start, end) {
   let promises = [];
   for (let i = start; i < end; i++) {
-    promises.push(runChallenge(systemPrompt, 24, i === start));
+    promises.push(
+      backoff(() => runChallenge(systemPrompt, 24, i === start))
+    );
   }
 
   return Promise.all(promises);
@@ -91,11 +93,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
-    const results = await backoff(
-      () => runBatch(systemPrompt, start, end), 
-      10, 
-      10
-    );
+    const results = await runBatch(systemPrompt, start, end);
 
     for (const result of results) {
       const { pass, metadata } = result;
