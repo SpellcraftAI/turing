@@ -6,6 +6,7 @@ import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 
 import { instances } from "./tokens.mjs"
 import { normal, show } from "./utils.mjs";
+import { tqdm } from "./progress.mjs";
 
 const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
@@ -207,7 +208,7 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   let correct = 0;
   const numBatches = Math.ceil(runs / batchSize);
 
-  for (let batch = 0; batch < numBatches; batch++) {
+  for (const batch of tqdm((new Array(numBatches)).keys())) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
 
@@ -233,25 +234,15 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     console.log();
     console.table({ Test, Correct, Accuracy });
 
-    const waitTime = 60;
-    const startTime = Date.now();
-    await new Promise((resolve) => setInterval(
-      () => {
-        const elapsed = Math.floor((Date.now() - startTime) / 1000);
-        if (elapsed < waitTime) {
-          console.log(`Waiting ${waitTime - elapsed}s...`)
-        } else {
-          resolve();
-        }
-      }, 
-      1000
-    ))
+    console.log("Waiting one minute.")
+    await new Promise((resolve) => setTimeout(resolve, 60_000))
   }
 
   LOG('');
   LOG("--- Final score ---");
   LOG(`${correct} / ${runs} (${(100 * correct / runs).toFixed(2)}%)`);
+  console.log();
 }
 
-await runFullChallenge(prompt, 100, 1);
+await runFullChallenge(prompt, 500, 1);
 await writeFile(`./users/${USER}/log.txt`, OUTPUT);
