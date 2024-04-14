@@ -1,5 +1,5 @@
 { 
-    "temperature": 0.00001, 
+    "temperature": 0, 
     "max_tokens": 4096,
     "models": {
         "gpt": "gpt-4",
