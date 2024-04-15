@@ -129,4 +129,4 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 500, 7);
+await runFullChallenge(prompt, 500, 6);
