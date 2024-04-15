@@ -92,11 +92,12 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   const numBatches = Math.ceil(runs / batchSize);
 
   for (const batch of tqdm((new Array(numBatches)).keys())) {
-    let startTime = Date.now();
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
+    const remainingRuns = runs - start;
+    const adjustedBatchSize = Math.min(batchSize, remainingRuns);
 
-    const results = await runBatch(systemPrompt, batchSize);
+    const results = await runBatch(systemPrompt, adjustedBatchSize);
 
     for (const result of results) {
       const { pass, metadata } = result;
@@ -108,8 +109,8 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     }
       
     const Test = `${end} / ${runs}`;
-    const Correct = `${correct} / ${end}`;
-    const Accuracy = `${(correct / end).toFixed(2)}`;
+    const Correct = `${correct} / ${runs}`;
+    const Accuracy = `${(correct / runs).toFixed(2)}`;
 
     console.log();
     console.table({ Test, Correct, Accuracy });
