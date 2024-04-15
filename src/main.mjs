@@ -109,16 +109,18 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
     }
       
     const Test = `${end} / ${runs}`;
-    const Correct = `${correct} / ${runs}`;
-    const Accuracy = `${(correct / runs).toFixed(2)}`;
+    const Correct = `${correct} / ${end}`;
+    const Accuracy = `${(correct / end).toFixed(2)}`;
 
     console.log();
     console.table({ Test, Correct, Accuracy });
     console.log();
 
-    const waitTime = 60;
-    console.log(`${waitTime} second cooldown...`);
-    await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
+    if (batch < numBatches - 1) {
+      const waitTime = 60;
+      console.log(`${waitTime} second cooldown...`);
+      await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
+    }
   }
 
   LOG('');
@@ -127,5 +129,4 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 400, 6);
-// await writeFile(`./users/${USER}/log.txt`, OUTPUT);
+await runFullChallenge(prompt, 2, 1);
