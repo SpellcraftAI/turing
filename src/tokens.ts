@@ -3,7 +3,11 @@ export const HB = "#B";
 export const AH = "A#";
 export const BH = "B#";
 
-export const tokens = [HA,HB,AH,BH];
+export const tokens = [HA,HB,AH,BH] as const;
+
+export type Difficulty = keyof typeof instances;
+export type Instance = typeof instances[Difficulty][number];
+export type Value = typeof tokens[number]; 
 
 // 32 random instances for each difficulty level
 // Algorithm: https://xkcd.com/221/
@@ -858,4 +862,6 @@ export const instances = {
       [BH,HA,BH,BH,BH,BH,BH,HA,HA,HB,HA,HA],
       [AH,AH,BH,HB,AH,AH,HB,HB,AH,HB,HB,HB],
     ],
+  } as const satisfies {
+    [key: number]: Value[][]
   };

@@ -1,4 +1,4 @@
-export function* tqdm(iterable) {
+export function* tqdm<T>(iterable: Iterable<T>): Generator<T, void, unknown> {
   const items = Array.from(iterable);
   const total = items.length;
   let completed = 0;
@@ -21,7 +21,7 @@ export function* tqdm(iterable) {
     }
   };
 
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = Math.floor(seconds % 60);

@@ -1,4 +1,8 @@
-export async function backoff(action, maxRetries = 6, initialDelay = 15) {
+export async function backoff<T extends () => any | Promise<any>>(
+  action: T, 
+  maxRetries = 6, 
+  initialDelay = 15
+) {
   let retries = 0;
   let delay = initialDelay;
 
@@ -6,9 +10,9 @@ export async function backoff(action, maxRetries = 6, initialDelay = 15) {
     try {
       const results = await action();
       return results;
-    } catch (e) {
+    } catch (e: any) {
       retries++;
-      console.error(e.message);
+      if (e?.message) console.error(e.message);
 
       if (retries <= maxRetries) {
         console.error(`Error. Retrying in ${delay}s. [Attempt ${retries}/${maxRetries}]`);

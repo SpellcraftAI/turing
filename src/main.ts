@@ -1,21 +1,22 @@
 
 import { writeFile } from "fs/promises";
 
-import { askClaude, askGPT } from "./models.mjs";
-import { instances } from "./tokens.mjs"
-import { loadUserFile, normal, show } from "./utils.mjs";
-import { tqdm } from "./progress.mjs";
-import { backoff } from "./backoff.mjs";
+import { askClaude, askGPT } from "./models";
+import { Difficulty, Instance, instances } from "./tokens"
+import { loadUserFile, normal, show } from "./utils";
+import { tqdm } from "./progress";
+import { backoff } from "./backoff";
 
 const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
+const TEST = process.argv[4] || "rule110";
 
 const prompt = await loadUserFile(USER, "prompt.txt");
 const config = await loadUserFile(USER, "config.json");
 
 let OUTPUT = "";
 
-function LOG(txt) { 
+function LOG(txt: string) { 
   if (txt) { 
     OUTPUT += txt+"\n"; 
     console.log(txt); 
@@ -25,14 +26,14 @@ function LOG(txt) {
 // Evaluator
 // ---------
 
-async function runChallenge(system, level, worker = 0) {
+async function runChallenge(system: string, level: Difficulty, worker = 0) {
   let output = ""
-  const log = (string) => output += string;
+  const log = (string: string) => output += string;
 
   const model = config.models[MODEL];
   const main = worker === 0;
 
-  const term = instances[level][Math.floor(Math.random() * instances[level].length)];
+  const term: Instance = instances[level][Math.floor(Math.random() * instances[level].length)];
   const [norm, rwts] = normal(term);
   const problem = show(term);
   const params = { model, debug: true, worker, main, ...config };
@@ -76,8 +77,8 @@ async function runChallenge(system, level, worker = 0) {
   }
 }
 
-async function runBatch(systemPrompt, n = 1) {
-  let promises = [];
+async function runBatch(systemPrompt: string, n = 1) {
+  let promises: ReturnType<typeof runChallenge>[] = [];
   for (let i = 0; i < n; i++) {
     promises.push(
       backoff(() => runChallenge(systemPrompt, 24, i))
@@ -87,7 +88,7 @@ async function runBatch(systemPrompt, n = 1) {
   return Promise.all(promises);
 }
 
-async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
+async function runFullChallenge(systemPrompt: string, runs = 50, batchSize = 1) {
   let correct = 0;
   const numBatches = Math.ceil(runs / batchSize);
 
@@ -129,4 +130,4 @@ async function runFullChallenge(systemPrompt, runs = 50, batchSize = 1) {
   console.log();
 }
 
-await runFullChallenge(prompt, 500, 7);
+await runFullChallenge(prompt, 2, 1);

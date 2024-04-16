@@ -1,5 +1,10 @@
+import type { ChatCompletionMessageParam } from "openai/resources";
+import type { MessageParam } from "@anthropic-ai/sdk/resources";
+
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
+import { readFile } from "fs/promises";
 import OpenAI from "openai";
+import { homedir } from "os";
 import { join } from "path"
 
 const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
@@ -9,7 +14,7 @@ export async function getAnthropicKey() {
     return ANTHROPIC_API_KEY
   }
 
-  const keyPath = join(process.env.HOME, '.config', 'anthropic.token');
+  const keyPath = join(homedir(), '.config', 'anthropic.token');
   return (await readFile(keyPath, 'utf8')).trim();
 }
 
@@ -18,8 +23,18 @@ export async function getOpenAIKey() {
     return OPENAI_API_KEY
   }
 
-  const keyPath = join(process.env.HOME, '.config', 'openai.token');
+  const keyPath = join(homedir(), '.config', 'openai.token');
   return (await readFile(keyPath, 'utf8')).trim();
+}
+
+export interface AskClaudeOptions {
+  system?: string;
+  messages: MessageParam[];
+  max_tokens?: number;
+  model?: string;
+  temperature?: number;
+  debug?: boolean;
+  main?: boolean;
 }
 
 export async function askClaude({ 
@@ -30,7 +45,7 @@ export async function askClaude({
   temperature = 0, 
   debug = true,
   main = false,
-}) {
+}: AskClaudeOptions) {
   // const apiKey = await getAnthropicKey()  
   // const anthropic = new Anthropic({ apiKey });
   const anthropic = new AnthropicVertex({
@@ -77,13 +92,21 @@ export async function askClaude({
   };
 }
 
+export interface AskGPTOptions {
+  system?: string;
+  messages: ChatCompletionMessageParam[];
+  model?: string;
+  temperature?: number;
+  main?: boolean;
+}
+
 export async function askGPT({
   system, 
   messages, 
   model, 
   temperature,
   main = false,
-}) {
+}: AskGPTOptions) {
   const openai = new OpenAI({apiKey: await getOpenAIKey()});
   const stream = await openai.chat.completions.create({
     model: model || "gpt-4-0125-preview",
