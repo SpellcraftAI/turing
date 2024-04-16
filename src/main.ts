@@ -1,18 +1,23 @@
-
-import { writeFile } from "fs/promises";
+import chalk from "chalk"
 
 import { askClaude, askGPT } from "./models";
 import { Difficulty, Instance, instances } from "./tokens"
-import { loadUserFile, normal, show } from "./utils";
+import { loadTestFile, normal, show, writeTestFile } from "./utils";
 import { tqdm } from "./progress";
 import { backoff } from "./backoff";
+import { Config, Test } from "./types";
 
-const USER = process.argv[2] || "futuristfrog";
 const MODEL = process.argv[3] || "anthropic";
-const TEST = process.argv[4] || "rule110";
+const TEST_ID = process.argv[4] || "rule110";
 
-const prompt = await loadUserFile(USER, "prompt.txt");
-const config = await loadUserFile(USER, "config.json");
+const prompt: string = await loadTestFile(TEST_ID, "prompt.txt");
+const config: Config = await loadTestFile(TEST_ID, "config.json");
+const tests: Test[] = await loadTestFile(TEST_ID, "test.jsonl");
+const { default: evaluator } = await loadTestFile(TEST_ID, "eval.ts");
+
+if (!evaluator) {
+  throw new Error("Failed to load the evaluator.")
+}
 
 let OUTPUT = "";
 
@@ -26,51 +31,52 @@ function LOG(txt: string) {
 // Evaluator
 // ---------
 
-async function runChallenge(system: string, level: Difficulty, worker = 0) {
-  let output = ""
-  const log = (string: string) => output += string;
-
+async function runChallenge(system: string, worker = 0) {
   const model = config.models[MODEL];
   const main = worker === 0;
 
-  const term: Instance = instances[level][Math.floor(Math.random() * instances[level].length)];
-  const [norm, rwts] = normal(term);
-  const problem = show(term);
+  const { input } = tests[Math.floor(Math.random() * tests.length)];
+  const args = input.trim().split("\n");
+
+  const solution = evaluator(...args);
+  await writeTestFile(TEST_ID, "input.txt", input);
+  await writeTestFile(TEST_ID, "solution.txt", solution);
+
+  /**
+   * We dope the context with a start token from the examples, and induce the
+   * model to respond without deviating from the example format at any point.
+   * 
+   * This token will usually be TAPE, but it is done dynamically here so it's
+   * more extensible in the future.
+   */
+  const startToken = solution.split(" ")?.[0];
+  if (!startToken) {
+    throw new Error("Failed to find a start token in the solution. We use the first word of the solution.");
+  }
+
   const params = { model, debug: true, worker, main, ...config };
 
   console.log();
+  console.table({ args });
   console.table(params);
-
-  log(`Term: ${show(term)}`);
-  log(`Norm: ${show(norm)}`);
-  log(`Rwts: ${rwts}`);
-  log(``);
-  log(`Response:`);
-
-  let endpoint = model.startsWith("gpt") ? askGPT : askClaude;
   console.log(`Starting worker ${worker}...`)
+
+  const endpoint = model.startsWith("gpt") ? askGPT : askClaude;
   let { text, metadata } = await endpoint({ 
-    system, 
-    messages: [{ role: 'user', content: problem }],
-    main,
+    system: `${system}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
+    messages: [{ role: 'user', content: input }],
     ...params 
   });
 
-  const lines = text.split("\n")
-  const solution = lines[lines.length - 1].trim()
-  const received = solution.split(' ').filter(Boolean);
-
-  log(`\nRECEIVED: ${show(received)}\n`);
-  if (received.join('').trim() === norm.join('').trim()) {
-    log('--CORRECT--\n');
+  console.log()
+  const pass = solution === text.trim();
+  if (pass) {
+    console.log(chalk.bold(chalk.green("CORRECT")));
   } else {
-    log('--INCORRECT--\n');
-    console.log(output);
-    await writeFile("error.txt", output)
+    console.error(chalk.bold(chalk.red("INCORRECT")));
   }
 
-  const pass = norm.join('').trim() === received.join('').trim()
-
+  await writeTestFile(TEST_ID, "response.txt", text);
   return {
     pass,
     metadata
@@ -81,7 +87,7 @@ async function runBatch(systemPrompt: string, n = 1) {
   let promises: ReturnType<typeof runChallenge>[] = [];
   for (let i = 0; i < n; i++) {
     promises.push(
-      backoff(() => runChallenge(systemPrompt, 24, i))
+      backoff(() => runChallenge(systemPrompt, i))
     );
   }
 

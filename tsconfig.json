@@ -7,6 +7,6 @@
     "target": "ESNext",
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": ["node", "bun"]
   }
 }
