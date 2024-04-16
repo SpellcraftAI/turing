@@ -6,6 +6,7 @@ import { readFile } from "fs/promises";
 import OpenAI from "openai";
 import { homedir } from "os";
 import { join } from "path"
+import chalk from "chalk";
 
 const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
 
@@ -27,7 +28,7 @@ export async function getOpenAIKey() {
   return (await readFile(keyPath, 'utf8')).trim();
 }
 
-export interface AskClaudeOptions {
+export interface ClaudeTestOptions {
   system?: string;
   messages: MessageParam[];
   max_tokens?: number;
@@ -35,9 +36,16 @@ export interface AskClaudeOptions {
   temperature?: number;
   debug?: boolean;
   main?: boolean;
+  solution: string;
 }
 
-export async function askClaude({ 
+export type TestResult = {
+  pass: boolean;
+  text: string;
+  metadata: any;
+}
+
+export async function testWithClaude({ 
   system, 
   messages, 
   max_tokens, 
@@ -45,7 +53,8 @@ export async function askClaude({
   temperature = 0, 
   debug = true,
   main = false,
-}: AskClaudeOptions) {
+  solution,
+}: ClaudeTestOptions): Promise<TestResult> {
   // const apiKey = await getAnthropicKey()  
   // const anthropic = new Anthropic({ apiKey });
   const anthropic = new AnthropicVertex({
@@ -62,16 +71,39 @@ export async function askClaude({
       ...(system && { system }),
     })
 
-    stream.on('text', (text) => {
-      if (main) {
-        process.stdout.write(text)
+    let output = "";
+    
+    const failed = new Promise<TestResult>((resolve) => {
+      const onText = (text: string) => {
+        output += text;
+        if (main) {
+          process.stdout.write(text)
+        }
+  
+        if (!solution.trim().startsWith(output.trim())) {
+          console.log(chalk.bold(chalk.red("INCORRECT")));
+          console.log(chalk.red("Output did not match solution."))
+          resolve({ pass: false, text: output, metadata: null })
+          stream.off('text', onText);
+        }
       }
-    })
 
-    const message = await stream.finalMessage();
+      stream.on('text', onText);
+    });
+    
+
+    const failedOrMessage = await Promise.race([failed, stream.finalMessage()]);
+    if ("pass" in failedOrMessage) {
+      stream.abort();
+      const failedResult = failedOrMessage;
+      return failedResult;
+    }
+    
+    const message = failedOrMessage;
     const { content, ...metadata } = message;
 
     return {
+      pass: true,
       text: content[0].text,
       metadata,
     };
@@ -87,26 +119,29 @@ export async function askClaude({
 
   const { content, ...metadata } = message;
   return {
+    pass: true,
     text: content[0].text,
     metadata,
   };
 }
 
-export interface AskGPTOptions {
+export interface GPTTestOptions {
   system?: string;
   messages: ChatCompletionMessageParam[];
   model?: string;
   temperature?: number;
   main?: boolean;
+  solution: string;
 }
 
-export async function askGPT({
+export async function testWithGPT({
   system, 
   messages, 
   model, 
   temperature,
   main = false,
-}: AskGPTOptions) {
+  solution,
+}: GPTTestOptions): Promise<TestResult> {
   const openai = new OpenAI({apiKey: await getOpenAIKey()});
   const stream = await openai.chat.completions.create({
     model: model || "gpt-4-0125-preview",
@@ -123,9 +158,23 @@ export async function askGPT({
   for await (const chunk of stream) {
     var text = chunk.choices[0]?.delta?.content || "";
     result += text;
+
+    if (!solution.trim().startsWith(result.trim())) {
+      console.log(chalk.bold(chalk.red("INCORRECT")));
+      console.log(chalk.red("Output did not match solution."))
+      return {
+        pass: false,
+        text: result,
+        metadata: null
+      }
+    }
   }
 
+  console.log(chalk.bold(chalk.green("CORRECT")));
+  console.log(chalk.green("Output exactly matched solution."))
+
   return {
+    pass: true,
     text: result,
     metadata: null
   };

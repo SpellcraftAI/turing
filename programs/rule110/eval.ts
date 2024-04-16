@@ -42,7 +42,7 @@ export default function rule_110(
   function info(i: number) {
     log(`TAPE ${state.join(" ")}`)
     log(`SYMBOL ${positions(state)}`)
-    log(`PRINT ${i} ${format(state)}`)
+    log(`LIST ${format(state).split("").join(" ")} ${i}`)
   }
 
   function evolve(state: Tape) {
@@ -64,7 +64,7 @@ export default function rule_110(
   console.log(`\nUSER:\n${state.join(" ")}\n${width}\n${generations}`)
   console.log("\nASSISTANT:")
   info(1)
-  for (let i = 1; i < generations + 1; i++) {
+  for (let i = 2; i < generations + 2; i++) {
     const newState = evolve(state);
 
     states.push(newState);
@@ -74,13 +74,7 @@ export default function rule_110(
   }
 
   log("RETURN")
-  log(states.map(format).join("\n"))
+  log(states.map((state, i) => `${format(state)} ${i+1}`).join("\n"))
 
   return output.trim();
 }
-
-// rule_110([10], 12);
-// rule_110([4, 9], 16);
-// rule_110([2, 10, 22], 24);
-
-// rule_110([10], 12, 20)

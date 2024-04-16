@@ -1,6 +1,6 @@
 import chalk from "chalk"
 
-import { askClaude, askGPT } from "./models";
+import { testWithClaude, testWithGPT } from "./models";
 import { Difficulty, Instance, instances } from "./tokens"
 import { loadTestFile, normal, show, writeTestFile } from "./utils";
 import { tqdm } from "./progress";
@@ -38,6 +38,7 @@ async function runChallenge(system: string, worker = 0) {
   const { input } = tests[Math.floor(Math.random() * tests.length)];
   const args = input.trim().split("\n");
 
+  console.log("Getting solution...")
   const solution = evaluator(...args);
   await writeTestFile(TEST_ID, "input.txt", input);
   await writeTestFile(TEST_ID, "solution.txt", solution);
@@ -58,23 +59,17 @@ async function runChallenge(system: string, worker = 0) {
 
   console.log();
   console.table({ args });
+  console.table({ startToken });
   console.table(params);
   console.log(`Starting worker ${worker}...`)
 
-  const endpoint = model.startsWith("gpt") ? askGPT : askClaude;
-  let { text, metadata } = await endpoint({ 
+  const startTest = model.startsWith("gpt") ? testWithGPT : testWithClaude;
+  let { pass, text, metadata } = await startTest({
     system: `${system}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
     messages: [{ role: 'user', content: input }],
+    solution,
     ...params 
   });
-
-  console.log()
-  const pass = solution === text.trim();
-  if (pass) {
-    console.log(chalk.bold(chalk.green("CORRECT")));
-  } else {
-    console.error(chalk.bold(chalk.red("INCORRECT")));
-  }
 
   await writeTestFile(TEST_ID, "response.txt", text);
   return {
@@ -136,4 +131,4 @@ async function runFullChallenge(systemPrompt: string, runs = 50, batchSize = 1) 
   console.log();
 }
 
-await runFullChallenge(prompt, 2, 1);
+await runFullChallenge(prompt, 1, 1);
