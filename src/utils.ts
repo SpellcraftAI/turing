@@ -1,7 +1,45 @@
 import { existsSync, mkdirSync } from "fs";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
 import { readFile, writeFile } from "fs/promises";
-import { tokens, AH, HA, BH, HB, Value, Instance } from "./tokens";
+import { fileURLToPath } from "bun";
+
+export type TextFile = `${string}.txt`;
+export type JSONFile = `${string}.json`;
+export type JSONLFile = `${string}.jsonl`;
+export type TSFile = `${string}.ts`;
+
+export type TestFile = TextFile | JSONFile | JSONLFile | TSFile;
+
+export const isTextFile = (file: TestFile): file is TextFile => file.endsWith(".txt");
+export const isJSONFile = (file: TestFile): file is JSONFile => file.endsWith(".json");
+export const isJSONLFile = (file: TestFile): file is JSONLFile => file.endsWith(".jsonl");
+export const isTSFile = (file: TestFile): file is TSFile => file.endsWith(".ts");
+
+// console.log({ importMetaUrl: import.meta.url, importMeta: import.mne dirname: dirname(import.meta.url) })
+console.log(process.cwd())
+
+export const loadTextFile = async (importMeta: ImportMeta, file: TextFile) => {
+  const path = resolve(importMeta.dirname, file);
+  return (await readFile(path, "utf-8")).trim();
+}
+
+export const loadJSONFile = async <T>(importMeta: ImportMeta, file: JSONFile) => {
+  const path = resolve(importMeta.dirname, file);
+  const contents = (await readFile(path, "utf-8")).trim();
+  return JSON.parse(contents) as T;
+}
+
+export const loadJSONLFile = async <T>(importMeta: ImportMeta, file: JSONLFile) => {
+  const path = resolve(importMeta.dirname, file);
+  const contents = (await readFile(path, "utf-8")).trim();
+  return contents.split("\n").map((line) => JSON.parse(line)) as T[];
+}
+
+export const loadModuleFile = async (importMeta: ImportMeta, file: TSFile) => {
+  const path = resolve(importMeta.dirname, file);
+  return await import(path);
+}
+
 
 export const writeTestFile = async (
   id: string,
@@ -16,86 +54,4 @@ export const writeTestFile = async (
   }
 
   return await writeFile(fullPath, contents);
-}
-
-export const loadTestFile = async (id: string, file: string): Promise<any> => {
-  const path = resolve("programs", id, file);
-  const contents = (await readFile(path, "utf-8")).trim();
-
-  if (file.endsWith(".ts")) {
-    return await import(path);
-  } else if (file.endsWith(".jsonl")) {
-    return contents.split("\n").map((line) => JSON.parse(line));
-  } else if (file.endsWith(".json")) {
-    return JSON.parse(contents);
-  }
-
-  return contents;
-};
-
-export function reduce(xs: Value[]): [Value[], number] {
-  let ys: Value[] = [];
-  let rwts = 0;
-  for (let i = 0; i < xs.length; i++) {
-    if (xs[i] === AH && xs[i + 1] === HB) {
-      ys.push(HB, AH);
-      i++;
-      rwts++;
-    } else if (xs[i] === BH && xs[i + 1] === HA) {
-      ys.push(HA, BH);
-      i++;
-      rwts++;
-    } else if (xs[i] === AH && xs[i + 1] === HA) {
-      i++;
-      rwts++;
-    } else if (xs[i] === BH && xs[i + 1] === HB) {
-      i++;
-      rwts++;
-    } else {
-      ys.push(xs[i]);
-    }
-  }
-  return [ys, rwts];
-}
-
-export function normal(xs: Value[]): [Value[], number] {
-  let rwts = 0;
-  let term = xs;
-  let work: number;
-  while (true) {
-    [term, work] = reduce(term);
-    if (work > 0) {
-      rwts += work;
-    } else {
-      break;
-    }
-  }
-  return [term, rwts];
-}
-
-export function randomTerm(): Value[] {
-  const result: Value[] = [];
-  for (let i = 0; i < 12; i++) {
-    result.push(tokens[Math.floor(Math.random() * tokens.length)]);
-  }
-  return result;
-}
-
-export function show(xs: string[]): string {
-  return xs
-    .map((x) => {
-      switch (x) {
-        case HA:
-          return "#A ";
-        case HB:
-          return "#B ";
-        case AH:
-          return "A# ";
-        case BH:
-          return "B# ";
-        default:
-          return "";
-      }
-    })
-    .join("");
 }

@@ -1,37 +1,28 @@
-import chalk from "chalk"
-
+import { resolve } from "path";
 import { testWithClaude, testWithGPT } from "./models";
-import { Difficulty, Instance, instances } from "./tokens"
-import { loadTestFile, normal, show, writeTestFile } from "./utils";
+import type { Config, Test } from "./types";
+import { loadJSONFile, loadJSONLFile, loadModuleFile, loadTextFile, writeTestFile } from "./utils";
 import { tqdm } from "./progress";
 import { backoff } from "./backoff";
-import { Config, Test } from "./types";
 
 const MODEL = process.argv[3] || "anthropic";
 const TEST_ID = process.argv[4] || "rule110";
 
-const prompt: string = await loadTestFile(TEST_ID, "prompt.txt");
-const config: Config = await loadTestFile(TEST_ID, "config.json");
-const tests: Test[] = await loadTestFile(TEST_ID, "test.jsonl");
-const { default: evaluator } = await loadTestFile(TEST_ID, "eval.ts");
-
-if (!evaluator) {
-  throw new Error("Failed to load the evaluator.")
+interface ChallengeOptions {
+  config: Config;
+  tests: Test[];
+  prompt: string;
+  evaluator: (...args: string[]) => string | Promise<string>;
+  worker?: number;
 }
 
-let OUTPUT = "";
-
-function LOG(txt: string) { 
-  if (txt) { 
-    OUTPUT += txt+"\n"; 
-    console.log(txt); 
-  } 
-}
-
-// Evaluator
-// ---------
-
-async function runChallenge(system: string, worker = 0) {
+async function runChallenge({
+  config,
+  tests,
+  prompt,
+  evaluator,
+  worker = 0
+}: ChallengeOptions) {
   const model = config.models[MODEL];
   const main = worker === 0;
 
@@ -39,7 +30,8 @@ async function runChallenge(system: string, worker = 0) {
   const args = input.trim().split("\n");
 
   console.log("Getting solution...")
-  const solution = evaluator(...args);
+  const solution = await evaluator(...args);
+
   await writeTestFile(TEST_ID, "input.txt", input);
   await writeTestFile(TEST_ID, "solution.txt", solution);
 
@@ -65,7 +57,7 @@ async function runChallenge(system: string, worker = 0) {
 
   const startTest = model.startsWith("gpt") ? testWithGPT : testWithClaude;
   let { pass, text, metadata } = await startTest({
-    system: `${system}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
+    system: `${prompt}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
     messages: [{ role: 'user', content: input }],
     solution,
     ...params 
@@ -78,18 +70,27 @@ async function runChallenge(system: string, worker = 0) {
   }
 }
 
-async function runBatch(systemPrompt: string, n = 1) {
+async function runBatch(options: ChallengeOptions, n: number) {
   let promises: ReturnType<typeof runChallenge>[] = [];
   for (let i = 0; i < n; i++) {
     promises.push(
-      backoff(() => runChallenge(systemPrompt, i))
+      backoff(() => runChallenge({ ...options, worker: i }))
     );
   }
 
   return Promise.all(promises);
 }
 
-async function runFullChallenge(systemPrompt: string, runs = 50, batchSize = 1) {
+export async function test(importMeta: ImportMeta, runs = 50, batchSize = 1) {
+  const prompt = await loadTextFile(importMeta, "prompt.txt");
+  const config = await loadJSONFile<Config>(importMeta, "config.json");
+  const tests = await loadJSONLFile<Test>(importMeta, "test.jsonl");
+  const { default: evaluator } = await loadModuleFile(importMeta, "eval.ts");
+
+  if (!evaluator) {
+    throw new Error("Failed to load the evaluator.")
+  }
+
   let correct = 0;
   const numBatches = Math.ceil(runs / batchSize);
 
@@ -99,7 +100,15 @@ async function runFullChallenge(systemPrompt: string, runs = 50, batchSize = 1) 
     const remainingRuns = runs - start;
     const adjustedBatchSize = Math.min(batchSize, remainingRuns);
 
-    const results = await runBatch(systemPrompt, adjustedBatchSize);
+    const results = await runBatch(
+      {
+        config,
+        tests,
+        prompt,
+        evaluator,
+      }, 
+      adjustedBatchSize
+    );
 
     for (const result of results) {
       const { pass, metadata } = result;
@@ -125,10 +134,8 @@ async function runFullChallenge(systemPrompt: string, runs = 50, batchSize = 1) 
     }
   }
 
-  LOG('');
-  LOG("--- Final score ---");
-  LOG(`${correct} / ${runs} (${(100 * correct / runs).toFixed(2)}%)`);
+  console.log('');
+  console.log("--- Final score ---");
+  console.log(`${correct} / ${runs} (${(100 * correct / runs).toFixed(2)}%)`);
   console.log();
 }
-
-await runFullChallenge(prompt, 1, 1);
