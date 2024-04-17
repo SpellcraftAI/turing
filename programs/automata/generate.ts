@@ -14,6 +14,6 @@ twentyFour[2] = 1;
 twentyFour[10] = 1;
 twentyFour[22] = 1;
 
-automaton(twelve, 12);
-automaton(sixteen, 16);
-automaton(twentyFour, 24);
+automaton(twelve, 110, 12);
+automaton(sixteen, 110, 16);
+automaton(twentyFour, 110, 24);

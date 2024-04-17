@@ -15,25 +15,27 @@ export const isJSONFile = (file: TestFile): file is JSONFile => file.endsWith(".
 export const isJSONLFile = (file: TestFile): file is JSONLFile => file.endsWith(".jsonl");
 export const isTSFile = (file: TestFile): file is TSFile => file.endsWith(".ts");
 
-export const loadTextFile = async (importMeta: ImportMeta, file: TextFile) => {
-  const path = resolve(importMeta.dirname, file);
+const TEST_DIR = dirname(Bun.main);
+
+export const loadTextFile = async (file: TextFile) => {
+  const path = resolve(TEST_DIR, file);
   return (await readFile(path, "utf-8")).trim();
 }
 
-export const loadJSONFile = async <T>(importMeta: ImportMeta, file: JSONFile) => {
-  const path = resolve(importMeta.dirname, file);
+export const loadJSONFile = async <T>(file: JSONFile) => {
+  const path = resolve(TEST_DIR, file);
   const contents = (await readFile(path, "utf-8")).trim();
   return JSON.parse(contents) as T;
 }
 
-export const loadJSONLFile = async <T>(importMeta: ImportMeta, file: JSONLFile) => {
-  const path = resolve(importMeta.dirname, file);
+export const loadJSONLFile = async <T>(file: JSONLFile) => {
+  const path = resolve(TEST_DIR, file);
   const contents = (await readFile(path, "utf-8")).trim();
   return contents.split("\n").map((line) => JSON.parse(line)) as T[];
 }
 
-export const loadModuleFile = async (importMeta: ImportMeta, file: TSFile) => {
-  const path = resolve(importMeta.dirname, file);
+export const loadModuleFile = async (file: TSFile) => {
+  const path = resolve(TEST_DIR, file);
   return await import(path);
 }
 

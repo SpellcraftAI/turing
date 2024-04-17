@@ -1,6 +1,9 @@
 export type TapeValue = 0 | 1;
 export type Tape = TapeValue[];
 
+export type Rule = (left: TapeValue, center: TapeValue, right: TapeValue) => TapeValue;
+export type RuleNumber = number;
+
 function format(tape: TapeValue[]): string {
   return tape.join('').replace(/0/g, '░').replace(/1/g, '█');
 }
@@ -9,9 +12,6 @@ function positions(tape: TapeValue[]): string {
   const values = format(tape).split('')
   return values.map((v, i) => `${i}${v}`).join(' ')
 }
-
-export type Rule = (left: TapeValue, center: TapeValue, right: TapeValue) => TapeValue;
-export type RuleNumber = number;
 
 function generateRule(ruleNumber: RuleNumber): Rule {
   const ruleBinaryString = ruleNumber.toString(2).padStart(8, '0');
@@ -26,13 +26,13 @@ function generateRule(ruleNumber: RuleNumber): Rule {
   };
 }
 
-const rule110 = generateRule(110);
-
-export default function testRule110(
+export default function testAutomata(
   initialState: string | TapeValue[],
+  ruleNumber: string | RuleNumber,
   width: string | number = 28,
   generations: string | number = 24
 ): string {
+  if (typeof ruleNumber === "string") ruleNumber = Number(ruleNumber);
   if (typeof width === "string") width = Number(width);
   if (typeof generations === "string") generations = Number(generations);
   if (typeof initialState === "string") {
@@ -47,6 +47,7 @@ export default function testRule110(
 
   let state = initialState;
   const states: Tape[] = [initialState]
+  const rule = generateRule(ruleNumber);
 
   function info(i: number) {
     log(`TAPE ${state.join(" ")}`)
@@ -62,7 +63,7 @@ export default function testRule110(
       const center = state[i];
       const right = i < width - 1 ? state[i + 1] : 0;
 
-      const pattern: TapeValue = rule110(left, center, right);
+      const pattern: TapeValue = rule(left, center, right);
       log(`${i-1}${format([left])} ${i}${format([center])} ${i+1}${format([right])} ${pattern}`)
       newState.push(pattern);
     }

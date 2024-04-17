@@ -81,11 +81,11 @@ async function runBatch(options: ChallengeOptions, n: number) {
   return Promise.all(promises);
 }
 
-export async function test(importMeta: ImportMeta, runs = 50, batchSize = 1) {
-  const prompt = await loadTextFile(importMeta, "prompt.txt");
-  const config = await loadJSONFile<Config>(importMeta, "config.json");
-  const tests = await loadJSONLFile<Test>(importMeta, "test.jsonl");
-  const { default: evaluator } = await loadModuleFile(importMeta, "eval.ts");
+export async function test(runs = 50, batchSize = 1) {
+  const prompt = await loadTextFile("prompt.txt");
+  const config = await loadJSONFile<Config>("config.json");
+  const tests = await loadJSONLFile<Test>("test.jsonl");
+  const { default: evaluator } = await loadModuleFile("eval.ts");
 
   if (!evaluator) {
     throw new Error("Failed to load the evaluator.")
