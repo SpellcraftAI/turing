@@ -1,4 +1,4 @@
-import rule_110, { TapeValue } from "./programs/rule110/eval";
+import rule_110, { TapeValue } from "./eval";
 
 const ten = Array.from<TapeValue>({ length: 10 }).fill(0)
 const twelve = Array.from<TapeValue>({ length: 12 }).fill(0)
