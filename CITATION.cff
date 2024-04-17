@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+authors:
+- family-names: "Lewis"
+  given-names: "Christian T. J."
+  orcid: "https://orcid.org/0009-0002-6454-8254"
+  affiliation: "Spellcraft Inc"
+- family-names: "Taelin"
+  given-names: "Victor"
+authors-meta:
+  - affiliation:
+      name: "Spellcraft Inc"
+      city: "San Francisco"
+      region: "CA"
+      country: "USA"
+title: "Claude 3 Opus as a Turing Machine: Rule 110 and A::B Reversal"
+url: "https://github.com/SpellcraftAI/turing"
