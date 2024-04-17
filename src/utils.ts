@@ -15,9 +15,6 @@ export const isJSONFile = (file: TestFile): file is JSONFile => file.endsWith(".
 export const isJSONLFile = (file: TestFile): file is JSONLFile => file.endsWith(".jsonl");
 export const isTSFile = (file: TestFile): file is TSFile => file.endsWith(".ts");
 
-// console.log({ importMetaUrl: import.meta.url, importMeta: import.mne dirname: dirname(import.meta.url) })
-console.log(process.cwd())
-
 export const loadTextFile = async (importMeta: ImportMeta, file: TextFile) => {
   const path = resolve(importMeta.dirname, file);
   return (await readFile(path, "utf-8")).trim();

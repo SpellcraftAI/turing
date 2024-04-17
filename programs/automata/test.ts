@@ -1,3 +1,3 @@
 import { test } from "../../src/test";
 
-await test(import.meta, 3, 2);
+await test(import.meta, 1, 1);

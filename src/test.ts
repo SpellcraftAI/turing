@@ -6,7 +6,7 @@ import { tqdm } from "./progress";
 import { backoff } from "./backoff";
 
 const MODEL = process.argv[3] || "anthropic";
-const TEST_ID = process.argv[4] || "rule110";
+const TEST_ID = process.argv[4] || "automata";
 
 interface ChallengeOptions {
   config: Config;

@@ -10,22 +10,31 @@ function positions(tape: TapeValue[]): string {
   return values.map((v, i) => `${i}${v}`).join(' ')
 }
 
-const applyRule110 = (
-  left: TapeValue,
-  center: TapeValue,
-  right: TapeValue
-): TapeValue => {
-  const pattern = [left, center, right].join("");
-  return ["111", "100", "000", "00"].includes(pattern) ? 0 : 1;
-};
+export type Rule = (left: TapeValue, center: TapeValue, right: TapeValue) => TapeValue;
+export type RuleNumber = number;
 
-export default function rule_110(
+function generateRule(ruleNumber: RuleNumber): Rule {
+  const ruleBinaryString = ruleNumber.toString(2).padStart(8, '0');
+  const rulePatterns: string[] = ['111', '110', '101', '100', '011', '010', '001', '000'];
+  
+  return (left: TapeValue, center: TapeValue, right: TapeValue): TapeValue => {
+    const pattern = [left, center, right].join('');
+    const patternIndex = rulePatterns.indexOf(pattern);
+    const next = ruleBinaryString[patternIndex];
+    
+    return Number(next) as TapeValue;
+  };
+}
+
+const rule110 = generateRule(110);
+
+export default function testRule110(
   initialState: string | TapeValue[],
   width: string | number = 28,
   generations: string | number = 24
 ): string {
-  if (typeof width === "string") width = parseInt(width);
-  if (typeof generations === "string") generations = parseInt(generations);
+  if (typeof width === "string") width = Number(width);
+  if (typeof generations === "string") generations = Number(generations);
   if (typeof initialState === "string") {
     initialState = initialState.split(" ").map(Number) as TapeValue[];
   }
@@ -47,13 +56,13 @@ export default function rule_110(
 
   function evolve(state: Tape) {
     const newState: Tape = [];
-    if (typeof width === "string") width = parseInt(width);
+    if (typeof width === "string") width = Number(width);
     for (let i = 0; i < width; i++) {
       const left = i > 0 ? state[i - 1] : 0;
       const center = state[i];
       const right = i < width - 1 ? state[i + 1] : 0;
 
-      const pattern: TapeValue = applyRule110(left, center, right);
+      const pattern: TapeValue = rule110(left, center, right);
       log(`${i-1}${format([left])} ${i}${format([center])} ${i+1}${format([right])} ${pattern}`)
       newState.push(pattern);
     }
@@ -63,6 +72,7 @@ export default function rule_110(
 
   console.log(`\nUSER:\n${state.join(" ")}\n${width}\n${generations}`)
   console.log("\nASSISTANT:")
+
   info(1)
   for (let i = 2; i < generations + 2; i++) {
     const newState = evolve(state);

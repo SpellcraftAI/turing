@@ -1,4 +1,4 @@
-import rule_110, { TapeValue } from "./eval";
+import automaton, { type TapeValue } from "./eval";
 
 const ten = Array.from<TapeValue>({ length: 10 }).fill(0)
 const twelve = Array.from<TapeValue>({ length: 12 }).fill(0)
@@ -14,6 +14,6 @@ twentyFour[2] = 1;
 twentyFour[10] = 1;
 twentyFour[22] = 1;
 
-rule_110(twelve, 12);
-rule_110(sixteen, 16);
-rule_110(twentyFour, 24);
+automaton(twelve, 12);
+automaton(sixteen, 16);
+automaton(twentyFour, 24);

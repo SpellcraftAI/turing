@@ -8,4 +8,4 @@ over 12 steps (accuracy over large runs not yet measured).
 
 See:
  - [`programs/ab/prompt.txt`](programs/ab/prompt.txt)
- - [`programs/rule110/prompt.txt`](programs/rule110/prompt.txt)
+ - [`programs/automata/prompt.txt`](programs/automata/prompt.txt)
