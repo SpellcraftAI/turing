@@ -10,10 +10,10 @@ twelve[8] = 1;
 twelve[11] = 1;
 sixteen[4] = 1;
 sixteen[9] = 1;
-twentyFour[2] = 1;
-twentyFour[10] = 1;
-twentyFour[22] = 1;
+// twentyFour[2] = 1;
+twentyFour[11] = 1;
+// twentyFour[0] = 1;
 
 automaton(twelve, 110, 12);
 automaton(sixteen, 110, 16);
-automaton(twentyFour, 110, 24);
+automaton(twentyFour, 5, 24);
