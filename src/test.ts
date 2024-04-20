@@ -1,32 +1,27 @@
 import { resolve } from "path";
 import { testWithClaude, testWithGPT } from "./models";
 import type { Config, Test } from "./types";
-import { loadJSONFile, loadJSONLFile, loadModuleFile, loadTextFile, writeTestFile } from "./utils";
+import { loadJSONFile, loadJSONLFile, loadModuleFile, loadTextFile, shuffle, writeTestFile } from "./utils";
 import { tqdm } from "./progress";
 import { backoff } from "./backoff";
 
 const MODEL = process.argv[3] || "anthropic";
 const TEST_ID = process.argv[4] || "automata";
 
-interface ChallengeOptions {
-  config: Config;
-  tests: Test[];
-  prompt: string;
-  evaluator: (...args: string[]) => string | Promise<string>;
-  worker?: number;
+const prompt = await loadTextFile("prompt.txt");
+const config = await loadJSONFile<Config>("config.json");
+const tests = await loadJSONLFile<Test>("test.jsonl");
+const { default: evaluator } = await loadModuleFile("eval.ts");
+
+if (!evaluator) {
+  throw new Error("Failed to load the evaluator.")
 }
 
-async function runChallenge({
-  config,
-  tests,
-  prompt,
-  evaluator,
-  worker = 0
-}: ChallengeOptions) {
+async function runChallenge(test: Test, worker: number) {
   const model = config.models[MODEL];
   const main = worker === 0;
 
-  const { input } = tests[Math.floor(Math.random() * tests.length)];
+  const { input } = test;
   const args = input.trim().split("\n");
 
   console.log("Getting solution...")
@@ -42,7 +37,7 @@ async function runChallenge({
    * This token will usually be TAPE, but it is done dynamically here so it's
    * more extensible in the future.
    */
-  const startToken = solution.split(" ")?.[0];
+  const startToken = solution.split("\n")?.[0].split(" ")?.[0];
   if (!startToken) {
     throw new Error("Failed to find a start token in the solution. We use the first word of the solution.");
   }
@@ -70,28 +65,23 @@ async function runChallenge({
   }
 }
 
-async function runBatch(options: ChallengeOptions, n: number) {
+async function runBatch(start: number, n: number) {
   let promises: ReturnType<typeof runChallenge>[] = [];
   for (let i = 0; i < n; i++) {
     promises.push(
-      backoff(() => runChallenge({ ...options, worker: i }))
+      backoff(() => runChallenge(tests[start + i], i))
     );
+
+    i++;
   }
 
   return Promise.all(promises);
 }
 
-export async function test(runs = 50, batchSize = 1) {
-  const prompt = await loadTextFile("prompt.txt");
-  const config = await loadJSONFile<Config>("config.json");
-  const tests = await loadJSONLFile<Test>("test.jsonl");
-  const { default: evaluator } = await loadModuleFile("eval.ts");
-
-  if (!evaluator) {
-    throw new Error("Failed to load the evaluator.")
-  }
+export async function test(batchSize = 1) {
 
   let correct = 0;
+  const runs = tests.length;
   const numBatches = Math.ceil(runs / batchSize);
 
   for (const batch of tqdm((new Array(numBatches)).keys())) {
@@ -100,15 +90,7 @@ export async function test(runs = 50, batchSize = 1) {
     const remainingRuns = runs - start;
     const adjustedBatchSize = Math.min(batchSize, remainingRuns);
 
-    const results = await runBatch(
-      {
-        config,
-        tests,
-        prompt,
-        evaluator,
-      }, 
-      adjustedBatchSize
-    );
+    const results = await runBatch(batch, adjustedBatchSize);
 
     for (const result of results) {
       const { pass, metadata } = result;

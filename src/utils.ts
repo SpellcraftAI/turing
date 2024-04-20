@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { readFile, writeFile } from "fs/promises";
-import { fileURLToPath } from "bun";
 
 export type TextFile = `${string}.txt`;
 export type JSONFile = `${string}.json`;
@@ -53,4 +52,11 @@ export const writeTestFile = async (
   }
 
   return await writeFile(fullPath, contents);
+}
+
+export function shuffle<T extends Array<any>>(array: T) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
 }

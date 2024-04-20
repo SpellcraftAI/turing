@@ -29,7 +29,7 @@ function integerToBinaryTape(num: number): string {
   while (binary.length < 8) {
     const quotient = Math.floor(num / 2);
     const remainder = num % 2;
-    LOG(`${num} ${quotient} ${remainder} ${format([remainder])} | ${binary.length}${format([remainder])}`);
+    LOG(`${num} ${quotient} ${remainder} ${format([remainder])} → ${binary.length}${format([remainder])}`);
     binary = remainder + binary;
     num = quotient;
   }
@@ -43,9 +43,9 @@ function generateRule(ruleNumber: RuleNumber): Rule {
 
   LOG(`BINARY ${ruleBinaryString.split("").map((v, i) => `${7-i}${format(v)}`).join(" ")}`)
   // LOG(`REVERSE BINARY POSITIONS ${ruleBinaryString.split("").map((v, i) => `${i}${format(v)}`).join(" ")}`)
-  LOG("RULES")
+  LOG("RULES FROM BINARY")
   for (let i = 0; i < 8; i++) {
-    LOG(`${7-i}${format(PATTERNS[i])} ${format(ruleBinaryString[i])}`);
+    LOG(`${7-i}: ${format(PATTERNS[i])} → ${format(ruleBinaryString[i])}`);
   }
 
   // LOG(`IN ${positions(PATTERNS.map(format))}`)
@@ -65,34 +65,41 @@ function generateRule(ruleNumber: RuleNumber): Rule {
 export default function testAutomata(
   initialState: string | TapeValue[],
   ruleNumber: string | RuleNumber,
-  width: string | number = 28,
   generations: string | number = 24
 ): string {
   if (typeof ruleNumber === "string") ruleNumber = Number(ruleNumber);
-  if (typeof width === "string") width = Number(width);
   if (typeof generations === "string") generations = Number(generations);
   if (typeof initialState === "string") {
-    initialState = initialState.split(" ").map(Number) as TapeValue[];
+    initialState = initialState.trim().split("").map(Number) as TapeValue[];
   }
 
   let state = initialState;
+  const width = initialState.length;
   const states: Tape[] = [initialState]
 
-  console.log(`\nUSER:\n${state.join(" ")}\n${ruleNumber}\n${width}\n${generations}`)
+  console.log(`\nUSER:\n${state.join("")}\n${ruleNumber}\n${width}\n${generations}`)
   console.log("\nASSISTANT:")
-  LOG(`TAPE ${positions(format(state).split(""))}`)
+  LOG(`START`)
+  LOG(`${state.join("")}`)
+  LOG(`${state.map((v, i) => `${i}:${v}`).join(" ")}`)
+  // LOG(`INPUT ${format(state).split("").join(" ")}`)
+  LOG(`${positions(format(state).split(""))}`)
+  LOG(`MAX ${generations}`)
 
   const rule = generateRule(ruleNumber);
 
   function info(i: number) {
     // LOG(`TAPE ${state.join(" ")}`)
     LOG(`TAPE ${positions(format(state).split(""))}`)
-    LOG(`LIST ${format(state).split("").join(" ")} ${i}`)
+    // LOG(`PRINT ${format(state).split("").join(" ")} ${i-1}`)
+    LOG(`PRINT ${(i-1).toString().padEnd(2)} ${format(state)}`)
+    LOG(`MAX ${generations}`)
+    // LOG("PRINT")
+    // LOG(states.map((state, i) => `${format(state)} ${i+1}`).join("\n"))
   }
 
   function evolve(state: Tape) {
     const newState: Tape = [];
-    if (typeof width === "string") width = Number(width);
     for (let i = 0; i < width; i++) {
       const left = i > 0 ? state[i - 1] : 0;
       const center = state[i];
@@ -100,7 +107,19 @@ export default function testAutomata(
 
       const pattern: TapeValue = rule(left, center, right);
       const patternIndex = PATTERNS.indexOf([left, center, right].join(''));
-      LOG(`${i-1}${format([left])} ${i}${format([center])} ${i+1}${format([right])} ${7-patternIndex}${format([left, center, right])} ${format([pattern])} | ${i}${format([pattern])}`)
+
+      const leftLabel =
+        `${i - 1}${format([left])}`
+
+      const centerLabel = `${i}${format([center])}`;
+
+      const rightLabel =
+        `${i + 1}${format([right])}`;
+
+      const ruleLabel = 
+        `${(7-patternIndex).toString().padStart(2)}: ${format([left, center, right])} → ${format([pattern])}`
+
+      LOG(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)} ${ruleLabel.padStart(2)}`)
       newState.push(pattern);
     }
 
@@ -117,8 +136,8 @@ export default function testAutomata(
     info(i)
   }
 
-  LOG("RETURN")
-  LOG(states.map((state, i) => `${format(state)} ${i+1}`).join("\n"))
+  LOG("DONE")
+  LOG(states.map((state, i) => `PRINT ${(i).toString().padEnd(2)} ${format(state)}`).join("\n"))
 
   return OUTPUT.trim();
 }

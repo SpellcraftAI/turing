@@ -7,6 +7,7 @@ import OpenAI from "openai";
 import { homedir } from "os";
 import { join } from "path"
 import chalk from "chalk";
+import diff from "cli-diff";
 
 const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
 
@@ -79,10 +80,27 @@ export async function testWithClaude({
         if (main) {
           process.stdout.write(text)
         }
+
+        const correct = solution.trim()
+        const actual = output.trim()
   
-        if (!solution.trim().startsWith(output.trim())) {
+        if (!correct.startsWith(actual)) {
           console.log(chalk.bold(chalk.red("INCORRECT")));
           console.log(chalk.red("Output did not match solution."))
+          // console.log(chalk.red(actual))
+          let i = 0;
+          const correctLines = correct.split("\n");
+          const actualLines = actual.split("\n");
+          while (i < actualLines.length) {
+            const correctLine = (correctLines?.[i] || "").padEnd(60);
+            const actualLine = (actualLines?.[i] || "").padEnd(60);
+            console.log(
+              `${chalk.green(correctLine)} | ${chalk.red(actualLine)}`
+            )
+
+            i++;
+          }
+
           resolve({ pass: false, text: output, metadata: null })
           stream.off('text', onText);
         }
