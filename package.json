@@ -1,10 +1,10 @@
 {
-  "name": "ab-challenge",
+  "name": "turing",
   "type": "module",
   "version": "1.0.0",
-  "description": "### 1. The AI will be given a `<problem/>` to solve. Example:",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --fix ./**/*.ts",
     "create-train": "bun programs/automata/create-train.ts &> programs/automata/prompt.txt",
     "create-test": "bun programs/automata/create-test.ts",
     "prestart": "bun create-train && bun create-test",
@@ -13,13 +13,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.20.2",
+    "@anthropic-ai/sdk": "^0.20.6",
     "@anthropic-ai/vertex-sdk": "^0.3.5",
     "chalk": "^5.3.0",
-    "cli-diff": "^1.0.0",
-    "openai": "^4.33.0"
+    "openai": "^4.38.2"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.0"
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.1.1",
+    "@types/bun": "^1.1.0",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "<9.0.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "globals": "^15.0.0",
+    "typescript": "*",
+    "typescript-eslint": "^7.7.0"
   }
 }

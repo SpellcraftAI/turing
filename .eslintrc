@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-nocheck": "allow-with-description",
+        "ts-ignore": "allow-with-description"
+      }
+    ],
+
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+
+    "semi": "off",
+    "@typescript-eslint/semi": ["error", "never"],
+
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "double"],
+
+    "object-curly-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": ["error", "always"]
+  }
+}

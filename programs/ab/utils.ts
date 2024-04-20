@@ -1,51 +1,51 @@
-import { tokens, AH, HA, BH, HB, Value, Instance } from "./tokens";
+import { tokens, AH, HA, BH, HB, Value } from "./tokens"
 
 export function reduce(xs: Value[]): [Value[], number] {
-  let ys: Value[] = [];
-  let rwts = 0;
+  const ys: Value[] = []
+  let rwts = 0
   for (let i = 0; i < xs.length; i++) {
     if (xs[i] === AH && xs[i + 1] === HB) {
-      ys.push(HB, AH);
-      i++;
-      rwts++;
+      ys.push(HB, AH)
+      i++
+      rwts++
     } else if (xs[i] === BH && xs[i + 1] === HA) {
-      ys.push(HA, BH);
-      i++;
-      rwts++;
+      ys.push(HA, BH)
+      i++
+      rwts++
     } else if (xs[i] === AH && xs[i + 1] === HA) {
-      i++;
-      rwts++;
+      i++
+      rwts++
     } else if (xs[i] === BH && xs[i + 1] === HB) {
-      i++;
-      rwts++;
+      i++
+      rwts++
     } else {
-      ys.push(xs[i]);
+      ys.push(xs[i])
     }
   }
-  return [ys, rwts];
+  return [ys, rwts]
 }
 
 export function normal(xs: Value[]): [Value[], number] {
-  let rwts = 0;
-  let term = xs;
-  let work: number;
+  let rwts = 0
+  let term = xs
+  let work: number
   while (true) {
-    [term, work] = reduce(term);
+    [term, work] = reduce(term)
     if (work > 0) {
-      rwts += work;
+      rwts += work
     } else {
-      break;
+      break
     }
   }
-  return [term, rwts];
+  return [term, rwts]
 }
 
 export function randomTerm(): Value[] {
-  const result: Value[] = [];
+  const result: Value[] = []
   for (let i = 0; i < 12; i++) {
-    result.push(tokens[Math.floor(Math.random() * tokens.length)]);
+    result.push(tokens[Math.floor(Math.random() * tokens.length)])
   }
-  return result;
+  return result
 }
 
 export function show(xs: string[]): string {
@@ -53,16 +53,16 @@ export function show(xs: string[]): string {
     .map((x) => {
       switch (x) {
         case HA:
-          return "#A ";
+          return "#A "
         case HB:
-          return "#B ";
+          return "#B "
         case AH:
-          return "A# ";
+          return "A# "
         case BH:
-          return "B# ";
+          return "B# "
         default:
-          return "";
+          return ""
       }
     })
-    .join("");
+    .join("")
 }

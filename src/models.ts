@@ -1,13 +1,12 @@
-import type { ChatCompletionMessageParam } from "openai/resources";
-import type { MessageParam } from "@anthropic-ai/sdk/resources";
+import type { ChatCompletionMessageParam } from "openai/resources"
+import type { MessageParam } from "@anthropic-ai/sdk/resources"
 
-import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
-import { readFile } from "fs/promises";
-import OpenAI from "openai";
-import { homedir } from "os";
+import { AnthropicVertex } from "@anthropic-ai/vertex-sdk"
+import { readFile } from "fs/promises"
+import OpenAI from "openai"
+import { homedir } from "os"
 import { join } from "path"
-import chalk from "chalk";
-import diff from "cli-diff";
+import chalk from "chalk"
 
 const { ANTHROPIC_API_KEY, OPENAI_API_KEY } = process.env
 
@@ -16,8 +15,8 @@ export async function getAnthropicKey() {
     return ANTHROPIC_API_KEY
   }
 
-  const keyPath = join(homedir(), '.config', 'anthropic.token');
-  return (await readFile(keyPath, 'utf8')).trim();
+  const keyPath = join(homedir(), ".config", "anthropic.token")
+  return (await readFile(keyPath, "utf8")).trim()
 }
 
 export async function getOpenAIKey() {
@@ -25,8 +24,8 @@ export async function getOpenAIKey() {
     return OPENAI_API_KEY
   }
 
-  const keyPath = join(homedir(), '.config', 'openai.token');
-  return (await readFile(keyPath, 'utf8')).trim();
+  const keyPath = join(homedir(), ".config", "openai.token")
+  return (await readFile(keyPath, "utf8")).trim()
 }
 
 export interface ClaudeTestOptions {
@@ -43,14 +42,14 @@ export interface ClaudeTestOptions {
 export type TestResult = {
   pass: boolean;
   text: string;
-  metadata: any;
+  metadata: unknown;
 }
 
 export async function testWithClaude({ 
   system, 
   messages, 
   max_tokens, 
-  model = 'claude-3-opus-20240229', 
+  model = "claude-3-opus-20240229", 
   temperature = 0, 
   debug = true,
   main = false,
@@ -61,7 +60,7 @@ export async function testWithClaude({
   const anthropic = new AnthropicVertex({
     region: "us-east5",
     projectId: "research-420207"
-  });
+  })
   
   if (debug) {
     const stream = anthropic.messages.stream({
@@ -72,11 +71,11 @@ export async function testWithClaude({
       ...(system && { system }),
     })
 
-    let output = "";
+    let output = ""
     
     const failed = new Promise<TestResult>((resolve) => {
       const onText = (text: string) => {
-        output += text;
+        output += text
         if (main) {
           process.stdout.write(text)
         }
@@ -85,46 +84,46 @@ export async function testWithClaude({
         const actual = output.trim()
   
         if (!correct.startsWith(actual)) {
-          console.log(chalk.bold(chalk.red("INCORRECT")));
+          console.log(chalk.bold(chalk.red("INCORRECT")))
           console.log(chalk.red("Output did not match solution."))
-          // console.log(chalk.red(actual))
-          let i = 0;
-          const correctLines = correct.split("\n");
-          const actualLines = actual.split("\n");
+
+          let i = 0
+          const correctLines = correct.split("\n")
+          const actualLines = actual.split("\n")
           while (i < actualLines.length) {
-            const correctLine = (correctLines?.[i] || "").padEnd(60);
-            const actualLine = (actualLines?.[i] || "").padEnd(60);
+            const correctLine = (correctLines?.[i] || "").padEnd(60)
+            const actualLine = (actualLines?.[i] || "").padEnd(60)
             console.log(
               `${chalk.green(correctLine)} | ${chalk.red(actualLine)}`
             )
 
-            i++;
+            i++
           }
 
           resolve({ pass: false, text: output, metadata: null })
-          stream.off('text', onText);
+          stream.off("text", onText)
         }
       }
 
-      stream.on('text', onText);
-    });
+      stream.on("text", onText)
+    })
     
 
-    const failedOrMessage = await Promise.race([failed, stream.finalMessage()]);
+    const failedOrMessage = await Promise.race([failed, stream.finalMessage()])
     if ("pass" in failedOrMessage) {
-      stream.abort();
-      const failedResult = failedOrMessage;
-      return failedResult;
+      stream.abort()
+      const failedResult = failedOrMessage
+      return failedResult
     }
     
-    const message = failedOrMessage;
-    const { content, ...metadata } = message;
+    const message = failedOrMessage
+    const { content, ...metadata } = message
 
     return {
       pass: true,
       text: content[0].text,
       metadata,
-    };
+    }
   }
 
   const message = await anthropic.messages.create({
@@ -133,14 +132,14 @@ export async function testWithClaude({
     max_tokens: max_tokens || 4096,
     temperature,
     ...(system && { system }),
-  });
+  })
 
-  const { content, ...metadata } = message;
+  const { content, ...metadata } = message
   return {
     pass: true,
     text: content[0].text,
     metadata,
-  };
+  }
 }
 
 export interface GPTTestOptions {
@@ -152,33 +151,35 @@ export interface GPTTestOptions {
   solution: string;
 }
 
+// TODO: Implement testWithGPT
 export async function testWithGPT({
   system, 
   messages, 
   model, 
   temperature,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   main = false,
   solution,
 }: GPTTestOptions): Promise<TestResult> {
-  const openai = new OpenAI({apiKey: await getOpenAIKey()});
+  const openai = new OpenAI({ apiKey: await getOpenAIKey() })
   const stream = await openai.chat.completions.create({
     model: model || "gpt-4-0125-preview",
     messages: [
-      {role: "system", content: system || "You're a helpful assistant." },
+      { role: "system", content: system || "You're a helpful assistant." },
       ...messages
     ],
     stream: true,
     max_tokens: 1600,
     temperature: temperature || 0,
-  });
+  })
 
-  var result = "";
+  let result = ""
   for await (const chunk of stream) {
-    var text = chunk.choices[0]?.delta?.content || "";
-    result += text;
+    const text = chunk.choices[0]?.delta?.content || ""
+    result += text
 
     if (!solution.trim().startsWith(result.trim())) {
-      console.log(chalk.bold(chalk.red("INCORRECT")));
+      console.log(chalk.bold(chalk.red("INCORRECT")))
       console.log(chalk.red("Output did not match solution."))
       return {
         pass: false,
@@ -188,12 +189,12 @@ export async function testWithGPT({
     }
   }
 
-  console.log(chalk.bold(chalk.green("CORRECT")));
+  console.log(chalk.bold(chalk.green("CORRECT")))
   console.log(chalk.green("Output exactly matched solution."))
 
   return {
     pass: true,
     text: result,
     metadata: null
-  };
+  }
 }
