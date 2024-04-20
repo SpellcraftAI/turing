@@ -10,7 +10,7 @@ const TEST_ID = process.argv[4] || "automata";
 
 const prompt = await loadTextFile("prompt.txt");
 const config = await loadJSONFile<Config>("config.json");
-const tests = await loadJSONLFile<Test>("test.jsonl");
+const tests = await loadJSONLFile<Test>("tests.jsonl");
 const { default: evaluator } = await loadModuleFile("eval.ts");
 
 if (!evaluator) {

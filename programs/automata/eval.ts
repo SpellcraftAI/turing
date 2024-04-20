@@ -14,8 +14,8 @@ const LOG = (msg: string) => {
 
 const TapeValue = (value: any): TapeValue => value as TapeValue;
 
-function format(tape: string | number[]) {
-  if (Array.isArray(tape)) tape = tape.join("");
+function format(tape: string | number[], join = "") {
+  if (Array.isArray(tape)) tape = tape.join(join);
   return tape.replace(/0/g, '░').replace(/1/g, '█');
 }
 
@@ -62,6 +62,14 @@ function generateRule(ruleNumber: RuleNumber): Rule {
   };
 }
 
+export function formatTape(tape: Tape): string {
+  return tape.map((v, i) => `${i}:${v}`).join(" ")
+}
+
+export function deformatTape(tape: string): Tape {
+  return tape.split(" ").map(v => Number(v.split(":")[1]) as TapeValue);
+}
+
 export default function testAutomata(
   initialState: string | TapeValue[],
   ruleNumber: string | RuleNumber,
@@ -70,18 +78,18 @@ export default function testAutomata(
   if (typeof ruleNumber === "string") ruleNumber = Number(ruleNumber);
   if (typeof generations === "string") generations = Number(generations);
   if (typeof initialState === "string") {
-    initialState = initialState.trim().split("").map(Number) as TapeValue[];
+    initialState = deformatTape(initialState)
   }
 
   let state = initialState;
   const width = initialState.length;
   const states: Tape[] = [initialState]
 
-  console.log(`\nUSER:\n${state.join("")}\n${ruleNumber}\n${width}\n${generations}`)
+  console.log(`\nUSER:\n${formatTape(state)}\n${ruleNumber}\n${width}\n${generations}`)
   console.log("\nASSISTANT:")
   LOG(`START`)
-  LOG(`${state.join("")}`)
-  LOG(`${state.map((v, i) => `${i}:${v}`).join(" ")}`)
+  // LOG(`${state.join(" ")}`)
+  LOG(formatTape(state))
   LOG(`${state.map((v, i) => `${i}:${format(`${v}`)}`).join(" ")}`)
   // LOG(`INPUT ${format(state).split("").join(" ")}`)
   LOG(`TAPE ${positions(format(state).split(""))}`)
@@ -138,7 +146,7 @@ export default function testAutomata(
   }
 
   LOG("DONE")
-  LOG(states.map((state, i) => `${`${i}/${generations}`.padEnd(5)} ${format(state).split("").join(" ")}`).join("\n"))
+  LOG(states.map((state, i) => `${`${i}/${generations}`.padEnd(5)} ${format(state, " ")}`).join("\n"))
 
   return OUTPUT.trim();
 }

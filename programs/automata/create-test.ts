@@ -5,20 +5,21 @@
 
 import { writeFile } from "fs/promises"
 import { resolve, dirname } from "path"
+import { formatTape, Tape } from "./eval";
 
 const TEST_JSONL = resolve(
   dirname(Bun.main),
-  "test.jsonl"
+  "tests.jsonl"
 )
 
 await writeFile(TEST_JSONL, "");
 
 for (let i = 0; i < 256; i++) {
-  const input = Array(10).fill(0);
+  const input: Tape = Array(10).fill(0);
   input[Math.floor(Math.random() * input.length)] = 1;
 
   const example = {
-    input: `${input.join('')}\n${i}\n10`
+    input: `${formatTape(input)}\n${i}\n10`
   }
 
   await writeFile(
