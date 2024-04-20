@@ -62,7 +62,8 @@ export function deformatTape(tape: string): Tape {
 export default function testAutomata(
   initialState: string | TapeValue[],
   ruleNumber: string | RuleNumber,
-  generations: string | number = 24
+  generations: string | number = 24,
+  silent = false
 ): string {
   if (typeof ruleNumber === "string") ruleNumber = Number(ruleNumber)
   if (typeof generations === "string") generations = Number(generations)
@@ -72,8 +73,10 @@ export default function testAutomata(
 
   let output = ""
   const log = (msg: string) => {
-    console.log(msg)
     output += msg + "\n"
+    if (!silent) {
+      console.log(msg)
+    }
   }
 
   let state = initialState

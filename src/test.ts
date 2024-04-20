@@ -23,7 +23,7 @@ async function runChallenge(test: Test, worker: number) {
   const { input } = test
   const [initialState, ruleNumber, max] = input.trim().split("\n")
 
-  const solution = await evaluator(initialState, ruleNumber, max)
+  const solution = await evaluator(initialState, ruleNumber, max, true)
 
   /**
    * We dope the context with a start token from the examples, and induce the
@@ -84,7 +84,7 @@ export async function test(batchSize = 1) {
 
     const results = await runBatch(batch, adjustedBatchSize)
     await new Promise(resolve => setTimeout(resolve, 1000))
-    
+
     for (const result of results) {
       const { pass, metadata } = result
       if (pass) correct++
