@@ -6,6 +6,7 @@
 import { writeFile } from "fs/promises"
 import { resolve, dirname } from "path"
 import { formatTape, Tape } from "./eval";
+import { shuffle } from "../../src/utils";
 
 const TEST_JSONL = resolve(
   dirname(Bun.main),
@@ -14,18 +15,22 @@ const TEST_JSONL = resolve(
 
 await writeFile(TEST_JSONL, "");
 
+type Example = {
+  input: string;
+}
+
+const examples: Example[] = []
+
 for (let i = 0; i < 256; i++) {
   const input: Tape = Array(10).fill(0);
   input[Math.floor(Math.random() * input.length)] = 1;
 
-  const example = {
+  examples.push({
     input: `${formatTape(input)}\n${i}\n0`
-  }
+  })
+}
 
-  await writeFile(
-    TEST_JSONL,
-    JSON.stringify(example) + '\n',
-    { flag: 'a' }
-  )
+for (const example of shuffle(examples)) {
+  await writeFile(TEST_JSONL, JSON.stringify(example) + "\n", { flag: "a" });
 }
 
