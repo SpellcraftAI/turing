@@ -79,19 +79,18 @@ async function runBatch(start: number, n: number) {
 }
 
 export async function test(batchSize = 1) {
-
   let correct = 0;
   const runs = tests.length;
   const numBatches = Math.ceil(runs / batchSize);
 
-  for (const batch of tqdm((new Array(numBatches)).keys())) {
+  const indexes = new Array(numBatches).keys();
+  for (const batch of tqdm(indexes)) {
     const start = batch * batchSize;
     const end = Math.min(start + batchSize, runs);
     const remainingRuns = runs - start;
     const adjustedBatchSize = Math.min(batchSize, remainingRuns);
 
     const results = await runBatch(batch, adjustedBatchSize);
-
     for (const result of results) {
       const { pass, metadata } = result;
       if (pass) correct++;

@@ -5,8 +5,9 @@
   "description": "### 1. The AI will be given a `<problem/>` to solve. Example:",
   "main": "index.js",
   "scripts": {
-    "train": "bun programs/automata/create-train.ts &> programs/automata/prompt.txt",
-    "prestart": "bun train",
+    "create-train": "bun programs/automata/create-train.ts &> programs/automata/prompt.txt",
+    "create-test": "bun programs/automata/create-test.ts",
+    "prestart": "bun create-train && bun create-test",
     "start": "bun programs/automata/test.ts"
   },
   "author": "",
