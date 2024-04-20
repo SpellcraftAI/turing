@@ -109,7 +109,7 @@ export default function testAutomata(
       const right = i < width - 1 ? state[i + 1] : 0
 
       const pattern: TapeValue = rule(left, center, right)
-      const patternIndex = 7 - PATTERNS.indexOf([left, center, right].join(""))
+      // const patternIndex = 7 - PATTERNS.indexOf([left, center, right].join(""))
 
       const leftLabel =
         i > 0 ? `${i - 1}${format([left])}` : "  "
@@ -125,7 +125,7 @@ export default function testAutomata(
       const indexLabel = `${i}/${width-1}`
       const matchLabel = `${i}${format([pattern])}`.padStart(3)
 
-      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${patternIndex} ${ruleLabel.padStart(4)}  ${matchLabel}  ${indexLabel}`)
+      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${ruleLabel.padStart(4)}  ${matchLabel}  ${indexLabel}`)
       newState.push(pattern)
     }
 

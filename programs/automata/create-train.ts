@@ -17,27 +17,27 @@ twentyFour[11] = 1
 // automaton(sixteen, 30, 16);
 // sixteen[9] = 1;
 
-automaton(twelve, 90, 20)
+automaton(twelve, 90, 12)
 twelve[0] = 1
 automaton(twelve, 54, 12)
 
-automaton(eleven, 150, 16)
+automaton(eleven, 150, 12)
 eleven[2] = 1
-automaton(eleven, 60, 20)
+automaton(eleven, 60, 12)
 
-automaton(four, 90, 4)
-automaton(four, 28, 6)
-automaton(four, 60, 4)
-automaton(four, 50, 6)
-automaton(four, 235, 4)
+automaton(four, 90, 3)
+// automaton(four, 28, 6)
+automaton(four, 60, 3)
+// automaton(four, 50, 6)
+// automaton(four, 235, 4)
 automaton(four, 30, 3)
 // automaton(seven, 210, 15)
 // automaton(seven, 67, 15)
 four[0] = 1
-automaton(four, 31, 3)
-automaton(four, 26, 6)
-automaton(four, 31, 2)
-automaton(four, 31, 3)
+automaton(four, 211, 3)
+automaton(four, 223, 3)
+automaton(four, 227, 2)
+automaton(four, 233, 3)
 
 // automaton(sixteen, 19, 20);
 // automaton(twentyFour, 10);
