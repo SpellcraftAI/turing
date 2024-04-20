@@ -70,7 +70,7 @@ async function runBatch(start: number, n: number) {
   return await Promise.all(promises)
 }
 
-export async function test(batchSize = 1) {
+export async function test(batchSize = 1, waitTime = 60) {
   let correct = 0
   const runs = tests.length
   const numBatches = Math.ceil(runs / batchSize)
@@ -103,7 +103,6 @@ export async function test(batchSize = 1) {
     console.log()
 
     if (batch < numBatches - 1) {
-      const waitTime = 60
       console.log(`${waitTime} second cooldown...`)
       await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
     }
