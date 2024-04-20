@@ -26,7 +26,7 @@ for (let i = 0; i < 256; i++) {
   input[Math.floor(Math.random() * input.length)] = 1;
 
   examples.push({
-    input: `${formatTape(input)}\n${i}\n0`
+    input: `${formatTape(input)}\n${i}\n9`
   })
 }
 
