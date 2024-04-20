@@ -11,24 +11,23 @@ const TEST_ID = process.argv[4] || "automata";
 const prompt = await loadTextFile("prompt.txt");
 const config = await loadJSONFile<Config>("config.json");
 const tests = await loadJSONLFile<Test>("tests.jsonl");
-const { default: evaluator } = await loadModuleFile("eval.ts");
-
-if (!evaluator) {
-  throw new Error("Failed to load the evaluator.")
-}
 
 async function runChallenge(test: Test, worker: number) {
+  const { default: evaluator } = await loadModuleFile("eval.ts");
+  if (!evaluator) {
+    throw new Error("Failed to load the evaluator.")
+  }  
+
   const model = config.models[MODEL];
   const main = worker === 0;
 
   const { input } = test;
-  const args = input.trim().split("\n");
+  const [initialState, ruleNumber, max] = input.trim().split("\n");
 
-  console.log("Getting solution...")
-  const solution = await evaluator(...args);
+  const solution = await evaluator(initialState, ruleNumber, max);
 
-  await writeTestFile(TEST_ID, "input.txt", input);
-  await writeTestFile(TEST_ID, "solution.txt", solution);
+  // await writeTestFile(TEST_ID, "input.txt", input);
+  // await writeTestFile(TEST_ID, "solution.txt", solution);
 
   /**
    * We dope the context with a start token from the examples, and induce the
@@ -45,20 +44,20 @@ async function runChallenge(test: Test, worker: number) {
   const params = { model, debug: true, worker, main, ...config };
 
   console.log();
-  console.table({ args });
+  console.table({ initialState, ruleNumber, max });
   console.table({ startToken });
   console.table(params);
   console.log(`Starting worker ${worker}...`)
 
   const startTest = model.startsWith("gpt") ? testWithGPT : testWithClaude;
-  let { pass, text, metadata } = await startTest({
+  let { pass, metadata } = await startTest({
     system: `${prompt}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
     messages: [{ role: 'user', content: input }],
     solution,
     ...params 
   });
 
-  await writeTestFile(TEST_ID, "response.txt", text);
+  // await writeTestFile(TEST_ID, "response.txt", text);
   return {
     pass,
     metadata
@@ -71,11 +70,9 @@ async function runBatch(start: number, n: number) {
     promises.push(
       backoff(() => runChallenge(tests[start + i], i))
     );
-
-    i++;
   }
 
-  return Promise.all(promises);
+  return await Promise.all(promises);
 }
 
 export async function test(batchSize = 1) {

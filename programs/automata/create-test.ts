@@ -19,7 +19,7 @@ for (let i = 0; i < 256; i++) {
   input[Math.floor(Math.random() * input.length)] = 1;
 
   const example = {
-    input: `${formatTape(input)}\n${i}\n10`
+    input: `${formatTape(input)}\n${i}\n0`
   }
 
   await writeFile(

@@ -6,12 +6,6 @@ export type RuleNumber = number;
 
 const PATTERNS: string[] = ['111', '110', '101', '100', '011', '010', '001', '000'];
 
-let OUTPUT = "";
-const LOG = (msg: string) => {
-  console.log(msg);
-  OUTPUT += msg + '\n';
-}
-
 const TapeValue = (value: any): TapeValue => value as TapeValue;
 
 function format(tape: string | number[], join = "") {
@@ -23,13 +17,13 @@ function positions(tape: string[] | number[]): string {
   return tape.map((v, i) => `${i}${v}`).join(' ')
 }
 
-function integerToBinaryTape(num: number): string {
+function integerToBinaryTape(num: number, log: (...args: any[]) => any): string {
   let binary = '';
 
   while (binary.length < 8) {
     const quotient = Math.floor(num / 2);
     const remainder = num % 2;
-    LOG(`${binary.length}/7: ${num} ${quotient} ${remainder} ${format([remainder])} → ${binary.length}${format([remainder])}`);
+    log(`${binary.length}/7: ${num} ${quotient} ${remainder} ${format([remainder])} → ${binary.length}${format([remainder])}`);
     binary = remainder + binary;
     num = quotient;
   }
@@ -37,15 +31,15 @@ function integerToBinaryTape(num: number): string {
   return binary;
 }
 
-function generateRule(ruleNumber: RuleNumber): Rule {
-  LOG(`RULE ${ruleNumber}`);
-  const ruleBinaryString = integerToBinaryTape(ruleNumber);
+function generateRule(ruleNumber: RuleNumber, log: (...args: any[]) => any): Rule {
+  log(`RULE ${ruleNumber}`);
+  const ruleBinaryString = integerToBinaryTape(ruleNumber, log);
 
-  LOG(`BINARY ${ruleBinaryString.split("").map((v, i) => `${7-i}${format(v)}`).join(" ")}`)
+  log(`BINARY ${ruleBinaryString.split("").map((v, i) => `${7-i}${format(v)}`).join(" ")}`)
   // LOG(`REVERSE BINARY POSITIONS ${ruleBinaryString.split("").map((v, i) => `${i}${format(v)}`).join(" ")}`)
-  LOG("RULES FROM BINARY")
+  log("RULES FROM BINARY")
   for (let i = 0; i < 8; i++) {
-    LOG(`${7-i} ${format(PATTERNS[i])} → ${format(ruleBinaryString[i])}`);
+    log(`${7-i} ${format(PATTERNS[i])} → ${format(ruleBinaryString[i])}`);
   }
 
   // LOG(`IN ${positions(PATTERNS.map(format))}`)
@@ -81,27 +75,32 @@ export default function testAutomata(
     initialState = deformatTape(initialState)
   }
 
+  let output = "";
+  const log = (msg: string) => {
+    console.log(msg);
+    output += msg + '\n';
+  }
+
   let state = initialState;
   const width = initialState.length;
   const states: Tape[] = [initialState]
 
-  console.log(`\nUSER:\n${formatTape(state)}\n${ruleNumber}\n${width}\n${generations}`)
+  console.log(`\nUSER:\n${formatTape(state)}\n${ruleNumber}\n${generations}`)
   console.log("\nASSISTANT:")
-  LOG(`START`)
+  log(`START: MAX ${generations}`)
   // LOG(`${state.join(" ")}`)
-  LOG(formatTape(state))
-  LOG(`${state.map((v, i) => `${i}:${format(`${v}`)}`).join(" ")}`)
+  log(formatTape(state))
+  log(`${state.map((v, i) => `${i}:${format(`${v}`)}`).join(" ")}`)
   // LOG(`INPUT ${format(state).split("").join(" ")}`)
-  LOG(`TAPE ${positions(format(state).split(""))}`)
-  LOG(`MAX ${generations}`)
+  log(`TAPE ${positions(format(state).split(""))}`)
 
-  const rule = generateRule(ruleNumber);
+  const rule = generateRule(ruleNumber, log);
 
   function info(i: number) {
     // LOG(`TAPE ${state.join(" ")}`)
     // LOG(`TAPE ${positions(format(state).split(""))}`)
     // LOG(`PRINT ${format(state).split("").join(" ")} ${i-1}`)
-    LOG(`TAPE ${i-1}/${generations} ${positions(format(state).split(""))}`)
+    log(`TAPE ${i-1}/${generations} ${positions(format(state).split(""))}`)
     // LOG(`MAX ${generations}`)
     // LOG("PRINT")
     // LOG(states.map((state, i) => `${format(state)} ${i+1}`).join("\n"))
@@ -118,17 +117,17 @@ export default function testAutomata(
       const patternIndex = PATTERNS.indexOf([left, center, right].join(''));
 
       const leftLabel =
-        `${i - 1}${format([left])}`
+        i > 0 ? `${i - 1}${format([left])}` : "  ";
 
       const centerLabel = `${i}${format([center])}`;
 
       const rightLabel =
-        `${i + 1}${format([right])}`;
+        i < width - 1 ? `${i + 1}${format([right])}` : "  ";
 
       const ruleLabel = 
-        `${format([left, center, right])} → ${format([pattern])}`
+        `${format([left, center, right])} → ${format([pattern])} ${i}${format([pattern])}`
 
-      LOG(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)} ${ruleLabel.padStart(2)}`)
+      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)} ${ruleLabel.padStart(2)}`)
       newState.push(pattern);
     }
 
@@ -145,8 +144,8 @@ export default function testAutomata(
     info(i)
   }
 
-  LOG("DONE")
-  LOG(states.map((state, i) => `${`${i}/${generations}`.padEnd(5)} ${format(state, " ")}`).join("\n"))
+  log(`${generations}/${generations} DONE`)
+  log(states.map((state, i) => `${`${i}/${generations}`.padEnd(6)} ${format(state, " ")}`).join("\n"))
 
-  return OUTPUT.trim();
+  return output.trim();
 }
