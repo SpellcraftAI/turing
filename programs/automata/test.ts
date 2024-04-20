@@ -1,3 +1,3 @@
 import { test } from "../../src/test";
 
-await test(4);
+await test(8);
