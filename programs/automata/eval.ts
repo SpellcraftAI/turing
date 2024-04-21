@@ -9,8 +9,10 @@ const PATTERNS: string[] = ["111", "110", "101", "100", "011", "010", "001", "00
 const TapeValue = (value: unknown): TapeValue => value as TapeValue
 
 function format(tape: string | number[], join = "") {
-  if (Array.isArray(tape)) tape = tape.join(join)
-  return tape.replace(/0/g, "░").replace(/1/g, "█")
+  if (Array.isArray(tape)) tape = tape.join("")
+  tape = tape.replace(/0/g, "░").replace(/1/g, "█")
+
+  return tape.split("").join(join)
 }
 
 function positions(tape: string[] | number[]): string {
@@ -40,7 +42,7 @@ function generateRule(ruleNumber: RuleNumber, log: (...args: string[]) => void):
   // LOG(`REVERSE BINARY POSITIONS ${ruleBinaryString.split("").map((v, i) => `${i}${format(v)}`).join(" ")}`)
   log("\nRULES FROM BINARY")
   for (let i = 0; i < 8; i++) {
-    log(`${format(PATTERNS[i])}: ${7-i} → ${format(ruleBinaryString[i])}`)
+    log(`${format(PATTERNS[i], " ")}: ${7-i} → ${format(ruleBinaryString[i])}`)
   }
 
   return (left: TapeValue, center: TapeValue, right: TapeValue): TapeValue => {
@@ -120,7 +122,7 @@ export default function testAutomata(
         i < width - 1 ? `${i + 1}${format([right])}` : `  ${format([0])}`
 
       const ruleLabel = 
-        `${format([left, center, right])}: ${patternIndex} → ${format([pattern])}`
+        `${format([left, center, right], " ")}: ${patternIndex} → ${format([pattern])}`
 
       const indexLabel = i === width-1 ? `${i}/${width-1}` : ""
       const matchLabel = `${i}${format([pattern])}`.padStart(3)
