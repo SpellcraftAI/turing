@@ -100,7 +100,7 @@ export default function testAutomata(
     log("")
     log(`TAPE ${indexLabel} ${positions(format(state).split(""))}`)
     log(`PRINT ${indexLabel} ${format(state, " ")}`)
-    log("")
+    log("LOOP")
   }
 
   function evolve(state: Tape) {
