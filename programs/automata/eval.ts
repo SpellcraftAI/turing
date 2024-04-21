@@ -124,7 +124,7 @@ export default function testAutomata(
       const ruleLabel = 
         `${format([left, center, right], " ")}: ${patternIndex} → ${format([pattern])}`
 
-      const indexLabel = i === width-1 ? `${i}/${width-1}` : ""
+      const indexLabel = i === width-1 ? "STOP" : ""
       const matchLabel = `${i}${format([pattern])}`.padStart(3)
 
       log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${ruleLabel.padStart(4)}  ${matchLabel}  ${indexLabel}`)
