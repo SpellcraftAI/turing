@@ -77,6 +77,11 @@ export async function test(batchSize = 1, waitTime = 60) {
 
   const indexes = new Array(numBatches).keys()
   for (const batch of tqdm(indexes)) {
+    if (batch > 0) {
+      console.log(`${waitTime} second cooldown...`)
+      await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
+    }
+
     const start = batch * batchSize
     const end = Math.min(start + batchSize, runs)
     const remainingRuns = runs - start
@@ -101,11 +106,6 @@ export async function test(batchSize = 1, waitTime = 60) {
     console.log()
     console.table({ Test, Correct, Accuracy })
     console.log()
-
-    if (batch < numBatches - 1) {
-      console.log(`${waitTime} second cooldown...`)
-      await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
-    }
   }
 
   console.log("")
