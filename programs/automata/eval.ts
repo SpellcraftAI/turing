@@ -96,7 +96,7 @@ export default function testAutomata(
   const rule = generateRule(ruleNumber, log)
 
   function info(i: number) {
-    const indexLabel = `${i-1}/${generations}`.padEnd(5)
+    const indexLabel = `${i-1}/${generations}`
     log("")
     log(`TAPE ${indexLabel} ${positions(format(state).split(""))}`)
     log(`PRINT ${indexLabel} ${format(state, " ")}`)
