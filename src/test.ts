@@ -87,7 +87,7 @@ export async function test(batchSize = 1, waitTime = 60) {
     const remainingRuns = runs - start
     const adjustedBatchSize = Math.min(batchSize, remainingRuns)
 
-    const results = await runBatch(batch, adjustedBatchSize)
+    const results = await runBatch(start, adjustedBatchSize)
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     for (const result of results) {
