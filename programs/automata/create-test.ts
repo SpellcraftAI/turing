@@ -19,7 +19,7 @@ type Example = {
   input: string;
 }
 
-const selected = [30, 54, 60, 62, 90, 94, 102, 110, 122, 126, 150, 158, 182, 188, 190, 220, 222, 250, 254]
+const selected = [0, 1, 30, 54, 60, 62, 90, 94, 102, 110, 122, 126, 150, 158, 182, 188, 190, 220, 222, 250, 254]
 const examples: Example[] = []
 
 // Add the remaining rules (0 to 255) excluding the selected ones
