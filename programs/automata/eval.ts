@@ -35,12 +35,12 @@ function integerToBinaryTape(num: number, log: (...args: string[]) => void): str
 }
 
 function generateRule(ruleNumber: RuleNumber, log: (...args: string[]) => void): Rule {
-  log(`\nRULE ${ruleNumber}`)
+  log(`RULE ${ruleNumber}`)
   const ruleBinaryString = integerToBinaryTape(ruleNumber, log)
 
   log(`BINARY ${ruleBinaryString.split("").map((v, i) => `${7-i}${format(v)}`).join(" ")}`)
   // LOG(`REVERSE BINARY POSITIONS ${ruleBinaryString.split("").map((v, i) => `${i}${format(v)}`).join(" ")}`)
-  log("\nRULES FROM BINARY")
+  log("RULES FROM BINARY")
   for (let i = 0; i < 8; i++) {
     log(`${format(PATTERNS[i], " ")}: ${7-i} → ${format(ruleBinaryString[i])}`)
   }
@@ -85,8 +85,8 @@ export default function testAutomata(
   let state = initialState
   const width = initialState.length
   const states: Tape[] = [initialState]
-  console.log("\n---")
-  console.log(`[USER]\n${formatTape(state)}\n${ruleNumber}\n${generations}`)
+
+  console.log(`\n[USER]\n${formatTape(state)}\n${ruleNumber}\n${generations}`)
   console.log("\n[ASSISTANT]")
   log(`START: MAX ${generations}`)
   log(formatTape(state))
@@ -97,16 +97,11 @@ export default function testAutomata(
 
   function info(i: number) {
     const indexLabel = `${i-1}/${generations}`
-    // const doneLabel = 
-    //   i-1 === generations 
-    //     ? "DONE" 
-    //     : "LOOP"
-    log("")
     log(`TAPE ${positions(format(state).split(""))}`)
     log(`PRINT ${indexLabel} ${format(state, " ")}`)
-    // log(`${doneLabel}`)
-    // log("")
-    // log("LOOP")
+    if (i - 1 === generations) {
+      log("DONE")
+    }
   }
 
   function evolve(state: Tape) {
@@ -120,12 +115,12 @@ export default function testAutomata(
       const patternIndex = 7 - PATTERNS.indexOf([left, center, right].join(""))
 
       const leftLabel =
-        i > 0 ? `${i - 1}${format([left])}` : `  ${format([0])}`
+        i > 0 ? `${i - 1}${format([left])}` : `${format([0])}`
 
       const centerLabel = `${i}${format([center])}`
 
       const rightLabel =
-        i < width - 1 ? `${i + 1}${format([right])}` : `  ${format([0])}`
+        i < width - 1 ? `${i + 1}${format([right])}` : `${format([0])}`
 
       const ruleLabel = 
         `${format([left, center, right], " ")}: ${patternIndex} → ${format([pattern])}`
@@ -133,7 +128,7 @@ export default function testAutomata(
       // const indexLabel = i === width-1 ? "STOP" : ""
       const matchLabel = `${i}${format([pattern])}`.padStart(3)
 
-      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${ruleLabel.padStart(4)}  ${matchLabel}`)
+      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)} ${ruleLabel.padStart(4)} ${matchLabel}`)
       newState.push(pattern)
     }
 

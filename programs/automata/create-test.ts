@@ -19,6 +19,7 @@ type Example = {
   input: string;
 }
 
+// const selected: number[] = []
 const selected = [1, 0, 30, 54, 60, 62, 90, 94, 102, 110, 122, 126, 150, 158, 182, 188, 190, 220, 222, 250, 254]
 const examples: Example[] = []
 
