@@ -78,6 +78,7 @@ export async function test(batchSize = 1, waitTime = 60) {
   const indexes = new Array(numBatches).keys()
   for (const batch of tqdm(indexes)) {
     if (batch > 0) {
+      console.log()
       console.log(`${waitTime} second cooldown...`)
       await new Promise(resolve => setTimeout(resolve, waitTime * 1000))
     }
