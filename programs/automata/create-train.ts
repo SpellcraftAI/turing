@@ -23,18 +23,19 @@ automaton(twelve, 54, 12)
 
 automaton(eleven, 150, 12)
 eleven[2] = 1
-automaton(eleven, 60, 12)
+automaton(eleven, 60, 9)
 
 automaton(four, 90, 3)
 // automaton(four, 28, 6)
 automaton(four, 60, 3)
 // automaton(four, 50, 6)
-// automaton(four, 235, 4)
-automaton(four, 30, 3)
+// automaton(four, 11, 4)
+automaton(four, 111, 9)
+automaton(four, 30, 9)
 // automaton(seven, 210, 15)
 // automaton(seven, 67, 15)
 four[0] = 1
-automaton(four, 211, 3)
+automaton(four, 211, 9)
 automaton(four, 223, 3)
 automaton(four, 227, 2)
 automaton(four, 233, 3)

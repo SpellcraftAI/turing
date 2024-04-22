@@ -97,10 +97,16 @@ export default function testAutomata(
 
   function info(i: number) {
     const indexLabel = `${i-1}/${generations}`
+    // const doneLabel = 
+    //   i-1 === generations 
+    //     ? "DONE" 
+    //     : "LOOP"
     log("")
-    log(`TAPE ${indexLabel} ${positions(format(state).split(""))}`)
+    log(`TAPE ${positions(format(state).split(""))}`)
     log(`PRINT ${indexLabel} ${format(state, " ")}`)
-    log("LOOP")
+    // log(`${doneLabel}`)
+    // log("")
+    // log("LOOP")
   }
 
   function evolve(state: Tape) {
@@ -124,10 +130,10 @@ export default function testAutomata(
       const ruleLabel = 
         `${format([left, center, right], " ")}: ${patternIndex} → ${format([pattern])}`
 
-      const indexLabel = i === width-1 ? "STOP" : ""
+      // const indexLabel = i === width-1 ? "STOP" : ""
       const matchLabel = `${i}${format([pattern])}`.padStart(3)
 
-      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${ruleLabel.padStart(4)}  ${matchLabel}  ${indexLabel}`)
+      log(`${leftLabel.padStart(3)} ${centerLabel.padStart(3)} ${rightLabel.padStart(3)}  ${ruleLabel.padStart(4)}  ${matchLabel}`)
       newState.push(pattern)
     }
 
@@ -144,7 +150,6 @@ export default function testAutomata(
     info(i)
   }
 
-  log(`${generations}/${generations} DONE`)
   log(states.map((state, i) => `PRINT ${`${i}/${generations}`.padEnd(5)} ${format(state, " ")}`).join("\n"))
 
   return output.trim()
