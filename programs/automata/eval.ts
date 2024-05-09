@@ -1,3 +1,5 @@
+import { format, integerToBinaryTape, positions } from "../utils"
+
 export type TapeValue = 0 | 1
 export type Tape = TapeValue[]
 
@@ -8,31 +10,6 @@ const PATTERNS: string[] = ["111", "110", "101", "100", "011", "010", "001", "00
 
 const TapeValue = (value: unknown): TapeValue => value as TapeValue
 
-function format(tape: string | number[], join = "") {
-  if (Array.isArray(tape)) tape = tape.join("")
-  tape = tape.replace(/0/g, "░").replace(/1/g, "█")
-
-  return tape.split("").join(join)
-}
-
-function positions(tape: string[] | number[]): string {
-  return tape.map((v, i) => `${i}${v}`).join(" ")
-}
-
-function integerToBinaryTape(num: number, log: (...args: string[]) => void): string {
-  let binary = ""
-
-  while (binary.length < 8) {
-    const quotient = Math.floor(num / 2)
-    const remainder = num % 2
-    const indexLabel = `${binary.length}/7`.padEnd(4)
-    log(`${indexLabel} ${num} ${quotient} ${remainder} ${format([remainder])} → ${binary.length}${format([remainder])}`)
-    binary = remainder + binary
-    num = quotient
-  }
-
-  return binary
-}
 
 function generateRule(ruleNumber: RuleNumber, log: (...args: string[]) => void): Rule {
   log(`RULE ${ruleNumber}`)
