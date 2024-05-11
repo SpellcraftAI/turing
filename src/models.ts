@@ -86,6 +86,7 @@ export async function testWithClaude({
         if (!correct.startsWith(actual)) {
           console.log(chalk.bold(chalk.red("INCORRECT")))
           console.log(chalk.red("Output did not match solution."))
+          console.log()
 
           let i = 0
           const correctLines = correct.split("\n")
@@ -100,6 +101,7 @@ export async function testWithClaude({
             i++
           }
 
+          console.log()
           resolve({ pass: false, text: output, metadata: null })
           stream.off("text", onText)
         }

@@ -7,5 +7,5 @@ A::B problem with 100% accuracy at 24 steps, and Rule 110 for a 12-token tape
 over 12 steps (accuracy over large runs not yet measured). 
 
 See:
- - [`programs/ab/prompt.txt`](programs/ab/prompt.txt)
- - [`programs/automata/prompt.txt`](programs/automata/prompt.txt)
+ - [`programs/ab/train.txt`](programs/ab/train.txt)
+ - [`programs/automata/train.txt`](programs/automata/train.txt)

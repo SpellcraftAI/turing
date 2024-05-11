@@ -1,79 +1,138 @@
+import { binaryTapeToInteger, format, integerToBinaryTape, positionFormat } from "../utils"
+
 export type TapeValue = 0 | 1
 export type Tape = TapeValue[]
 
-function format(tape: Tape, join = ""): string {
-  return tape.map(v => v === 0 ? "░" : "█").join(join)
-}
 
 function intToTape(num: number): Tape {
   const binary = num.toString(2)
   return binary.split("").map(v => Number(v) as TapeValue)
 }
 
-function tapeToInt(tape: Tape): number {
-  const binary = tape.join("")
-  return parseInt(binary, 2)
-}
+function multiplyTapes(
+  tapeA: Tape, 
+  tapeB: Tape, 
+  log: (...args: string[]) => void
+): Tape {
+  const result: Tape = new Array(tapeA.length + tapeB.length).fill(0)
+  const keys = [...Object.keys(tapeA), ...Object.keys(tapeB)]
 
-function multiplyTapes(tape1: Tape, tape2: Tape, log: (...args: string[]) => void): Tape {
-  const result: Tape = new Array(tape1.length + tape2.length).fill(0)
-  log(`Initializing result tape: ${format(result)}`)
+  log(`TAPE A ${positionFormat(tapeA)}`)
+  log(`TAPE B ${positionFormat(tapeB)}`)
+  // log(`JOIN ${keys.map((k) => k.padStart(2)).join(" ")}`)
+  // log(`JOIN ${Object.keys(keys).map((k) => k.padStart(2)).join(" ")}`)
 
-  for (let i = tape2.length - 1; i >= 0; i--) {
-    log(`\nMultiplying by bit at position ${i} of Tape 2`)
-    if (tape2[i] === 1) {
-      let carry = 0
-      for (let j = tape1.length - 1; j >= 0; j--) {
-        const sum = result[i + j + 1] + tape1[j] + carry
-        result[i + j + 1] = sum % 2 as TapeValue
-        log(`At position ${i + j + 1}:`)
-        log(`  Added: ${result[i + j + 1]} + ${tape1[j]} + ${carry}`)
-        log(`  Sum: ${sum}`)
-        log(`  Bit: ${result[i + j + 1]}`)
-        carry = Math.floor(sum / 2)
-        log(`  Carry: ${carry}`)
-      }
-      if (carry > 0) {
-        result[i] = carry as TapeValue
-        log(`Setting carry at position ${i}: ${carry}`)
-      }
-      log(`Result after multiplication by bit ${i}: ${format(result)}`)
-    } else {
-      log("Bit is 0, skipping multiplication")
-    }
+  log("JOIN")
+  let joinedIndex = 0
+
+  for (let i = 0; i < tapeA.length; i++) {
+    log(`${i} ${joinedIndex}`)
+    joinedIndex++
+  }
+  
+  for (let i = 0; i < tapeB.length; i++) {
+    log(`${i} ${joinedIndex}`)
+    joinedIndex++
   }
 
-  log(`\nFinal result: ${format(result)}`)
+  log(`OUTPUT ${positionFormat(result)}`)
+  log("LOOP")
+
+  let skipped = false
+  for (let i = tapeB.length - 1; i >= 0; i--) {
+    if (!skipped) {
+      log(`TAPE A ${positionFormat(tapeA)}`)
+      log(`TAPE B ${positionFormat(tapeB)}`)
+    }
+
+    skipped = false
+    const headB = tapeB[i]
+    const headBFmt = format([headB])
+    log(`B ${i}${headBFmt}`)
+
+    if (!headB) {
+      skipped = true
+      continue
+    }
+
+    let carry: TapeValue = 0
+
+    for (let j = tapeA.length - 1; j >= 0; j--) {
+      const position = i + j + 1
+      const sum = tapeA[j] + result[position] + carry
+      const remainder = sum % 2 as TapeValue
+
+      // Logging each step of the computation
+      log(`A ${j}${format([tapeA[j]])} O ${position}${format([result[position]])}`)
+      log(`CARRY ${carry}`)
+
+      const remainderLabel = remainder ? ` REM ${remainder}` : ""
+      log(`SUM ${sum}${remainderLabel}`)
+
+      result[position] = remainder // Update the result tape at the current position
+      carry = Math.floor(sum / 2) as TapeValue
+
+      // Logging after setting the bit and carry
+      log(`CARRY ${carry}`)
+      log(`SET ${position}${format([remainder])}`)
+    }
+
+    if (carry) {
+      log(`CARRYING O ${i}${format([result[i]])} → O ${i}${format([carry])}`)
+      result[i] = carry as TapeValue
+    } else {
+      log("NO CARRY")
+    }
+    
+    log(`OUTPUT ${positionFormat(result)}`)
+  }
+
+  // log(`OUTPUT ${positionFormat(result)}`)
   return result
 }
 
-function multiplyLargeIntegers(num1: number, num2: number): string {
+export default function multiply(
+  num1: number | string, 
+  num2: number | string
+): string {
+  if (typeof num1 === "string") num1 = Number(num1)
+  if (typeof num2 === "string") num2 = Number(num2)
+
   let output = ""
   const log = (...args: string[]) => {
     output += args.join("\n") + "\n"
   }
 
-  log(`Multiplying ${num1} x ${num2}`)
+  log("START")
+  log(`${num1} x ${num2}`)
 
-  const tape1 = intToTape(num1)
-  const tape2 = intToTape(num2)
+  log(`A: ${num1} TO BINARY`)
+  const binaryA = integerToBinaryTape(num1, log).split("").map(Number) as Tape
 
-  log(`Tape 1: ${format(tape1)}`)
-  log(`Tape 2: ${format(tape2)}`)
+  log(`B: ${num2} TO BINARY`)
+  const binaryB = integerToBinaryTape(num2, log).split("").map(Number) as Tape
 
-  const productTape = multiplyTapes(tape1, tape2, log)
-  const product = tapeToInt(productTape)
+  const tapeA = intToTape(num1)
+  const tapeB = intToTape(num2)
 
-  log(`Product Tape: ${format(productTape)}`)
-  log(`Product: ${product}`)
+  log("PREPARE")
+  const productTape = multiplyTapes(tapeA, tapeB, log)
+  log("FROM BINARY")
+  const product = binaryTapeToInteger(productTape, log)
+  log(`RETURN ${product}`)
+
+  // const product = tapeToInt(productTape)
+
+  // log(`Product Tape: ${format(productTape)}`)
+  // log(`Product: ${product}`)
   log(`Reference: ${num1 * num2}`)
 
-  return output
+  return output.trim()
 }
 
 // Example usage:
-const num1 = 12345
-const num2 = 54321
+// const num1 = 41
+// const num2 = 22
 
-const result = multiplyLargeIntegers(num1, num2)
-console.log(result)
+// const result = multiplyLargeIntegers(num1, num2)
+// console.log(result)
