@@ -1,4 +1,4 @@
-import { binaryTapeToInteger, format, integerToBinaryTape, positionFormat } from "../utils"
+import { binaryTapeToInteger, format, fromPositionalBinary, integerToBinaryTape, positionFormat } from "../utils"
 
 export type TapeValue = 0 | 1
 export type Tape = TapeValue[]
@@ -26,12 +26,12 @@ function multiplyTapes(
   let joinedIndex = 0
 
   for (let i = 0; i < tapeA.length; i++) {
-    log(`A ${i} O ${joinedIndex}`)
+    log(`A${i} O${joinedIndex}`)
     joinedIndex++
   }
   
   for (let i = 0; i < tapeB.length; i++) {
-    log(`B ${i} O ${joinedIndex}`)
+    log(`B${i} O${joinedIndex}`)
     joinedIndex++
   }
 
@@ -64,7 +64,7 @@ function multiplyTapes(
       const remainder = sum % 2 as TapeValue
 
       // Logging each step of the computation
-      log(`${i} ${j} ${i+j+1} A${j}${format([tapeA[j]])} O${position}${format([output[position]])}`)
+      log(`B${i} A${j} ${i+j} ${i+j+1} A${j}${format([tapeA[j]])} O${position}${format([output[position]])}`)
       if (carry) {
         log(`CARRY ${carry}`)
       }
@@ -95,6 +95,8 @@ function multiplyTapes(
     if (carry) {
       output[i] = carry as TapeValue
       log(`OUT O${i}${format([carry])}`)
+    } else {
+      log("NO CARRY")
     }
     
     // log(`OUTPUT ${positionFormat(result)}`)
@@ -109,8 +111,8 @@ export default function multiply(
   num1: number | string, 
   num2: number | string
 ): string {
-  if (typeof num1 === "string") num1 = Number(num1)
-  if (typeof num2 === "string") num2 = Number(num2)
+  if (typeof num1 === "string") num1 = fromPositionalBinary(num1)
+  if (typeof num2 === "string") num2 = fromPositionalBinary(num2)
 
   let output = ""
   const log = (...args: string[]) => {
@@ -118,13 +120,13 @@ export default function multiply(
   }
 
   log("START")
-  log(`${num1} x ${num2}`)
+  // log(`${num1} x ${num2}`)
 
-  log(`A: ${num1} TO BINARY`)
-  const binaryA = integerToBinaryTape(num1, log).split("").map(Number) as Tape
+  // log(`A: ${num1} TO BINARY`)
+  // const binaryA = integerToBinaryTape(num1, log).split("").map(Number) as Tape
 
-  log(`B: ${num2} TO BINARY`)
-  const binaryB = integerToBinaryTape(num2, log).split("").map(Number) as Tape
+  // log(`B: ${num2} TO BINARY`)
+  // const binaryB = integerToBinaryTape(num2, log).split("").map(Number) as Tape
 
   const tapeA = intToTape(num1)
   const tapeB = intToTape(num2)

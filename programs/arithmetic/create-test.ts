@@ -5,6 +5,7 @@
 
 import { writeFile } from "fs/promises"
 import { resolve, dirname } from "path"
+import { toPositionalBinary } from "../utils"
 
 const TEST_JSONL = resolve(
   dirname(Bun.main),
@@ -18,7 +19,7 @@ type Example = {
 }
 
 const selected: Example[] = [
-  { input: "19278\n12306" }
+  { input: `${toPositionalBinary(19278)}\n${toPositionalBinary(12306)}` }
 ]
 const examples: Example[] = []
 
@@ -31,7 +32,7 @@ for (let i = 0; i < 10; i++) {
   const a = Math.floor(Math.random() * 10)
   const b = Math.floor(Math.random() * 10)
   
-  examples.push({ input: `${a}\n${b}` })
+  examples.push({ input: `${toPositionalBinary(a)}\n${toPositionalBinary(b)}` })
 }
 
 for (const example of examples) {

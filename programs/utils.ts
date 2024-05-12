@@ -90,3 +90,16 @@ export const addToTrainingTape = async <
   const file = resolve(dirname(Bun.main), "train.txt")
   await writeFile(file, example, { flag: "a" })
 }
+
+export const toPositionalBinary = (num: number) => {
+  return num.toString(2).split("").map((v, i) => `${i}:${v}`).join(" ")
+}
+
+export const toPositionalBinaries = (nums: number[]) => {
+  return nums.map(toPositionalBinary)
+}
+
+export const fromPositionalBinary = (positionalBinary: string): number => {
+  const binary = positionalBinary.split(" ").map((v) => v.split(":")[1]).join("")
+  return parseInt(binary, 2)
+}
