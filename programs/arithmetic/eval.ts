@@ -14,7 +14,7 @@ function multiplyTapes(
   tapeB: Tape, 
   log: (...args: string[]) => void
 ): Tape {
-  const result: Tape = new Array(tapeA.length + tapeB.length).fill(0)
+  const output: Tape = new Array(tapeA.length + tapeB.length).fill(0)
   const keys = [...Object.keys(tapeA), ...Object.keys(tapeB)]
 
   log(`TAPE A ${positionFormat(tapeA)}`)
@@ -26,23 +26,23 @@ function multiplyTapes(
   let joinedIndex = 0
 
   for (let i = 0; i < tapeA.length; i++) {
-    log(`${i} ${joinedIndex}`)
+    log(`A ${i} O ${joinedIndex}`)
     joinedIndex++
   }
   
   for (let i = 0; i < tapeB.length; i++) {
-    log(`${i} ${joinedIndex}`)
+    log(`B ${i} O ${joinedIndex}`)
     joinedIndex++
   }
 
-  log(`OUTPUT ${positionFormat(result)}`)
-  log("LOOP")
+  log(`OUTPUT ${positionFormat(output)}`)
 
   let skipped = false
   for (let i = tapeB.length - 1; i >= 0; i--) {
     if (!skipped) {
-      log(`TAPE A ${positionFormat(tapeA)}`)
-      log(`TAPE B ${positionFormat(tapeB)}`)
+      log(`A ${positionFormat(tapeA)}`)
+      log(`B ${positionFormat(tapeB)}`)
+      log("LOOP B")
     }
 
     skipped = false
@@ -57,38 +57,52 @@ function multiplyTapes(
 
     let carry: TapeValue = 0
 
+    log("LOOP A OUTPUT")
     for (let j = tapeA.length - 1; j >= 0; j--) {
       const position = i + j + 1
-      const sum = tapeA[j] + result[position] + carry
+      const sum = tapeA[j] + output[position] + carry
       const remainder = sum % 2 as TapeValue
 
       // Logging each step of the computation
-      log(`A ${j}${format([tapeA[j]])} O ${position}${format([result[position]])}`)
-      log(`CARRY ${carry}`)
+      log(`${i} ${j} ${i+j+1} A${j}${format([tapeA[j]])} O${position}${format([output[position]])}`)
+      if (carry) {
+        log(`CARRY ${carry}`)
+      }
 
-      const remainderLabel = remainder ? ` REM ${remainder}` : ""
-      log(`SUM ${sum}${remainderLabel}`)
+      if (sum) {
+        log(`SUM ${sum}`)
+      }
 
-      result[position] = remainder // Update the result tape at the current position
+      if (remainder) {
+        log(`REM ${remainder}`)
+      }
+
+      // const remainderLabel = remainder ? ` REM ${remainder}` : ""
+      // log(`SUM ${sum}${remainderLabel}`)
+
+      output[position] = remainder // Update the result tape at the current position
+      log(`OUT O${position}${format([remainder])}`)
+
       carry = Math.floor(sum / 2) as TapeValue
-
       // Logging after setting the bit and carry
-      log(`CARRY ${carry}`)
-      log(`SET ${position}${format([remainder])}`)
+      if (carry) {
+        log(`CARRY ${carry}`)
+      }
     }
+
+    log("LOOP A OUTPUT END")
 
     if (carry) {
-      log(`CARRYING O ${i}${format([result[i]])} → O ${i}${format([carry])}`)
-      result[i] = carry as TapeValue
-    } else {
-      log("NO CARRY")
+      output[i] = carry as TapeValue
+      log(`OUT O${i}${format([carry])}`)
     }
     
-    log(`OUTPUT ${positionFormat(result)}`)
+    // log(`OUTPUT ${positionFormat(result)}`)
+    log(output.map((v, i) => `O${i}${format([v])}`).join(" "))
   }
 
   // log(`OUTPUT ${positionFormat(result)}`)
-  return result
+  return output
 }
 
 export default function multiply(
