@@ -47,7 +47,8 @@ async function runChallenge(test: Test, worker: number) {
 
   const startTest = model.startsWith("gpt") ? testWithGPT : testWithClaude
   const { pass, metadata } = await startTest({
-    system: `${prompt}\n---\nBEGIN RESPONSE WITH: ${startToken}\n`, 
+    system: prompt,
+    startToken,
     messages: [{ role: "user", content: input }],
     solution,
     ...params 

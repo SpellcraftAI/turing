@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix ./**/*.ts",
-    "create-train": "bun programs/arithmetic/create-train.ts",
-    "create-test": "bun programs/arithmetic/create-test.ts",
+    "create-train": "bun programs/arithmetic-tape/create-train.ts",
+    "create-test": "bun programs/arithmetic-tape/create-test.ts",
     "prestart": "bun create-train && bun create-test",
-    "start": "bun programs/arithmetic/test.ts"
+    "start": "bun programs/arithmetic-tape/test.ts"
   },
   "author": "",
   "license": "ISC",

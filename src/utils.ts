@@ -60,3 +60,11 @@ export function shuffle<Q, T extends Array<Q>>(array: T) {
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
 }
+
+export function longFormat(value: number) {
+  return value.toLocaleString("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 2,
+  })
+}
