@@ -19,7 +19,8 @@ type Example = {
 }
 
 const selected: Example[] = [
-  { input: `${toPositionalBinary(999_971)}\n${toPositionalBinary(99_993)}` },
+  // { input: `${toPositionalBinary(599_999_999_999_911)}\n${toPositionalBinary(599_999_999_999_911)}` },
+  // { input: `${toPositionalBinary(999_971)}\n${toPositionalBinary(99_993)}` },
   { input: `${toPositionalBinary(19278)}\n${toPositionalBinary(12306)}` }
 ]
 

@@ -41,7 +41,7 @@ function multiplyTapes(
     if (!skipped) {
       log(`A ${positionFormat(tapeA)}`)
       log(`B ${positionFormat(tapeB)}`)
-      log("LOOP B")
+      // log("LOOP B")
     }
 
     skipped = false
@@ -56,46 +56,55 @@ function multiplyTapes(
 
     let carry: TapeValue = 0
 
-    log("LOOP A OUTPUT")
+    // log("LOOP A OUTPUT")
     for (let j = tapeA.length - 1; j >= 0; j--) {
+      const headA = tapeA[j]
+      const headAFmt = format([headA])
       const position = i + j + 1
       const sum = tapeA[j] + output[position] + carry
       const remainder = sum % 2 as TapeValue
 
       // Logging each step of the computation
-      log(`B${i} A${j} ${i+j} ${i+j+1} A${j}${format([tapeA[j]])} O${position}${format([output[position]])}`)
-      if (carry) {
-        log(`CARRY ${carry}`)
-      }
+      log(`B${i}${headBFmt} A${j}${headAFmt} ${i+j+1} ${i+j} O${position}${format([output[position]])}`)
 
-      if (sum) {
-        log(`SUM ${sum}`)
-      }
 
-      if (remainder) {
-        log(`REM ${remainder}`)
-      }
+      const carryMessage = carry ? carry : ""
+      const sumMessage = sum ? sum : ""
+
+      log(`${carry} ${sum} ${remainder}`)
+
+      // if (carry) {
+      //   log(`CARRY ${carry}`)
+      // }
+
+      // if (sum) {
+      //   log(`SUM ${sum}`)
+      // }
+
+      // if (remainder) {
+      //   log(`REM ${remainder}`)
+      // }
 
       // const remainderLabel = remainder ? ` REM ${remainder}` : ""
       // log(`SUM ${sum}${remainderLabel}`)
 
       output[position] = remainder // Update the result tape at the current position
-      log(`OUT O${position}${format([remainder])}`)
+      log(`O${position}${format([remainder])}`)
 
       carry = Math.floor(sum / 2) as TapeValue
       // Logging after setting the bit and carry
       if (carry) {
-        log(`CARRY ${carry}`)
+        log(`${carry}`)
       }
     }
 
-    log("LOOP A OUTPUT END")
+    // log("LOOP A OUTPUT END")
 
     if (carry) {
       output[i] = carry as TapeValue
-      log(`OUT O${i}${format([carry])}`)
+      log(`O${i}${format([carry])}`)
     } else {
-      log("NO CARRY")
+      log("SKIP")
     }
     
     // log(`OUTPUT ${positionFormat(result)}`)
@@ -132,15 +141,16 @@ export default function multiply(
 
   log("PREPARE")
   const productTape = multiplyTapes(tapeA, tapeB, log)
-  log("FROM BINARY")
-  const product = binaryTapeToInteger(productTape, log)
-  log(`RETURN ${product}`)
+  log(`RETURN ${positionFormat(productTape)}`)
+  // log("FROM BINARY")
+  // const product = binaryTapeToInteger(productTape, log)
+  // log(`RETURN ${product}`)
 
   // const product = tapeToInt(productTape)
 
   // log(`Product Tape: ${format(productTape)}`)
   // log(`Product: ${product}`)
-  log(`Reference: ${num1 * num2}`)
+  // log(`Reference: ${num1 * num2}`)
 
   return output.trim()
 }
