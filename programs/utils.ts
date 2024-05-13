@@ -91,8 +91,16 @@ export const addToTrainingTape = async <
   await writeFile(file, example, { flag: "a" })
 }
 
+export const toPositional = (value: string | number, prefix?: string) => {
+  return value.toString().split("").map((v, i) => `${prefix ?? ""}${i}:${v}`).join(" ")
+}
+
+export const fromPositional = (positional: string) => {
+  return positional.split(" ").map((v) => v.split(":")[1]).join("")
+}
+
 export const toPositionalBinary = (num: number) => {
-  return num.toString(2).split("").map((v, i) => `${i}:${v}`).join(" ")
+  return toPositional(num.toString(2))
 }
 
 export const toPositionalBinaries = (nums: number[]) => {
@@ -100,6 +108,6 @@ export const toPositionalBinaries = (nums: number[]) => {
 }
 
 export const fromPositionalBinary = (positionalBinary: string): number => {
-  const binary = positionalBinary.split(" ").map((v) => v.split(":")[1]).join("")
+  const binary = fromPositional(positionalBinary)
   return parseInt(binary, 2)
 }

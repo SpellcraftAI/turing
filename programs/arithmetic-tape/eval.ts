@@ -1,4 +1,4 @@
-import { binaryTapeToInteger, format, fromPositionalBinary, integerToBinaryTape, positionFormat } from "../utils"
+import { binaryTapeToInteger, format, fromPositionalBinary, positionFormat } from "../utils"
 
 export type TapeValue = 0 | 1
 export type Tape = TapeValue[]
@@ -15,7 +15,6 @@ function multiplyTapes(
   log: (...args: string[]) => void
 ): Tape {
   const output: Tape = new Array(tapeA.length + tapeB.length).fill(0)
-  const keys = [...Object.keys(tapeA), ...Object.keys(tapeB)]
 
   log(`TAPE A ${positionFormat(tapeA)}`)
   log(`TAPE B ${positionFormat(tapeB)}`)
