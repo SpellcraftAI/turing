@@ -16,8 +16,8 @@ function multiplyTapes(
 ): Tape {
   const output: Tape = new Array(tapeA.length + tapeB.length).fill(0)
 
-  log(`TAPE A ${positionFormat(tapeA)}`)
-  log(`TAPE B ${positionFormat(tapeB)}`)
+  log(positionFormat(tapeA, "A"))
+  log(positionFormat(tapeB, "B"))
   // log(`JOIN ${keys.map((k) => k.padStart(2)).join(" ")}`)
   // log(`JOIN ${Object.keys(keys).map((k) => k.padStart(2)).join(" ")}`)
 
@@ -34,20 +34,20 @@ function multiplyTapes(
     joinedIndex++
   }
 
-  log(`OUTPUT ${positionFormat(output)}`)
+  // log(positionFormat(output, "O"))
 
   let skipped = false
   for (let i = tapeB.length - 1; i >= 0; i--) {
     if (!skipped) {
-      log(`A ${positionFormat(tapeA)}`)
-      log(`B ${positionFormat(tapeB)}`)
+      log(`${positionFormat(tapeA, "A")}`)
+      log(`${positionFormat(tapeB, "B")}`)
       // log("LOOP B")
     }
 
     skipped = false
     const headB = tapeB[i]
     const headBFmt = format([headB])
-    log(`B ${i}${headBFmt}`)
+    log(`B${i}${headBFmt} ${i + tapeA.length} ${i + tapeA.length - 1}`)
 
     if (!headB) {
       skipped = true
@@ -65,13 +65,11 @@ function multiplyTapes(
       const remainder = sum % 2 as TapeValue
 
       // Logging each step of the computation
-      log(`B${i}${headBFmt} A${j}${headAFmt} ${i+j+1} ${i+j} O${position}${format([output[position]])}`)
+      log(`B${i}${headBFmt} A${j}${headAFmt} O${position}${format([output[position]])}`)
 
-
-      const carryMessage = carry ? carry : ""
-      const sumMessage = sum ? sum : ""
-
-      log(`${carry} ${sum} ${remainder}`)
+      if (carry || sum) {
+        log(`${carry} ${sum}`)
+      }
 
       // if (carry) {
       //   log(`CARRY ${carry}`)
@@ -104,11 +102,11 @@ function multiplyTapes(
       output[i] = carry as TapeValue
       log(`O${i}${format([carry])}`)
     } else {
-      log("SKIP")
+      log(`O${i}${format([output[i]])}`)
     }
     
     // log(`OUTPUT ${positionFormat(result)}`)
-    log(output.map((v, i) => `O${i}${format([v])}`).join(" "))
+    log(positionFormat(output, "O"))
   }
 
   // log(`OUTPUT ${positionFormat(result)}`)

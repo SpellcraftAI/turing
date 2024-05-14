@@ -12,8 +12,8 @@ export function positions(tape: string[] | number[]): string {
 }
 
 
-export function positionFormat(tape: (0 | 1)[], reverse = false): string {
-  return tape.map((v, i) => `${`${reverse ? tape.length - (i+1) : i}`.padStart(2)}${format([v])}`).join(" ")
+export function positionFormat(tape: (0 | 1)[], prefix = ""): string {
+  return tape.map((v, i) => `${`${prefix}${i}`}${format([v])}`).join(" ")
 }
 
 export function integerToBinaryTape(

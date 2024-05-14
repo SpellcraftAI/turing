@@ -21,9 +21,9 @@ async function runChallenge(test: Test, worker: number) {
   const main = worker === 0
 
   const { input } = test
-  const [initialState, ruleNumber, max] = input.trim().split("\n")
+  const args = input.trim().split("\n")
 
-  const solution = await evaluator(initialState, ruleNumber, max, true)
+  const solution = await evaluator(...args, true)
 
   /**
    * We dope the context with a start token from the examples, and induce the
@@ -40,7 +40,7 @@ async function runChallenge(test: Test, worker: number) {
   const params = { model, debug: true, worker, main, ...config }
 
   console.log()
-  console.table({ initialState, ruleNumber, max })
+  console.table(args)
   console.table({ startToken })
   console.table(params)
   console.log(`Starting worker ${worker}...`)

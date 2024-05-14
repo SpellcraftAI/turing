@@ -1,3 +1,11 @@
+/**
+ * TODO: Reorganize and de-duplicate this file, detect GPT/Anthropic in one
+ * function.
+ */
+/**
+ * TODO: Only receive streams, do not bother with synchronous text completions.
+ */
+
 import type { ChatCompletionMessageParam } from "openai/resources"
 import type { MessageParam } from "@anthropic-ai/sdk/resources"
 
@@ -52,6 +60,7 @@ function checkRollingSolution(output: string, solution: string) {
   const actual = output.trim()
 
   if (!correct.startsWith(actual)) {
+    console.log()
     console.log(chalk.bold(chalk.red("INCORRECT")))
     console.log(chalk.red("Output did not match solution."))
     console.log()
